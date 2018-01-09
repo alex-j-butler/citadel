@@ -19,6 +19,9 @@ Rails.application.routes.draw do
 
   get 'pages/home'
 
+  # Custom Qixalite pages
+  get 'rules', to: 'pages#rules'
+
   get 'admin', to: 'admin#index'
   get 'statistics',  to: 'admin#statistics', as: 'admin_statistics'
 
