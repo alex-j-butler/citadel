@@ -98,3 +98,6 @@ group :development do
   gem 'capistrano-rails', require: false
   gem 'capistrano-passenger', require: false
 end
+
+# Added at 2018-01-10 13:44:34 +1000 by alex:
+gem "pretender", "~> 0.3.1"

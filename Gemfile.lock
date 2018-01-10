@@ -230,6 +230,8 @@ GEM
       ast (~> 2.3)
     pg (0.21.0)
     powerpack (0.1.1)
+    pretender (0.3.1)
+      actionpack
     public_suffix (3.0.1)
     rack (2.0.3)
     rack-attack (5.0.1)
@@ -423,6 +425,7 @@ DEPENDENCIES
   omniauth-steam
   pagedown-bootstrap-rails
   pg
+  pretender (~> 0.3.1)
   rails (~> 5.0.0)
   rails_best_practices
   rake (~> 12.0)
@@ -440,4 +443,4 @@ DEPENDENCIES
   will_paginate-bootstrap
 
 BUNDLED WITH
-   1.16.0
+   1.16.1
