@@ -72,7 +72,7 @@ class PermissionsController < ApplicationController
     if subject?
       redirect_back unless user_can_edit_permissions?
     else
-      redirect_back unless current_user.can?(:edit, :permissions) || current_user.can?(@action, admin_subject)
+      redirect_back unless current_user.can?(:edit, :permissions)
     end
   end
 
