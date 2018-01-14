@@ -16,6 +16,7 @@
 = f.check_box :allow_round_draws, label: 'Allow set draws'
 = f.number_field :round_number, label: 'Round Number (Used for ordering)'
 = f.text_field :round_name, label: 'Round Name (Display Name)'
+= f.date_field :week_beginning, label: 'Week beginning'
 = f.markdown_editor :notice, id: dom_id(div), rows: 6
 
 .panel.panel-default

@@ -2,6 +2,8 @@ class League
   class Match < ApplicationRecord
     include MarkdownRenderCaching
 
+    before_validation :update_week_beginning
+
     belongs_to :home_team, class_name: 'Roster'
     belongs_to :away_team, class_name: 'Roster', optional: true
 
@@ -256,6 +258,11 @@ class League
 
     def validate_confirmed_time_is_accepted
       errors.add(:confirmed_time, 'is not accepted') if !confirmed_time.nil? && !confirmed_time.accepted?
+    end
+
+    def update_week_beginning
+      # update week_beginning to reflect the beginning of the match week
+      self.week_beginning = self.week_beginning.beginning_of_week
     end
 
     def set_defaults

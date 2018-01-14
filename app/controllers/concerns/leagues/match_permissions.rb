@@ -40,6 +40,16 @@ module Leagues
       user_can_edit_league? || (current_user == comm.created_by && user_not_banned?)
     end
 
+    def user_can_suggest_times?
+      user_can_either_teams?
+    end
+
+    def user_can_accept_times?(time, match)
+      user_signed_in? && (user_can_edit_league? ||
+        (((match.home_team.on_roster?(current_user) && user_can_home_team?) ||
+        (match.away_team.on_roster?(current_user) && user_can_away_team?)) && current_user != time.user))
+    end
+
     private
 
     def user_not_banned?

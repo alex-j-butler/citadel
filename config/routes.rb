@@ -75,6 +75,16 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :matches, controller: 'leagues/matches', only: [] do
+    resources :times, controller: 'leagues/matches/booked_times', only: [] do
+      member do
+        patch 'suggest'
+        patch 'accept'
+        patch 'reject'
+      end
+    end
+  end
+
   resources :rosters, only: [] do
     resources :comments, controller: 'leagues/rosters/comments', only: [:edit, :update, :destroy] do
       get :edits, on: :member, as: 'edits_for'

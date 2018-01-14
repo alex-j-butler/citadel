@@ -10,6 +10,8 @@ module Leagues
       @comms = @match.comms.ordered.includes(:created_by)
       @comms = @comms.existing unless user_can_edit_league?
 
+      @booked_times = @match.booked_times
+
       match_show_permissions_includes
     end
 

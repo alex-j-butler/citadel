@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180114024108) do
+ActiveRecord::Schema.define(version: 20180114034209) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -349,6 +349,7 @@ ActiveRecord::Schema.define(version: 20180114024108) do
     t.decimal  "total_home_team_score",  precision: 20, scale: 6, default: "0.0", null: false
     t.decimal  "total_away_team_score",  precision: 20, scale: 6, default: "0.0", null: false
     t.boolean  "allow_round_draws",                               default: false, null: false
+    t.date     "week_beginning"
     t.index ["away_team_id"], name: "index_league_matches_on_away_team_id", using: :btree
     t.index ["home_team_id"], name: "index_league_matches_on_home_team_id", using: :btree
     t.index ["loser_id"], name: "index_league_matches_on_loser_id", using: :btree
