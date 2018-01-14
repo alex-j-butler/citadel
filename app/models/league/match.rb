@@ -15,6 +15,9 @@ class League
     accepts_nested_attributes_for :pick_bans, allow_destroy: true
 
     has_many :comms, class_name: 'Match::Comm', dependent: :destroy
+    has_many :booked_times, class_name: 'Match::BookedTime', dependent: :destroy
+    belongs_to :confirmed_time, class_name: 'Match::BookedTime', dependent: :destroy
+    validate :validate_confirmed_time_is_accepted
 
     delegate :division, :league, to: :home_team, allow_nil: true
 
@@ -249,6 +252,10 @@ class League
       if has_winner && allow_round_draws
         errors.add(:allow_round_draws, "Match rounds can't draw when match has a winner")
       end
+    end
+
+    def validate_confirmed_time_is_accepted
+      errors.add(:confirmed_time, 'is not accepted') if !confirmed_time.nil? && !confirmed_time.accepted?
     end
 
     def set_defaults
