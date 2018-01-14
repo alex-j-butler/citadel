@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180110021359) do
+ActiveRecord::Schema.define(version: 20180114024108) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -261,6 +261,18 @@ ActiveRecord::Schema.define(version: 20180110021359) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["league_id"], name: "index_league_divisions_on_league_id", using: :btree
+  end
+
+  create_table "league_match_booked_times", force: :cascade do |t|
+    t.integer  "match_id",                       null: false
+    t.integer  "user_id"
+    t.datetime "time"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "status",             default: 0
+    t.integer  "confirmed_match_id"
+    t.index ["match_id"], name: "index_league_match_booked_times_on_match_id", using: :btree
+    t.index ["status"], name: "index_league_match_booked_times_on_status", using: :btree
   end
 
   create_table "league_match_comm_edits", force: :cascade do |t|
@@ -711,6 +723,8 @@ ActiveRecord::Schema.define(version: 20180110021359) do
   add_foreign_key "forums_threads", "users", column: "created_by_id"
   add_foreign_key "forums_topics", "users", column: "created_by_id"
   add_foreign_key "league_divisions", "leagues"
+  add_foreign_key "league_match_booked_times", "league_matches", column: "match_id"
+  add_foreign_key "league_match_booked_times", "users"
   add_foreign_key "league_match_comm_edits", "league_match_comms", column: "comm_id"
   add_foreign_key "league_match_comm_edits", "users", column: "created_by_id"
   add_foreign_key "league_match_comms", "league_matches", column: "match_id"

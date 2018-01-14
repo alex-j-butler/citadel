@@ -16,7 +16,7 @@ class League
 
     has_many :comms, class_name: 'Match::Comm', dependent: :destroy
     has_many :booked_times, class_name: 'Match::BookedTime', dependent: :destroy
-    belongs_to :confirmed_time, class_name: 'Match::BookedTime', dependent: :destroy
+    has_one :confirmed_time, foreign_key: 'confirmed_match_id', class_name: 'Match::BookedTime', dependent: :destroy
     validate :validate_confirmed_time_is_accepted
 
     delegate :division, :league, to: :home_team, allow_nil: true
