@@ -262,7 +262,8 @@ class League
 
     def update_week_beginning
       # update week_beginning to reflect the beginning of the match week
-      self.week_beginning = self.week_beginning.beginning_of_week
+      date = self.week_beginning
+      self.week_beginning = date.beginning_of_week if !date.nil?
     end
 
     def set_defaults

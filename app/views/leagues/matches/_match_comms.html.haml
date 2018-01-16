@@ -22,7 +22,7 @@
 
       %hr
 
-      = bootstrap_form_tag url: suggest_match_time_path(@match), method: :patch do |f|
+      = bootstrap_form_tag url: match_suggest_time_path(@match), method: :post do |f|
         .row
           .col-sm-2
             - day_names = Date::DAYNAMES.each_with_index.map{ |d, i| [d, i] }

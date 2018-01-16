@@ -4,6 +4,7 @@ FactoryGirl.define do
     round_number 1
     round_name ''
     has_winner false
+    week_beginning Date.today
 
     transient do
       division nil
@@ -35,6 +36,7 @@ FactoryGirl.define do
     away_team nil
     round_number nil
     round_name ''
+    week_beginning Date.today
 
     after(:build) do |match, _|
       div = if match.home_team

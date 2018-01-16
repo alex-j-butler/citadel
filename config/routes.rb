@@ -76,9 +76,10 @@ Rails.application.routes.draw do
   end
 
   resources :matches, controller: 'leagues/matches', only: [] do
+    post 'times/suggest', to: 'leagues/matches/booked_times#suggest', as: 'suggest_time'
+
     resources :times, controller: 'leagues/matches/booked_times', only: [] do
       member do
-        patch 'suggest'
         patch 'accept'
         patch 'reject'
       end

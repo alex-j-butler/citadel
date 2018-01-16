@@ -7,7 +7,8 @@ describe 'leagues/matches/show' do
   let(:division) { build(:league_division, league: league) }
   let(:home_team) { build_stubbed(:league_roster, player_count: 3, division: division) }
   let(:away_team) { build_stubbed(:league_roster, player_count: 3, division: division) }
-  let(:match) { build_stubbed(:league_match, home_team: home_team, away_team: away_team) }
+  let(:booked_times) { build_stubbed_list(:booked_time, 1, user: user) }
+  let(:match) { build_stubbed(:league_match, home_team: home_team, away_team: away_team, booked_times: booked_times) }
   let(:round1) do
     build_stubbed(:league_match_round, home_team_score: 3, away_team_score: 2,
                                        match: match, map: map)
@@ -33,6 +34,7 @@ describe 'leagues/matches/show' do
     assign(:rounds, rounds)
     assign(:comm, League::Match::Comm.new(match: match))
     assign(:comms, comms)
+    assign(:booked_times, booked_times)
 
     (home_team.users + away_team.users + comms.map(&:created_by)).each do |user|
       allow(user).to receive(:can?).and_return(true)
