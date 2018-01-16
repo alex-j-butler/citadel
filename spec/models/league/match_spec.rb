@@ -23,6 +23,9 @@ describe League::Match do
 
   it { should have_many(:comms).class_name('Match::Comm').dependent(:destroy) }
 
+  it { should have_many(:booked_times).class_name('Match::BookedTime').dependent(:destroy) }
+  it { should have_one(:confirmed_time).class_name('Match::BookedTime').dependent(:destroy) }
+
   it { should allow_value('').for(:round_name) }
   it { should validate_length_of(:round_name).is_at_least(0) }
 
@@ -31,6 +34,8 @@ describe League::Match do
 
   it { should allow_value('').for(:notice) }
   it { should validate_length_of(:notice).is_at_least(0) }
+
+  it { should_not allow_value(nil).for(:week_beginning) }
 
   it do
     should define_enum_for(:status).with([:pending, :submitted_by_home_team, :submitted_by_away_team, :confirmed])
