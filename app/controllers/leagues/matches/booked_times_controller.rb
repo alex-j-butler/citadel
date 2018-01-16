@@ -47,11 +47,7 @@ module Leagues
         params[:hour] = params[:hour].to_i
         params[:minute] = params[:minute].to_i
 
-        p = params.permit(:day, :hour, :minute).allow(day: 1..5, hour: 5..11, minute: 0..45)
-        puts 1..5
-        puts p
-
-        p
+        params.permit(:day, :hour, :minute).allow(day: 1..5, hour: 5..11, minute: 0..45)
       end
 
       def redirect_to_match
