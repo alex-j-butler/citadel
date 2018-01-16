@@ -13,6 +13,7 @@ describe Leagues::Matches::GenerationService do
 
       map = create(:map)
       match_options = {
+        week_beginning: Date.today,
         round_number: 1, rounds_attributes: [
           { map: map }
         ]
@@ -55,6 +56,7 @@ describe Leagues::Matches::GenerationService do
 
       map = create(:map)
       match_options = {
+        week_beginning: Date.today,
         round_number: 2, rounds_attributes: [
           { map: map }
         ]
