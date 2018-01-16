@@ -47,4 +47,10 @@ module ApplicationHelper
       `SHA1=$(git rev-parse HEAD 2> /dev/null); if [ $SHA1 ]; then echo $SHA1; else echo 'unknown'; fi`.chomp
     end
   end
+
+  # painful workaround to `true_user` not being available in rspec tests
+  def true_user
+    @impersonated_user || current_user
+  end
+
 end
