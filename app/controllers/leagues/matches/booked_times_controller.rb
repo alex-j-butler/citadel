@@ -6,13 +6,15 @@ module Leagues
 
       before_action only: [:suggest] do
         @match = League::Match.find(params[:match_id])
+        @league = @match.league
       end
       before_action only: [:accept, :reject] do
         @time = League::Match::BookedTime.find(params[:id])
         @match  = @time.match
         @league = @match.league
       end
-      before_action :require_user_can_accept_times
+      before_action :require_user_can_suggest_times, only: [:suggest]
+      before_action :require_user_can_accept_times, only: [:accept, :reject]
 
       def suggest
         League::Match::BookedTime.create(match: @match, user: current_user, time: construct_match_time(@match, time_params))
@@ -22,9 +24,8 @@ module Leagues
 
       def accept
         if @match.confirmed_time.nil? then
-          @time.accepted!
-          @match.confirmed_time = @time
-          @match.save
+          @time.update(status: "accepted")
+          @match.update(confirmed_time: @time)
 
           # schedule a delayed job for the server
         end
@@ -52,6 +53,10 @@ module Leagues
 
       def redirect_to_match
         redirect_to match_path(@match)
+      end
+
+      def require_user_can_suggest_times
+        redirect_to_match unless user_can_suggest_times?
       end
 
       def require_user_can_accept_times
