@@ -55,7 +55,8 @@ describe Leagues::MatchesController do
           round_number: 3, notice: 'B',
           rounds_attributes: [
             { map_id: @map.id }
-          ]
+          ],
+          week_beginning: Date.today
         }
       }
 
@@ -82,6 +83,7 @@ describe Leagues::MatchesController do
         league_id: @league.id, division_id: @div.id, match: {
           home_team_id: @team1.id, away_team_id: nil, round_name: 'foo',
           round_number: 3, notice: 'B',
+          week_beginning: Date.today
         }
       }
 
@@ -149,7 +151,7 @@ describe Leagues::MatchesController do
         league_id: @league.id,
         division_id: @div.id,
         match: {
-          round_name: 'foo', round_number: 3, notice: 'B', rounds_attributes: [{ map_id: @map.id }]
+          round_name: 'foo', round_number: 3, notice: 'B', rounds_attributes: [{ map_id: @map.id }], week_beginning: Date.today
         },
         tournament_system: :swiss,
         swiss_tournament: { pairer: :dutch, pair_options: { min_pair_size: 2 } },
@@ -227,7 +229,8 @@ describe Leagues::MatchesController do
             rounds_attributes: [
               { id: round.id, _destroy: true, map_id: @map.id },
               { map_id: @map2.id },
-            ]
+            ],
+            week_beginning: Date.today + 1
           }
         }
 
@@ -237,6 +240,7 @@ describe Leagues::MatchesController do
         expect(match.away_team).to eq(@team1)
         expect(match.round_name).to eq('foo')
         expect(match.round_number).to eq(5)
+        expect(match.week_beginning).to eq((Date.today + 1).beginning_of_week)
         round = match.rounds.first
         expect(round.map).to eq(@map2)
       end
