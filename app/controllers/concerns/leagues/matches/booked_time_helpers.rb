@@ -8,9 +8,9 @@ module Leagues
         match_time = match_time.to_time
 
         match_time = match_time.change(
-          day: match_time.day + (time_params[:day] - 1), # just don't ask
-          hour: time_params[:hour] + 12, # convert to PM
-          min: time_params[:minute]
+          day: (match_time.day + (time_params[:day].clamp(1, 7) - 1)), # just don't ask
+          hour: time_params[:hour].clamp(5, 11) + 12, # convert to PM
+          min: time_params[:minute].clamp(0, 59)
         )
 
         match_time
