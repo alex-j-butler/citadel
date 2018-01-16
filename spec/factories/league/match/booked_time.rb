@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :booked_time, class: League::Match::BookedTime do
     association :match, factory: :league_match
+    association :user, factory: :user
     time Time.now
   end
 
