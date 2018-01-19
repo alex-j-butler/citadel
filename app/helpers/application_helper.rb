@@ -41,8 +41,8 @@ module ApplicationHelper
   end
 
   def git_revision
-    if File.exists?(File.join(Rails.root, "REVISION"))
-      File.open(File.join(Rails.root, "REVISION"), 'r') { |f| return f.gets.chomp }
+    if File.exists?(Rails.root.join(Rails.root, 'REVISION'))
+      File.open(Rails.root.join(Rails.root, 'REVISION'), 'r') { |f| return f.gets.chomp }
     else
       `SHA1=$(git rev-parse HEAD 2> /dev/null); if [ $SHA1 ]; then echo $SHA1; else echo 'unknown'; fi`.chomp
     end
@@ -54,8 +54,7 @@ module ApplicationHelper
   end
 
   def truncate_words(text, length = 30, end_string = '...')
-    words = text.split()
-    words[0..(length-1)].join(' ') + (words.length > length ? end_string : '')
+    words = text.split
+    words[0..(length - 1)].join(' ') + (words.length > length ? end_string : '')
   end
-
 end

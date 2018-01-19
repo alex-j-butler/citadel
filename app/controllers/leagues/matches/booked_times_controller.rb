@@ -17,14 +17,18 @@ module Leagues
       before_action :require_user_can_accept_times, only: [:accept, :reject]
 
       def suggest
-        League::Match::BookedTime.create(match: @match, user: current_user, time: construct_match_time(@match, time_params))
+        League::Match::BookedTime.create(
+          match: @match,
+          user: current_user,
+          time: construct_match_time(@match, time_params)
+        )
 
         redirect_to match_path(@match)
       end
 
       def accept
-        if @match.confirmed_time.nil? then
-          @time.update(status: "accepted")
+        if @match.confirmed_time.nil?
+          @time.update(status: 'accepted')
           @match.update(confirmed_time: @time)
 
           # schedule a delayed job for the server
@@ -34,9 +38,7 @@ module Leagues
       end
 
       def reject
-        if @match.confirmed_time.nil? then
-          @time.rejected!
-        end
+        @time.rejected! if @match.confirmed_time.nil?
 
         redirect_to match_path(@match)
       end

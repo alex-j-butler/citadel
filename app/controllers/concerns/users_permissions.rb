@@ -11,6 +11,6 @@ module UsersPermissions
   end
 
   def user_can_impersonate_users?
-  	user_signed_in? && true_user.can?(:impersonate, :users)
+    user_signed_in? && true_user.can?(:impersonate, :users)
   end
 end

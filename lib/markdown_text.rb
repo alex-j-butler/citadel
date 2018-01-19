@@ -1,7 +1,6 @@
 require 'redcarpet/render_strip'
 
 module MarkdownTextRenderer
-
   PARSER_OPTIONS = {
     autolink: true,
     strikethrough: true,

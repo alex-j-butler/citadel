@@ -9,7 +9,6 @@ class League
       delegate :league,    to: :match
 
       enum status: [:pending, :accepted, :rejected]
-
     end
   end
 end

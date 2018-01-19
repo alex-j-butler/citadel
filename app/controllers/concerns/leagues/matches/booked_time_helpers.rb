@@ -1,7 +1,6 @@
 module Leagues
   module Matches
     module BookedTimeHelpers
-
       def construct_match_time(match, time_params)
         match_time = match.week_beginning
         match_time ||= Date.today.beginning_of_week
@@ -15,7 +14,6 @@ module Leagues
 
         match_time
       end
-
     end
   end
 end

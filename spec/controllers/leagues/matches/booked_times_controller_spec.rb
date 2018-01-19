@@ -53,8 +53,22 @@ describe Leagues::Matches::BookedTimesController do
     let(:home_user) { create(:user) }
     let(:away_user) { create(:user) }
     let(:div) { create(:league_division) }
-    let(:home_roster) { create(:league_roster, division: div, players: [create(:league_roster_player, user: home_user)]) }
-    let(:away_roster) { create(:league_roster, division: div, players: [create(:league_roster_player, user: away_user)]) }
+    let(:home_roster) {
+      create(:league_roster,
+        division: div,
+        players: [
+          create(:league_roster_player, user: home_user)
+        ]
+      )
+    }
+    let(:away_roster) {
+      create(:league_roster,
+        division: div,
+        players: [
+          create(:league_roster_player, user: away_user)
+        ]
+      )
+    }
     let(:match) { create(:league_match, home_team: home_roster, away_team: away_roster) }
     let(:time_home_team) { create(:booked_time_home_team, match: match) }
     let(:time_away_team) { create(:booked_time_away_team, match: match) }
@@ -186,14 +200,27 @@ describe Leagues::Matches::BookedTimesController do
     let(:home_user) { create(:user) }
     let(:away_user) { create(:user) }
     let(:div) { create(:league_division) }
-    let(:home_roster) { create(:league_roster, division: div, players: [create(:league_roster_player, user: home_user)]) }
-    let(:away_roster) { create(:league_roster, division: div, players: [create(:league_roster_player, user: away_user)]) }
+    let(:home_roster) {
+      create(:league_roster,
+        division: div,
+        players: [
+          create(:league_roster_player, user: home_user)
+        ]
+      )
+    }
+    let(:away_roster) {
+      create(:league_roster,
+        division: div,
+        players: [
+          create(:league_roster_player, user: away_user)
+        ]
+      )
+    }
     let(:match) { create(:league_match, home_team: home_roster, away_team: away_roster) }
     let(:time_home_team) { create(:booked_time_home_team, match: match) }
     let(:time_away_team) { create(:booked_time_away_team, match: match) }
 
     context 'when home team suggested time' do
-
       it 'succeeds for away team captain' do
         away_user.grant(:edit, match.away_team.team)
         sign_in away_user
@@ -252,7 +279,6 @@ describe Leagues::Matches::BookedTimesController do
           expect(response).to redirect_to(match_path(match))
         end
       end
-
     end
 
     context 'when away team suggested time' do
@@ -315,7 +341,5 @@ describe Leagues::Matches::BookedTimesController do
         end
       end
     end
-
   end
-
 end

@@ -100,7 +100,7 @@ group :development do
 end
 
 # Added at 2018-01-10 13:44:34 +1000 by alex:
-gem "pretender", "~> 0.3.1"
+gem 'pretender', '~> 0.3.1'
 
 # Added at 2018-01-12 18:27:05 +1000 by alex:
-gem "allowable", "~> 1.1"
+gem 'allowable', '~> 1.1'
