@@ -2,7 +2,6 @@
 
 - if first
   - content_for(:meta_tags) do
-    %meta{ property: 'og:site_name', content: 'Qixalite' }
     %meta{ property: 'og:type', content: 'article' }
     %meta{ property: 'og:title', content: @thread.title }
     %meta{ property: 'og:description', content: truncate_words(post_p.content) }

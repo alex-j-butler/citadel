@@ -28,5 +28,8 @@ module Ozfortress
 
     # News config file
     config.news = config_for(:news)
+
+    # Site config file
+    config.site = config_for(:site)
   end
 end

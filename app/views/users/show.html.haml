@@ -3,7 +3,6 @@
 - user_p = present(@user)
 
 - content_for(:meta_tags) do
-  %meta{ property: 'og:site_name', content: 'Qixalite' }
   %meta{ property: 'og:title', content: @user.name }
   %meta{ property: 'og:description', content: user_p.text_description }
   %meta{ property: 'og:image', content: @user.avatar.icon.url }
