@@ -18,8 +18,8 @@
 = render 'forums/head', object: @thread
 
 .panel.panel-default
-  - @posts.each do |post|
-    = render post, quote_id: 'wmd-input-new-forums-post'
+  - @posts.each_with_index do |post, idx|
+    = render post, quote_id: 'wmd-input-new-forums-post', first: idx == 0
 
   - if user_can_create_post?
     .container-fluid

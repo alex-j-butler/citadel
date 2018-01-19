@@ -2,6 +2,12 @@
 
 - user_p = present(@user)
 
+- content_for(:meta_tags) do
+  %meta{ property: 'og:site_name', content: 'Qixalite' }
+  %meta{ property: 'og:title', content: @user.name }
+  %meta{ property: 'og:description', content: user_p.text_description }
+  %meta{ property: 'og:image', content: @user.avatar.icon.url }
+
 - if user_can_edit_user?
   = link_to edit_user_path(@user), class: 'btn btn-default pull-right', type: 'button' do
     Settings

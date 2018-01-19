@@ -51,6 +51,10 @@ class UserPresenter < BasePresenter
     # rubocop:enable Rails/OutputSafety
   end
 
+  def text_description
+    user.description_text_cache
+  end
+
   def notice
     # rubocop:disable Rails/OutputSafety
     user.notice_render_cache.html_safe

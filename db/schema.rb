@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180114034209) do
+ActiveRecord::Schema.define(version: 20180119055745) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -642,6 +642,7 @@ ActiveRecord::Schema.define(version: 20180114034209) do
     t.text     "notice",                   default: "", null: false
     t.text     "notice_render_cache",      default: "", null: false
     t.string   "avatar_token"
+    t.text     "description_text_cache",   default: "", null: false
     t.index "query_name_cache gist_trgm_ops", name: "index_users_on_query_name_cache", using: :gist
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["name"], name: "index_users_on_name", unique: true, using: :btree
