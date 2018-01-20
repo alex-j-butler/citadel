@@ -28,6 +28,8 @@ class User < ApplicationRecord
 
   has_many :comments, class_name: 'User::Comment'
 
+  has_many :api_keys
+
   devise :rememberable, :trackable, :omniauthable, omniauth_providers: [:steam]
 
   validates :name, presence: true, uniqueness: true, length: { in: 1..64 }

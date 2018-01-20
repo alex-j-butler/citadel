@@ -7,6 +7,8 @@ class APIKey < ApplicationRecord
 
   before_validation :generate_unique_key, on: :create
 
+  delegate :can?, to: :user, allow_nil: true
+
   def generate_unique_key
     loop do
       self.key = SecureRandom.hex(32)
