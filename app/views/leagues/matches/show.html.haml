@@ -2,6 +2,10 @@
 
 - content_for(:title) { safe_join([match_p, @league.name], ' | ') }
 
+- content_for(:meta_tags) do
+  %meta{ property: 'og:title', content: "#{@league.name} Match" }
+  %meta{ property: 'og:description', content: match_p.title }
+
 - if user_can_edit_league?
   = link_to edit_match_path(@match), class: 'btn btn-default pull-right' do
     Edit

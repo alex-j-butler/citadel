@@ -1,5 +1,9 @@
 - content_for(:title) { @league.name }
 
+- content_for(:meta_tags) do
+  %meta{ property: 'og:title', content: "#{@league.name}" }
+  %meta{ property: 'og:description', content: present(@league).text_description }
+
 - if @league.hidden?
   .alert.alert-warning
     %span.glyphicon.glyphicon-lock
