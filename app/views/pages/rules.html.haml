@@ -1,4 +1,8 @@
 - content_for(:title) do
   Rules
 
+- content_for(:meta_tags) do
+  %meta{ property: 'og:title', content: 'Qixalite Rules' }
+  %meta{ property: 'og:description', content: 'Current Qixalite league rules' }
+
 = raw File.read(Rails.root.join('public', 'pages', 'rules.html'))
