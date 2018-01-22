@@ -13,3 +13,12 @@
       = link_to 'http://twitter.com/Qixalite', target: '_blank' do
         = image_tag 'twitter-logo.png'
         Follow us on Twitter
+
+.panel.panel-default
+  .panel-heading Recent Threads
+  %ul.list-group
+    - @recent_threads.each do |thread|
+      %li.list-group-item
+        = link_to forums_thread_path(thread) do
+          = thread.title
+

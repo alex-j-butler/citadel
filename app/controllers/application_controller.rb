@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
 
   before_action do
     @notifications = current_user.notifications.order(created_at: :desc).load if user_signed_in?
+
+    @recent_threads = Rails.cache.fetch('recent_threads', expires_in: 10.minutes) do
+      Forums::Thread.new_ordered.take(5)
+    end
   end
 
   after_action :track_action

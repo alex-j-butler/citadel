@@ -12,6 +12,7 @@ module Forums
     validates :hidden, inclusion: { in: [true, false] }
 
     scope :ordered, -> { order(created_at: :desc) }
+    scope :new_ordered, -> { all.sort_by(&:latest_post_time).reverse! }
 
     scope :locked,   -> { where(locked: true) }
     scope :unlocked, -> { where(locked: false) }
@@ -23,6 +24,10 @@ module Forums
     before_update :update_depth, if: :topic_id_changed?
 
     after_initialize :set_defaults, unless: :persisted?
+
+    def latest_post_time
+      posts.last.created_at || created_at
+    end
 
     def ancestors
       if topic
