@@ -2,7 +2,7 @@ require 'net/http'
 require 'json'
 
 DISCORD_HOST = 'https://discordapp.com/api'
-DISCORD_API_KEY = "Bot #{ARGV[1]}"
+DISCORD_API_KEY = ENV['DISCORD_API_KEY']
 DISCORD_GUILD_ID = '210591935352537088'
 
 USERS = [
