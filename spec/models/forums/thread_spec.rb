@@ -1,68 +1,79 @@
 require 'rails_helper'
 
 describe Forums::Thread do
-  before(:all) { create(:forums_thread) }
+  describe 'scope new_ordered' do
+    it 'ignores hidden threads' do
+      thread = create(:forums_thread, hidden: true, title: 'Hidden thread')
 
-  it { should belong_to(:topic).inverse_of(:threads).counter_cache(true) }
-  it { should allow_value(nil).for(:topic) }
-
-  it { should belong_to(:created_by).class_name('User') }
-  it { should_not allow_value(nil).for(:created_by) }
-
-  it { should have_many(:posts).dependent(:destroy) }
-
-  it { should have_many(:subscriptions).dependent(:destroy) }
-
-  it { should validate_presence_of(:title) }
-  it { should validate_length_of(:title).is_at_least(1) }
-  it { should validate_length_of(:title).is_at_most(128) }
-
-  it 'sets depth from topic' do
-    topic = create(:forums_topic)
-    other_topic = create(:forums_topic, parent: topic)
-
-    thread = create(:forums_thread, topic: topic)
-    thread.reload
-    expect(thread.depth).to eq(1)
-
-    thread.update!(topic: other_topic)
-    thread.reload
-    expect(thread.depth).to eq(2)
+      recent_threads = Forums::Thread.new_ordered
+      expect(recent_threads.length).to eq(0)
+    end
   end
 
-  describe '#set_defaults' do
-    it 'defaults to public, unlocked' do
-      thread = Forums::Thread.new
-      expect(thread.locked?).to be(false)
-      expect(thread.pinned?).to be(false)
-      expect(thread.hidden?).to be(false)
+  context do
+    before(:all) { create(:forums_thread) }
+
+    it { should belong_to(:topic).inverse_of(:threads).counter_cache(true) }
+    it { should allow_value(nil).for(:topic) }
+
+    it { should belong_to(:created_by).class_name('User') }
+    it { should_not allow_value(nil).for(:created_by) }
+
+    it { should have_many(:posts).dependent(:destroy) }
+
+    it { should have_many(:subscriptions).dependent(:destroy) }
+
+    it { should validate_presence_of(:title) }
+    it { should validate_length_of(:title).is_at_least(1) }
+    it { should validate_length_of(:title).is_at_most(128) }
+
+    it 'sets depth from topic' do
+      topic = create(:forums_topic)
+      other_topic = create(:forums_topic, parent: topic)
+
+      thread = create(:forums_thread, topic: topic)
+      thread.reload
+      expect(thread.depth).to eq(1)
+
+      thread.update!(topic: other_topic)
+      thread.reload
+      expect(thread.depth).to eq(2)
     end
 
-    it 'inherits hidden and pinned' do
-      topic = build(:forums_topic, hidden: true, locked: true)
+    describe '#set_defaults' do
+      it 'defaults to public, unlocked' do
+        thread = Forums::Thread.new
+        expect(thread.locked?).to be(false)
+        expect(thread.pinned?).to be(false)
+        expect(thread.hidden?).to be(false)
+      end
 
-      thread = Forums::Thread.new(topic: topic)
-      expect(thread.locked?).to be(false)
-      expect(thread.pinned?).to be(false)
-      expect(thread.hidden?).to be(true)
-    end
+      it 'inherits hidden and pinned' do
+        topic = build(:forums_topic, hidden: true, locked: true)
 
-    it 'respects default hidden' do
-      topic = build(:forums_topic, hidden: false, default_hidden: true)
+        thread = Forums::Thread.new(topic: topic)
+        expect(thread.locked?).to be(false)
+        expect(thread.pinned?).to be(false)
+        expect(thread.hidden?).to be(true)
+      end
 
-      thread = Forums::Thread.new(topic: topic)
-      expect(thread.locked?).to be(false)
-      expect(thread.pinned?).to be(false)
-      expect(thread.hidden?).to be(true)
-    end
+      it 'respects default hidden' do
+        topic = build(:forums_topic, hidden: false, default_hidden: true)
 
-    it 'respects default locked' do
-      topic = build(:forums_topic, default_locked: true, locked: false)
+        thread = Forums::Thread.new(topic: topic)
+        expect(thread.locked?).to be(false)
+        expect(thread.pinned?).to be(false)
+        expect(thread.hidden?).to be(true)
+      end
 
-      thread = Forums::Thread.new(topic: topic)
-      expect(thread.locked?).to be(true)
-      expect(thread.pinned?).to be(false)
-      expect(thread.hidden?).to be(false)
+      it 'respects default locked' do
+        topic = build(:forums_topic, default_locked: true, locked: false)
+
+        thread = Forums::Thread.new(topic: topic)
+        expect(thread.locked?).to be(true)
+        expect(thread.pinned?).to be(false)
+        expect(thread.hidden?).to be(false)
+      end
     end
   end
 end
