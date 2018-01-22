@@ -1,0 +1,217 @@
+<style>
+	* + h2 {
+		margin-left: 10px;
+	}
+	* + h3 {
+		margin-left: 20px;
+	}
+	* + h4 {
+		margin-left: 30px;
+	}
+	* + h5 {
+		margin-left: 40px;
+	}
+	* + h6 {
+		margin-left: 50px;
+	}
+
+	h1 + div {
+		margin-left: 10px;
+	}
+	h2 + div {
+		margin-left: 20px;
+	}
+	h3 + div {
+		margin-left: 30px;
+	}
+	h4 + div {
+		margin-left: 40px;
+	}
+	h5 + div {
+		margin-left: 50px;
+	}
+	h6 + div {
+		margin-left: 60px;
+	}
+</style>
+
+
+<h1>Booking and Setup Server Guide</h1>
+	<div>
+		<p>
+			This will outline the process of booking a server for your games. Please be aware we are only supporting configs for <a href="https://pan.tf/">Ready Steady Pan</a>, <a href="https://warzone.ozfortress.com/">ozfortress</a> and our own league configs for Highlander. Furthermore, including config support we will also be supporting the respective maps they use in each of their seasons.
+		</p>
+	</div>
+
+	<h2>Booking</h2>
+		<div>
+			<ol>
+				<li>Click <a href="https://discord.gg/Mkm6JDq">here</a> to join the Discord server</li>
+				<li>Click on the <code>#booking</code> channel</li>
+				<li>Type <code>book</code> or <code>/book</code> in the text channel to initiate the booking process</li>
+				<li>You are done, the bot will send you a private message on Discord with all the details required to use your server. Remember to ensure at least two players are present on the server, otherwise it will unbook in 15 minutes.</li>
+			</ol>
+
+			<p>
+				Type help in the #booking channel if you need assistance on booking commands
+			</p>
+
+<pre><code>book 				- Book a new server
+unbook				- Unbook your current server
+send password			- Send the updated server details
+demos				- Send the link to the uploaded demos
+help				- Display the help message
+
+For help, contact staff or post in the #support channel
+Note: ozfortress booking commands also are accepted by this bot</code></pre>
+		</div>
+
+	<h2>Retrieving STV</h2>
+		<div>
+			<p>
+				Once the server you have booked has either expired or been manually unbooked the STV demo will be messaged in the "Booking" channel, being targetted at the person who originally booked the server. The STV should upload nearly instantaneously, if the link is not sent after 1 hour of the server being unbooked, contact an admin.
+			</p>
+		</div>
+
+	<h2>Setup</h2>
+		<div>
+			<p>
+				The following will show what configs, exec aliases and maps we support. It will also go into setting up a server for the various formats.
+			</p>
+			<p>
+				Before going forward please make sure that you have the rcon password and enter the following into your console, <code>rcon_password (password here)</code>.
+			</p>
+		</div>
+
+		<h3>Maps</h3>
+			<div>
+				<p>
+					Maps that are present on the bookable servers and fastdownload will only contain such maps that the leagues we support are and our own format. These will include such map types as cp, koth and payload.
+				</p>
+				<p>
+					When changing the level of a server, use the following command <code>rcon changelevel (map here)</code>.
+				</p>
+			</div>
+
+			<h4>Aliases</h4>
+				<div>
+					<p>
+						Map aliases are a shortened way to change your maps on the server. Instead of typing <code>rcon changelevel koth_product_rc8</code> you can now type <code>rcon product</code>. Some important information to note is map aliases are primarily set for specific maps that are used within our supported league configs. Newer versions of maps must be executed manually until those maps are eventually introduced for play.
+					</p>
+				</div>
+
+				<h5>CP</h5>
+					<div>
+<pre><code>rcon badlands
+rcon prolands
+rcon process
+rcon sunshine
+rcon snakewater
+rcon granary
+rcon gullywash
+rcon reckoner
+rcon steel
+rcon alloy
+rcon croissant
+rcon follower
+rcon glass
+rcon glassworks
+rcon sulfur
+rcon warmfrost</code></pre>
+					</div>
+
+				<h5>KOTH</h5>
+					<div>
+<pre><code>rcon bagel
+rcon product
+rcon viaduct
+rcon lakeside
+rcon ash
+rcon ashville
+rcon ramjam
+rcon airfield
+rcon cascade
+rcon nerve
+rcon quarry
+rcon sky
+rcon skyward
+rcon stallone
+rcon warmtic</code></pre>
+					</div>
+
+				<h5>Payload</h5>
+					<div>
+<pre><code>rcon upward
+rcon swift
+rcon swiftwater
+rcon badwater
+rcon ramjam
+rcon borneo</code></pre>
+					</div>
+
+	<h3>Configs</h3>
+		<div>
+			<p>
+				Configs are files that have commands that are run which edit numerous variables on how the game is played on the server.
+			</p>
+			<p>
+				When executing a config for setup on a server, use the following command <code>rcon exec (config here)</code>. For supported configs, see the reference below.
+			</p>
+		<h4>Qixalite Configs</h4>
+			<div>
+<pre><code>hl_koth
+hl_standard
+hl_golden
+hl_stopwatch</code></pre>
+			</div>
+
+		<h4>Supported ozfortress Configs</h4>
+			<div>
+<pre><code>ozfortress_6v6_5cp
+ozfortress_6v6_scrim
+ozfortress_6v6_koth
+ozfortress_golden_cap
+ultiduo</code></pre>
+			</div>
+
+		<h4>Supported Ready Steady Pan Configs</h4>
+			<div>
+<pre><code>rsp_standard
+rsp_koth
+rsp_stopwatch</code></pre>
+			</div>
+		</div>
+
+		<h4>Aliases</h4>
+			<div>
+				<p>
+						Just like the former map aliases, config aliases function the same way. So instead of typing <code>rcon exec hl_standard</code> you type <code>rcon hl-standard</code>.
+				</p>
+			</div>
+
+			<h5>Qixalite</h5>
+				<div>
+<pre><code>rcon hl-koth
+rcon hl-standard
+rcon hl-golden
+rcon hl-stopwatch</code></pre>
+				</div>
+
+			<h5>ozfortress</h5>
+				<div>
+<pre><code>rcon pug
+rcon push
+rcon scrim
+rcon koth
+rcon golden
+rcon ozf
+rcon ozfkoth
+rcon ultiduo</code></pre>
+				</div>
+
+			<h5>Ready Steady Pan</h5>
+				<div>
+<pre><code>rcon rsp-standard
+rcon rsp-koth
+rcon rsp-stopwatch</code></pre>
+				</div>

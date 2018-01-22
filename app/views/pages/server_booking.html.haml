@@ -1,0 +1,8 @@
+- content_for(:title) do
+  Server Booking
+
+- content_for(:meta_tags) do
+  %meta{ property: 'og:title', content: 'Qixalite Server Booking' }
+  %meta{ property: 'og:description', content: 'Guide to booking a Qixalite bookable server' }
+
+= raw File.read(Rails.root.join('public', 'pages', 'server_booking.html'))

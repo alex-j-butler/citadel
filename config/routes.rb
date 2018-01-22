@@ -25,6 +25,7 @@ Rails.application.routes.draw do
 
   # Custom Qixalite pages
   get 'rules', to: 'pages#rules'
+  get 'server_booking', to: 'pages#server_booking'
 
   get 'admin', to: 'admin#index'
   get 'statistics',  to: 'admin#statistics', as: 'admin_statistics'
