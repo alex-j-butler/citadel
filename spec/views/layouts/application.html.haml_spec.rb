@@ -2,6 +2,10 @@ require 'rails_helper'
 
 describe 'layouts/application' do
   context 'when unauthenticated' do
+    before do
+      assign(:recent_threads, build_stubbed_list(:forums_thread, 10))
+    end
+
     it 'displays steam login' do
       render
 
@@ -18,6 +22,7 @@ describe 'layouts/application' do
       allow(view).to receive(:current_user).and_return(user)
       allow(view).to receive(:user_signed_in?).and_return(true)
       assign(:notifications, build_stubbed_list(:user_notification, 10, user: user))
+      assign(:recent_threads, build_stubbed_list(:forums_thread, 10))
     end
 
     it 'displays username' do
