@@ -2,19 +2,23 @@
   %div{ id: "admin-bar", class: Rails.env }
     %div{ class: "container" }
       %span.view
-        Viewing as: 
         = current_user.name
 
         - if true_user.id != current_user.id
           = link_to user_unimpersonate_path(current_user.id), method: :post, class: 'badge badge-danger', type: 'button' do
             Stop
+
+        %span.title
+          viewing as
       %span.view
-        Git revision:
         %span{ title: git_revision }
           = git_revision_short
+        %span.title
+          git
 
       %span.view
-        Pg
         = pg_query_duration
         \/
         = pg_query_calls
+        %span.title
+          pg
