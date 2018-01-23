@@ -7,6 +7,13 @@ class ApplicationController < ActionController::Base
 
   impersonates :user
 
+  helper :admin
+  before_action do
+    # Reset Postgres query data.
+    PG::Connection.query_time.value = 0
+    PG::Connection.query_count.value = 0
+  end
+
   before_action do
     @notifications = current_user.notifications.order(created_at: :desc).load if user_signed_in?
 
