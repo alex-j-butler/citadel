@@ -1,9 +1,17 @@
 - if object
   - presenter = present(object)
 
-  %h2= presenter
+  %ol.breadcrumb
+    %li
+      = link_to('Home', forums_path)
+    - object.ancestors.each do |ancestor|
+      - ancestor_p = present(ancestor)
+      %li
+        = ancestor_p.link
+    %li
+      = object.name
 
-  %br= presenter.path
+  %h2= presenter
 - else
   %h1.tab-header Forums
 
