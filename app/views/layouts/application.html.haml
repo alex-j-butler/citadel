@@ -8,7 +8,7 @@
     %meta{ property: 'og:site_name', content: Rails.configuration.site['site_name'] }
     = content_for :meta_tags
 
-    %title= (content_for :title) || 'citadel'
+    %title= (content_for :title) || Rails.configuration.site['site_name']
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = content_for :head
