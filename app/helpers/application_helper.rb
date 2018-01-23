@@ -48,6 +48,10 @@ module ApplicationHelper
     end
   end
 
+  def git_revision_short
+    git_revision.slice(0..6)
+  end
+
   # painful workaround to `true_user` not being available in rspec tests
   def true_user
     @impersonated_user || current_user

@@ -10,7 +10,8 @@
             Stop
       %span.view
         Git revision:
-        = git_revision
+        %span{ title: git_revision }
+          = git_revision_short
 
       %span.view
         Pg
