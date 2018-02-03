@@ -29,9 +29,7 @@
       %p.group-aka aka #{@aka.map(&:name).join(', ')}
 
     .row
-      - unless @user.vac_clean?
-        .col-sm-6.group-bans
-          = user_p.vac_badge
+      .col-sm-6.group-bans= render 'users/bans/list_badge', user: @user
 
 %p.steam-link-large
   = user_p.steam_link
@@ -48,8 +46,6 @@
 
 .row
   != present_collection(@titles).map(&:icon).join(' ')
-
-  .pull-right= render 'users/bans/list', user: @user
 
 %hr
 
