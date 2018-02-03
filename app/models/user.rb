@@ -30,6 +30,11 @@ class User < ApplicationRecord
 
   has_many :api_keys
 
+  # clean = no vac ban on record
+  # vac_banned = user is vac banned
+  # cleared = user is vac banned on another game
+  enum vac_status: [:vac_clean, :vac_banned, :vac_cleared]
+
   devise :rememberable, :trackable, :omniauthable, omniauth_providers: [:steam]
 
   validates :name, presence: true, uniqueness: true, length: { in: 1..64 }

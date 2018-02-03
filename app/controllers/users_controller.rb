@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 
   before_action :require_login, only: [:profile, :logout]
   before_action :require_user_permission, only: [:edit, :update, :request_name_change]
-  before_action :require_users_permission, only: [:names, :handle_name_change]
+  before_action :require_users_permission, only: [:names, :handle_name_change, :clear_vac, :unclear_vac]
   before_action :require_user_confirmation_token, only: :confirm_email
   before_action :require_user_confirmation_not_timed_out, only: :confirm_email
   before_action :require_users_impersonate_permission, only: [:impersonate, :unimpersonate]
@@ -125,6 +125,22 @@ class UsersController < ApplicationController
 
   def unimpersonate
     stop_impersonating_user
+
+    redirect_back(fallback_location: root_path)
+  end
+
+  def clear_vac
+    @user = User.find(params[:user_id])
+    @user.vac_status = :vac_cleared
+    @user.save
+
+    redirect_back(fallback_location: root_path)
+  end
+
+  def unclear_vac
+    @user = User.find(params[:user_id])
+    @user.vac_status = :vac_banned
+    @user.save
 
     redirect_back(fallback_location: root_path)
   end

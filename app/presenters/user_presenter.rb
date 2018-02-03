@@ -108,4 +108,16 @@ class UserPresenter < BasePresenter
       BADGE_CLASSES.first
     end
   end
+
+  def vac_badge
+    content_tag(:div, 'VAC Banned', class: "label #{vac_badge_class}")
+  end
+
+  def vac_badge_class
+    if user.vac_banned?
+      'label-danger'
+    elsif user.vac_cleared?
+      'label-warning'
+    end
+  end
 end

@@ -127,6 +127,8 @@ Rails.application.routes.draw do
     post 'name',  on: :member, to: 'users#request_name_change'
     post 'impersonate', to: 'users#impersonate'
     post 'unimpersonate', to: 'users#unimpersonate'
+    patch 'clear_vac', to: 'users#clear_vac'
+    patch 'unclear_vac', to: 'users#unclear_vac'
 
     resources :comments, controller: 'users/comments', only: [:create, :edit, :update, :destroy] do
       get :edits, on: :member, as: 'edits_for'

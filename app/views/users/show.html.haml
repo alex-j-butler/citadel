@@ -28,6 +28,11 @@
     - unless @aka.empty?
       %p.group-aka aka #{@aka.map(&:name).join(', ')}
 
+    .row
+      - unless @user.vac_clean?
+        .col-sm-6.group-bans
+          = user_p.vac_badge
+
 %p.steam-link-large
   = user_p.steam_link
   %span.dropdown
