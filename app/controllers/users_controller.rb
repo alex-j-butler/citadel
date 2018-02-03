@@ -134,6 +134,8 @@ class UsersController < ApplicationController
     @user.vac_status = :vac_cleared
     @user.save
 
+    Users::NotificationService.call(@user, "Your outstanding VAC ban has been cleared as a non-TF2 ban.", user_path(user))
+
     redirect_back(fallback_location: root_path)
   end
 
