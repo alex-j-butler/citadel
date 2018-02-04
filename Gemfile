@@ -27,8 +27,9 @@ gem 'font-awesome-rails'
 gem 'cocoon'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-# Steam Login
+# Login
 gem 'omniauth-steam'
+gem 'omniauth-discord'
 # Authentication
 gem 'devise'
 # Use hamlit for ~fast templating

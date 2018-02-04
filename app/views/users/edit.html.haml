@@ -9,12 +9,26 @@
 .panel.panel-default
   .panel-heading Name
   .panel-body
-    = bootstrap_form_for @name_change, url: name_user_path(@user),
-                         method: :post, as: :name_change, layout: :horizontal do |f|
-      .col-xs-8.pull-left= f.text_field :name, hide_label: true
+    .row
+      = bootstrap_form_for @name_change, url: name_user_path(@user),
+                           method: :post, as: :name_change, layout: :horizontal do |f|
+        .col-xs-8.pull-left= f.text_field :name, hide_label: true
 
-      .col-xs-4
-        .pull-right= f.submit 'Request Name Change'
+        .col-xs-4
+          .pull-right= f.submit 'Request Name Change'
+
+- if @user.discord_id
+  .panel.panel-default
+    .panel-heading Discord
+    .panel-body
+      .media
+        .media-left
+          = image_tag '', class: 'media-object'
+
+        .media-body
+          %h4.media-heading
+          = link_to user_unlink_discord_path(@user), method: :delete, class: 'btn btn-default' do
+            Unlink
 
 .panel.panel-default
   .panel-heading Information
