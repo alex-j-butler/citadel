@@ -76,4 +76,17 @@ $(function() {
         target.val(text + quote);
         target.focus();
     });
+
+    $(".mkdown-previewer a.preview-tab").click(function() {
+        var textarea = $(".mkdown-textarea[data-id=" + $(this).attr("data-id") + "]");
+        var previewDiv = $(".mkdown-preview[data-id=" + $(this).attr("data-id") + "]");
+
+        var test = $.ajax('/mkdown-preview', { method: 'post', data: { 'markdown': textarea.val() } });
+        test.fail(function(response) {
+            previewDiv.text("Unable to preview");
+        });
+        test.done(function(response) {
+            previewDiv.html(response.html);
+        });
+    });
 });
