@@ -104,6 +104,3 @@ gem 'pretender', '~> 0.3.1'
 
 # Added at 2018-01-12 18:27:05 +1000 by alex:
 gem 'allowable', '~> 1.1'
-
-# Added at 2018-02-07 15:53:54 +1000 by alex:
-gem "turbolinks", "~> 5.1"
