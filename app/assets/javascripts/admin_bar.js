@@ -15,18 +15,15 @@ var requestId = null;
 	}
 
 	updatePerformanceBar = function(results) {
-		$("#admin-bar > .container")
-			.animate({ opacity: 1 }, 50);
-
 		for (var key in results.data) {
 			for (var label in results.data[key]) {
-				// $("[data-defer-to=" + key + "-" + label + "]").text(results.data[key][label]);
-
-
 				$("[data-defer-to=" + key + "-" + label + "]")
 					.text(results.data[key][label]);
 			}
 		}
+
+		$("#admin-bar > .container")
+			.animate({ opacity: 1 }, 50);
 	}
 
 	$(document).on('adminbar:preupdate', function() {
