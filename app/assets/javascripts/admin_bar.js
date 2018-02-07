@@ -2,6 +2,10 @@ var requestId = null;
 
 (function() {
 
+	adminBarEnabled = function() {
+		return $('#peek').length;
+	};
+
 	getRequestId = function() {
 		if (requestId != null) {
 			return requestId;
@@ -43,14 +47,20 @@ var requestId = null;
 	});
 
 	$(document).on('page:change turbolinks:load', function() {
+		if (!adminBarEnabled()) { return; }
+
 		return $(this).trigger('adminbar:update');
 	});
 
 	$(document).on('turbolinks:visit', function() {
+		if (!adminBarEnabled()) { return; }
+
 		return $(this).trigger('adminbar:preupdate')
 	});
 
 	return $(function() {
+		if (!adminBarEnabled()) { return; }
+		
 		$(document).trigger('adminbar:update');
 	});
 
