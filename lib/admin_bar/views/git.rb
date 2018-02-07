@@ -1,6 +1,10 @@
 module AdminBar
   module Views
     class Git < View
+      def initialize(options = {})
+        @short = options.fetch(:short, false)
+      end
+
       def git_revision
         if File.exists?(Rails.root.join(Rails.root, 'REVISION'))
           File.open(Rails.root.join(Rails.root, 'REVISION'), 'r') { |f| return f.gets.chomp }
@@ -14,7 +18,7 @@ module AdminBar
       end
 
       def results
-        { rev: git_revision_short }
+        { rev: @short ? git_revision_short : git_revision }
       end
     end
   end
