@@ -1,6 +1,14 @@
 - if adminbar_enabled?
   %div{ id: 'admin-bar', class: AdminBar.env, 'data-request-id' => AdminBar.request_id }
     %div{ class: 'container' }
+      %span.view
+        = current_user.name
+        - if true_user.id != current_user.id
+          = link_to user_unimpersonate_path(current_user.id), method: :post, class: 'badge badge-danger', type: 'button' do
+            Stop
+        %span.title
+          viewing as
+
       - AdminBar.views.each do |view|
         %span.view{ id: view.dom_id }
           = render view.partial, view: view
