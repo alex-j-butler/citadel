@@ -3,7 +3,7 @@ var requestId = null;
 (function() {
 
 	adminBarEnabled = function() {
-		return $('#peek').length;
+		return $('#admin-bar').length;
 	};
 
 	getRequestId = function() {
@@ -60,7 +60,7 @@ var requestId = null;
 
 	return $(function() {
 		if (!adminBarEnabled()) { return; }
-		
+
 		$(document).trigger('adminbar:update');
 	});
 
