@@ -23,6 +23,7 @@ var requestId = null;
 		}
 
 		$("#admin-bar > .container")
+			.css({ opacity: 0 })
 			.animate({ opacity: 1 }, 50);
 	}
 
