@@ -1,24 +1,9 @@
-- if user_signed_in? && true_user.can?(:impersonate, :users)
-  %div{ id: "admin-bar", class: Rails.env }
-    %div{ class: "container" }
-      %span.view
-        = current_user.name
+- if adminbar_enabled?
+  %div{ id: 'admin-bar', class: AdminBar.env, 'data-request-id' => AdminBar.request_id }
+    %div{ class: 'container' }
+      - AdminBar.views.each do |view|
+        %span.view{ id: view.dom_id }
+          = render view.partial, view: view
 
-        - if true_user.id != current_user.id
-          = link_to user_unimpersonate_path(current_user.id), method: :post, class: 'badge badge-danger', type: 'button' do
-            Stop
-
-        %span.title
-          viewing as
-      %span.view
-        %span{ title: git_revision }
-          = git_revision_short
-        %span.title
-          git
-
-      %span.view
-        = pg_query_duration
-        \/
-        = pg_query_calls
-        %span.title
-          pg
+          %span.title
+            = view.title

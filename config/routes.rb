@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   get 'statistics',  to: 'admin#statistics', as: 'admin_statistics'
 
   post 'mkdown-preview', to: 'markdown#preview'
+  get 'admin_bar', to: 'admin_bar#results'
 
   namespace :meta do
     resources :games, except: [:destroy]

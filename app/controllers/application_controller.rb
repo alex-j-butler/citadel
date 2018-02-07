@@ -7,19 +7,16 @@ class ApplicationController < ActionController::Base
 
   impersonates :user
 
-  helper :admin
-  before_action do
-    # Reset Postgres query data.
-    PG::Connection.query_time.value = 0
-    PG::Connection.query_count.value = 0
-  end
-
   before_action do
     @notifications = current_user.notifications.order(created_at: :desc).load if user_signed_in?
 
     @recent_threads = Rails.cache.fetch('recent_threads', expires_in: 10.minutes) do
       Forums::Thread.new_ordered.take(5)
     end
+  end
+
+  def adminbar_enabled?
+    user_signed_in? && true_user.admin?
   end
 
   after_action :track_action
