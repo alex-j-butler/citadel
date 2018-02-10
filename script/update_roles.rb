@@ -34,28 +34,26 @@ def get_roles_for_user(discord_id)
   return json['roles']
 end
 
-User.all.each do |users|
-  users.each do |user|
-    if user.discord_id
-      roles = get_roles_for_user(user.discord_id)
-      if roles.nil? next # unclaimed accounts will appear as invalid.
+User.all.each do |user|
+  if user.discord_id
+    roles = get_roles_for_user(user.discord_id)
+    next if roles.nil? # unclaimed accounts will appear as invalid.
 
-      roles.each do |role| 
-        role_sym = role.to_sym
-        if ROLES[role_sym]
-          role_def = ROLES[role_sym]
+    roles.each do |role| 
+      role_sym = role.to_sym
+      if ROLES[role_sym]
+        role_def = ROLES[role_sym]
 
-          perms = role_def[:roles]
-          badge_name = role_def[:name]
-          badge_colour = role_def[:colour]
+        perms = role_def[:roles]
+        badge_name = role_def[:name]
+        badge_colour = role_def[:colour]
 
-          perms.each do |permission|
-            user.grant(*permission) unless user.can?(*permission)
-          end
-          user.badge_name = badge_name
-          user.badge_color = badge_colour
-          user.save
+        perms.each do |permission|
+          user.grant(*permission) unless user.can?(*permission)
         end
+        user.badge_name = badge_name
+        user.badge_color = badge_colour
+        user.save
       end
     end
   end
