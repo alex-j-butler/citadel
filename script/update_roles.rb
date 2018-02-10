@@ -34,10 +34,11 @@ def get_roles_for_user(discord_id)
   return json['roles']
 end
 
-User.find_in_batches(batch_size: 10) do |users|
+User.all.each do |users|
   users.each do |user|
     if user.discord_id
       roles = get_roles_for_user(user.discord_id)
+      if roles.nil? next # unclaimed accounts will appear as invalid.
 
       roles.each do |role| 
         role_sym = role.to_sym
