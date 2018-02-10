@@ -13,6 +13,7 @@ USERS = [
   { id: 6, discord: '140763409519083520' }, # Hyper
   { id: 19, discord: '226205616773922816' }, # Core
   { id: 23, discord: '174861732542414848' }, # KeaneCat
+  { id: 26, discord: '151952139747328000' } # 200
 ]
 
 ROLES = {
