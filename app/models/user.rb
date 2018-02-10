@@ -35,7 +35,7 @@ class User < ApplicationRecord
   # cleared = user is vac banned on another game
   enum vac_status: [:vac_clean, :vac_banned, :vac_cleared]
 
-  devise :rememberable, :trackable, :omniauthable, omniauth_providers: [:steam]
+  devise :rememberable, :trackable, :omniauthable, omniauth_providers: [:steam, :discord]
 
   validates :name, presence: true, uniqueness: true, length: { in: 1..64 }
   validates :steam_id, presence: true, uniqueness: true,

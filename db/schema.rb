@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180203034226) do
+ActiveRecord::Schema.define(version: 20180204060012) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -645,6 +645,7 @@ ActiveRecord::Schema.define(version: 20180203034226) do
     t.string "avatar_token"
     t.text "description_text_cache", default: "", null: false
     t.integer "vac_status", default: 0
+    t.bigint "discord_id"
     t.index "query_name_cache gist_trgm_ops", name: "index_users_on_query_name_cache", using: :gist
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["name"], name: "index_users_on_name", unique: true

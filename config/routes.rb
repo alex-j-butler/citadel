@@ -132,6 +132,7 @@ Rails.application.routes.draw do
     post 'unimpersonate', to: 'users#unimpersonate'
     patch 'clear_vac', to: 'users#clear_vac'
     patch 'unclear_vac', to: 'users#unclear_vac'
+    patch 'unlink', to: 'users#unlink_account'
 
     resources :comments, controller: 'users/comments', only: [:create, :edit, :update, :destroy] do
       get :edits, on: :member, as: 'edits_for'

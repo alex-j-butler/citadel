@@ -9,12 +9,38 @@
 .panel.panel-default
   .panel-heading Name
   .panel-body
-    = bootstrap_form_for @name_change, url: name_user_path(@user),
-                         method: :post, as: :name_change, layout: :horizontal do |f|
-      .col-xs-8.pull-left= f.text_field :name, hide_label: true
+    .row
+      = bootstrap_form_for @name_change, url: name_user_path(@user),
+                           method: :post, as: :name_change, layout: :horizontal do |f|
+        .col-xs-8.pull-left= f.text_field :name, hide_label: true
 
-      .col-xs-4
-        .pull-right= f.submit 'Request Name Change'
+        .col-xs-4
+          .pull-right= f.submit 'Request Name Change'
+
+.panel.panel-default
+  .panel-heading Discord
+  .panel-body
+    .media
+      .media-left
+        = image_tag '', class: 'media-object'
+
+      .media-body
+        %h4.media-heading
+        - if @user.discord_id
+          .col-xs-8.pull-left
+            Your Qixalite account is linked to the Discord account
+            = @user.discord_id
+          .col-xs-4
+            .pull-right
+              = link_to user_unlink_path(@user, account_type: :discord), method: :patch, class: 'btn btn-danger' do
+                Unlink
+        - else
+          .col-xs-8.pull-left
+            Link your Discord account to your Qixalite account.
+          .col-xs-4
+            .pull-right
+              = link_to user_discord_omniauth_authorize_path, class: 'btn btn-default' do
+                Link
 
 .panel.panel-default
   .panel-heading Information
