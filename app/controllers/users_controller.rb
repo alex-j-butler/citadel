@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   include UsersPermissions
 
+  ALLOWABLE_TYPES = ['discord'].freeze
+
   before_action only: [:show, :edit, :update, :request_name_change] do
     @user = User.find(params[:id])
   end
@@ -147,6 +149,14 @@ class UsersController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+  def unlink_account
+    @user = User.find(params[:user_id])
+    @user.send("#{unlink_account_params[:account_type]}_id=", nil)
+    @user.save
+
+    redirect_back(fallback_location: user_path(@user))
+  end
+
   private
 
   def steam_data
@@ -171,6 +181,10 @@ class UsersController < ApplicationController
 
   def name_change_params
     params.require(:name_change).permit(:name)
+  end
+
+  def unlink_account_params
+    params.permit(:account_type).allow(account_type: ALLOWABLE_TYPES)
   end
 
   def require_user_permission
