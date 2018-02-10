@@ -15,11 +15,6 @@
         Follow us on Twitter
 
 .panel.panel-default
-  .panel-heading Discord
-  #discord-widget
-  = javascript_include_tag 'discord_widget', 'data-turbolinks-track' => 'reload'
-
-.panel.panel-default
   .panel-heading Recent Threads
   %ul.list-group
     - @recent_threads.each do |thread|
