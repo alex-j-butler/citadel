@@ -151,8 +151,10 @@ class UsersController < ApplicationController
 
   def unlink_account
     @user = User.find(params[:user_id])
-    @user.send("#{unlink_account_params[:account_type]}_id=", nil)
-    @user.save
+    if @user.respond_to? "#{unlink_account_params[:account_type]}_id="
+      @user.send("#{unlink_account_params[:account_type]}_id=", nil)
+      @user.save
+    end
 
     redirect_back(fallback_location: user_path(@user))
   end

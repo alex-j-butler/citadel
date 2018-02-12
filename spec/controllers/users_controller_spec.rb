@@ -353,4 +353,28 @@ describe UsersController do
       expect(session['devise']).to be_nil
     end
   end
+
+  describe 'DELETE #unlink_account' do
+    let(:user) { create(:user, discord_id: '1234567890') }
+
+    it 'succeeds when given a valid type' do
+      sign_in user
+
+      patch :unlink_account, params: { account_type: :discord, user_id: user.id }
+
+      user.reload
+      expect(user.discord_id).to be_nil
+      expect(response).to have_http_status(:redirect)
+    end
+
+    it 'fails when given an invalid type' do
+      sign_in user
+
+      patch :unlink_account, params: { account_type: :invalid, user_id: user.id }
+
+      user.reload
+      expect(user.discord_id).to eq(1234567890)
+      expect(response).to have_http_status(:redirect)
+    end
+  end
 end
