@@ -29,7 +29,8 @@
         - if @user.discord_id
           .col-xs-8.pull-left
             Your Qixalite account is linked to the Discord account
-            = @user.discord_id
+            %b
+              = @user.discord_name
           .col-xs-4
             .pull-right
               = link_to user_unlink_path(@user, account_type: :discord), method: :patch, class: 'btn btn-danger' do
