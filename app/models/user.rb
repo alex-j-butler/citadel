@@ -192,10 +192,12 @@ class User < ApplicationRecord
   end
 
   def retrieve_discord_name
-    profile = Discordrb::API::User.resolve Rails.application.secrets.discord_token, 
-      discord_id
+    if discord_id
+      profile = Discordrb::API::User.resolve Rails.application.secrets.discord_token, 
+        discord_id
 
-    profile_json = JSON.parse profile
-    "#{profile_json['username']}##{profile_json['discriminator']}"
+      profile_json = JSON.parse profile
+      "#{profile_json['username']}##{profile_json['discriminator']}"
+    end
   end
 end
