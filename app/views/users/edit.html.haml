@@ -22,19 +22,18 @@
   .panel-body
     .media
       .media-left
-        = image_tag '', class: 'media-object'
+        = image_tag 'discord-logo.png', class: 'media-object'
 
       .media-body
         %h4.media-heading
         - if @user.discord_id
-          .col-xs-8.pull-left
+          .pull-left
             Your Qixalite account is linked to the Discord account
             %b
               = @user.discord_name
-          .col-xs-4
-            .pull-right
-              = link_to user_unlink_path(@user, account_type: :discord), method: :patch, class: 'btn btn-danger' do
-                Unlink
+          .pull-right
+            = link_to user_unlink_path(@user, account_type: :discord), method: :patch, class: 'btn btn-danger' do
+              Unlink
         - else
           .col-xs-8.pull-left
             Link your Discord account to your Qixalite account.
