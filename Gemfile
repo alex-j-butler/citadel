@@ -48,6 +48,7 @@ gem 'ahoy_matey'
 gem 'active_model_serializers', '~> 0.10.0'
 # Tournament systems
 gem 'tournament-system', '~> 1.0.0'
+gem "discordrb", "~> 3.2"
 
 group :test do
   # Use rspec for tests
@@ -109,5 +110,3 @@ gem 'allowable', '~> 1.1'
 # Added at 2018-02-07 15:53:54 +1000 by alex:
 gem "turbolinks", "~> 5.1"
 
-# Added at 2018-02-12 21:49:55 +1000 by alex:
-gem "discordrb", "~> 3.2"
