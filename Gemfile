@@ -48,7 +48,7 @@ gem 'ahoy_matey'
 gem 'active_model_serializers', '~> 0.10.0'
 # Tournament systems
 gem 'tournament-system', '~> 1.0.0'
-gem "discordrb", "~> 3.2"
+gem 'discordrb', '~> 3.2'
 
 group :test do
   # Use rspec for tests
