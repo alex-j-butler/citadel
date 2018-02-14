@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180212121757) do
+ActiveRecord::Schema.define(version: 20180213084510) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -167,6 +167,27 @@ ActiveRecord::Schema.define(version: 20180212121757) do
     t.index ["key"], name: "index_api_keys_on_key"
     t.index ["name"], name: "index_api_keys_on_name"
     t.index ["user_id"], name: "index_api_keys_on_user_id"
+  end
+
+  create_table "demo_players", force: :cascade do |t|
+    t.string "steam_name", null: false
+    t.bigint "steam_id", null: false
+    t.integer "team", default: 0
+    t.integer "player_class", default: 0
+    t.boolean "player_class_active", default: true
+    t.bigint "demo_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["demo_id"], name: "index_demo_players_on_demo_id"
+  end
+
+  create_table "demos", force: :cascade do |t|
+    t.string "demo"
+    t.string "map_name"
+    t.integer "blu_score", default: 0
+    t.integer "red_score", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "formats", id: :serial, force: :cascade do |t|
