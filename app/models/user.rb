@@ -102,6 +102,10 @@ class User < ApplicationRecord
     League::Match.where(home_team: rosters).or(League::Match.where(away_team: rosters))
   end
 
+  def demos
+    Demo.joins(:players).merge(Demo::Player.where(steam_id: steam_id)).uniq{ |demo| demo.id }
+  end
+
   def entered?(comp)
     comp.players(user: self).exists?
   end

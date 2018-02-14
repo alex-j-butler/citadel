@@ -63,6 +63,7 @@ class UsersController < ApplicationController
     @team_invites   = @user.team_invites.includes(:team).order(created_at: :asc)
     @rosters        = @user.rosters.includes(division: :league).order(created_at: :desc)
     @matches        = @user.matches.pending.includes(:home_team, :away_team)
+    @demos          = @user.demos
   end
 
   def edit
