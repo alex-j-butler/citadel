@@ -18,8 +18,12 @@ class DemoPresenter < BasePresenter
     end
   end
 
+  def duration
+    "#{distance_of_time_in_words(demo.duration.seconds)}" if demo.duration
+  end
+
   def summary
-    "#{map_name}"
+    content_tag(:b, demo.server_name)
   end
 
   def download_link

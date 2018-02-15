@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180213084510) do
+ActiveRecord::Schema.define(version: 20180215114806) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -188,6 +188,8 @@ ActiveRecord::Schema.define(version: 20180213084510) do
     t.integer "red_score", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "server_name"
+    t.integer "duration"
   end
 
   create_table "formats", id: :serial, force: :cascade do |t|

@@ -10,7 +10,9 @@ class ImportDemoJob < ApplicationJob
 
     demo.update_attributes map_name: imported_demo['map_name'],
       blu_score: imported_demo['blu_score'],
-      red_score: imported_demo['red_score']
+      red_score: imported_demo['red_score'],
+      duration: imported_demo['duration'].to_i,
+      server_name: imported_demo['server_name']
 
     imported_demo['users'].each do |user|
       team = 'red' if user['team'] == 'red'
