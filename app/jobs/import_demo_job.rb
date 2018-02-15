@@ -2,7 +2,7 @@ class ImportDemoJob < ApplicationJob
   queue_as :default
 
   def perform(demo)
-    demo_import_exec = Rails.root.join('demo-import').to_s
+    demo_import_exec = Rails.root.join('bin', 'demo-import').to_s
     demo_path = demo.demo.file.path
 
     demo_json = `#{demo_import_exec} #{demo_path} 2> /dev/null`
