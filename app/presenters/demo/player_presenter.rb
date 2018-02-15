@@ -25,7 +25,12 @@ class Demo
     def classes
       classes = ''
 
-      player_classes = Demo::Player.where(demo_id: player.demo.id, team: player.team, steam_id: player.steam_id).map{ |player| {player_class: player.player_class, active: player.player_class_active} }
+      player_classes = Demo::Player.where(demo_id: player.demo.id, team: player.team, steam_id: player.steam_id)
+        .map do |player|
+          { player_class: player.player_class,
+            active: player.player_class_active }
+        end
+      
       player_classes.each do |clazz|
         classes += class_img(clazz)
       end

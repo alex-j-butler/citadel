@@ -19,11 +19,11 @@ class DemoPresenter < BasePresenter
   end
 
   def summary
-    "#{map_name} played with #{other_players}"
+    "#{map_name}"
   end
 
   def download_link
-    link_to 'Download', demo.demo.url
+    link_to 'Download', demo.demo.url unless demo.demo.file.nil?
   end
 
   def time_ago
