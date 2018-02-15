@@ -1,11 +1,14 @@
 class ImportDemoJob < ApplicationJob
   queue_as :default
 
-  def perform(*args)
-    demo_json = `#{Rails.root}/demo-import ~/Documents/demo-parser/20180211-2154-pl_badwater_pro_v12.dem 2> /dev/null`
+  def perform(demo)
+    demo_import_exec = Rails.root.join('demo-import').to_s
+    demo_path = demo.demo.file.path
+
+    demo_json = `#{demo_import_exec} #{demo_path} 2> /dev/null`
     imported_demo = JSON.parse(demo_json)
 
-    demo = Demo.create map_name: imported_demo['map_name'],
+    demo.update_attributes map_name: imported_demo['map_name'],
       blu_score: imported_demo['blu_score'],
       red_score: imported_demo['red_score']
 
