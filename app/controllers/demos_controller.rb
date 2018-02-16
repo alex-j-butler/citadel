@@ -1,8 +1,8 @@
 class DemosController < ApplicationController
   def index
-    @demos = Demo.search(params[:q])
+    @demos = Demo.order('created_at DESC')
+                 .search(params[:q])
                  .paginate(page: params[:page])
-                 .order('created_at DESC')
                  .load
   end
 
