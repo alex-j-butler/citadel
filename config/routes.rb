@@ -146,7 +146,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :demos, only: [:show] do
+  resources :demos, only: [:index, :show] do
   end
 
   resources :notifications, controller: 'users/notifications', only: [:index, :show, :destroy] do

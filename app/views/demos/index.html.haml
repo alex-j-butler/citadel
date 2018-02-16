@@ -1,0 +1,26 @@
+- content_for(:title) { 'Demos' }
+
+%h1.tab-header Demos
+
+%hr
+
+.panel.panel-default
+  - if @demos.empty?
+    .panel-body No demos found...
+
+  - else
+    %ul.list-group
+      - present_collection(@demos).each do |demo|
+        %li.list-group-item
+          .row.demo-summary
+            = demo.summary
+            .pull-right
+              = demo.download_link
+          .row.demo-map-duration
+            = demo.map_name
+            for
+            = demo.duration
+          .row.demo-time
+            = demo.time_ago
+
+= bootstrap_paginate @demos
