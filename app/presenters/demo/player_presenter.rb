@@ -44,7 +44,7 @@ class Demo
       options[:class] += ' inactive' unless clazz[:active]
 
       # image_tag "class_icons/#{clazz[:player_class]}", options
-      "class_icons/#{clazz[:player_class]}"
+      image_tag 'class_icons/spy', options
     end
   end
 end
