@@ -471,6 +471,7 @@ DEPENDENCIES
   cocoon
   coffee-rails (~> 4.2.0)
   coveralls
+  daemons
   database_cleaner
   delayed_job
   delayed_job_active_record
