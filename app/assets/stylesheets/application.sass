@@ -20,6 +20,13 @@
 @import 'markdown'
 @import 'admin_bar'
 
+@mixin unselectable
+  user-select: none
+  -o-user-select:none
+  -moz-user-select: none
+  -khtml-user-select: none
+  -webkit-user-select: none
+
 html
   overflow-y: scroll
 
@@ -363,6 +370,7 @@ a#login
   line-height: 20px
 
 .scores
+  @include unselectable
   padding: 10px
 
   .col-md-6
