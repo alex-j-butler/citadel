@@ -10,7 +10,7 @@
           %span
             = player.link
           %span.pull-right
-            = player.classes.html_safe
+            = player.classes(demo.demo).html_safe
 
   .col-md-6
     .score.red
@@ -23,4 +23,4 @@
           %span
             = player.link
           %span.pull-right
-            = player.classes.html_safe
+            = player.classes(demo.demo).html_safe

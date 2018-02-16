@@ -22,10 +22,10 @@ class Demo
       player.steam_id
     end
 
-    def classes
+    def classes(demo)
       classes = ''
 
-      player_classes = Demo::Player.where(demo_id: player.demo.id, team: player.team, steam_id: player.steam_id)
+      player_classes = demo.players.select{ |p| p.steam_id == player.steam_id }
         .map do |player|
           { player_class: player.player_class,
             active: player.player_class_active }
