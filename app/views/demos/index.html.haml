@@ -1,6 +1,12 @@
 - content_for(:title) { 'Demos' }
 
-%h1.tab-header Demos
+- unless params[:q]
+  %h1.tab-header Demos
+- else
+  %h1.tab-header= "Demos for #{params[:q]}"
+
+.col-sm-3.col-md-3.searchbox.pull-right
+  = render 'search'
 
 %hr
 
