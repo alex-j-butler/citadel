@@ -50,6 +50,9 @@ gem 'active_model_serializers', '~> 0.10.0'
 gem 'tournament-system', '~> 1.0.0'
 gem 'discordrb', '~> 3.2'
 
+gem 'delayed_job'
+gem 'delayed_job_active_record'
+
 group :test do
   # Use rspec for tests
   gem 'rspec-rails', '~> 3.5'
@@ -99,6 +102,7 @@ group :development do
   gem 'capistrano-bundler', require: false
   gem 'capistrano-rails', require: false
   gem 'capistrano-passenger', require: false
+  gem 'capistrano3-delayed-job', require: false
 end
 
 # Added at 2018-01-10 13:44:34 +1000 by alex:
