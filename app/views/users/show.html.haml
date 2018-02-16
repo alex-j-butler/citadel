@@ -135,32 +135,8 @@
             %button.btn.btn-link.btn-xs{ type: :button, data: data }
               %span.caret
 
-        .collapse.container-fluid.scores{ id: demo.token }
-          .col-md-6
-            .score.blu
-              %span.blu-name Blu
-              %span.blu-score.pull-right= demo.blu_score
-
-            .row.blu
-              - present_collection(demo.blu_players.uniq{ |hash| hash.steam_id }).each do |player|
-                .player
-                  %span
-                    = player.link
-                  %span.pull-right
-                    = player.classes.html_safe
-
-          .col-md-6
-            .score.red
-              %span.red-score= demo.red_score
-              %span.red-name.pull-right Red
-
-            .row.red
-              - present_collection(demo.red_players.uniq{ |hash| hash.steam_id }).each do |player|
-                .player
-                  %span
-                    = player.link
-                  %span.pull-right
-                    = player.classes.html_safe
+        .collapse.container-fluid{ id: demo.token }
+          = render 'demos/leaderboard', demo: demo
 
 - if user_can_edit_users?
   .panel.panel-info

@@ -26,8 +26,12 @@ class DemoPresenter < BasePresenter
     content_tag(:b, demo.server_name)
   end
 
-  def download_link
-    link_to 'Download', demo.demo.url unless demo.demo.file.nil?
+  def server_name
+    demo.server_name
+  end
+
+  def download_link(options = {})
+    link_to options[:title] || 'Download', demo.demo.url unless demo.demo.file.nil?
   end
 
   def time_ago

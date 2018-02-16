@@ -1,0 +1,16 @@
+- content_for(:title) { @demo.map_name }
+
+- demo_p = present(@demo)
+
+- content_for(:jumbo) do
+  .map-banner
+    .container
+      %h1 Badwater Basin
+      %h2= demo_p.server_name
+      %h2= "Played for #{demo_p.duration}"
+
+      %span.download-container
+        %h2.download-link= demo_p.download_link title: 'Download Demo'
+
+  .container
+    = render 'demos/leaderboard', demo: demo_p

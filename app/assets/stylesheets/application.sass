@@ -75,6 +75,9 @@ a:hover
 .affix + .container
   padding-top: 78px
 
+.navbar-jumbo
+  margin-bottom: 0
+
 @media (max-width: 768px)
   .navbar-toggle
     float: left
@@ -371,6 +374,8 @@ a#login
 
 .scores
   @include unselectable
+
+  line-height: 34px
   padding: 10px
 
   .col-md-6
@@ -425,3 +430,36 @@ a#login
   .class-icon
     &.inactive
       opacity: 0.4
+
+.map-banner
+  .container
+    position: relative
+    height: 100%
+
+  background-image: url(https://s3-ap-southeast-2.amazonaws.com/img.alex-j-butler.com/2018/IY0vrI.png)
+
+  background-position: center
+  background-size: cover
+  background-repeat: no-repeat
+
+  height: 300px
+
+  h1, h2, h3, h4, h5, h6
+    font-weight: bold
+    color: #fff
+    text-shadow: 0px 4px rgba(0,0,0,0.1)
+
+  h1
+    font-size: 38.5px
+
+  h2
+    font-size: 22.5px
+    margin-top: 2px
+    margin-bottom: 2px
+
+  .download-link
+    a
+      color: #ccc
+    position: absolute
+    bottom: 0
+    right: 0

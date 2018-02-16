@@ -23,7 +23,9 @@
           = link_to pages_home_path do
             = image_tag 'logo1.png'
 
-    %nav.navbar.navbar-citadel.affix-top#navbar{ role: 'navigation',
+    - navbar_class = ''
+    - navbar_class = 'navbar-jumbo' if content_for(:jumbo)
+    %nav.navbar.navbar-citadel.affix-top#navbar{ class: navbar_class, role: 'navigation',
                                                  data: { spy: 'affix',
                                                          'offset-top' => 106 } }
       .container
@@ -50,10 +52,13 @@
           .collapse.navbar-collapse.navbar-left#navbar-collapse
             %ul.nav.navbar-nav= render 'navbar'
 
-    .container#content
-      .row
-        .col-md-9
-          = render 'flashes'
-          = yield
-        .col-md-3
-          = render 'sidebar'
+    = content_for :jumbo
+
+    - unless content_for?(:jumbo)
+      .container#content
+        .row
+          .col-md-9
+            = render 'flashes'
+            = yield
+          .col-md-3
+            = render 'sidebar'
