@@ -52,6 +52,7 @@ gem 'discordrb', '~> 3.2'
 
 gem 'delayed_job'
 gem 'delayed_job_active_record'
+gem 'daemons'
 
 group :test do
   # Use rspec for tests
