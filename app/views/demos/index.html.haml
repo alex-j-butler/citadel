@@ -15,11 +15,13 @@
           .row.demo-summary
             = demo.summary
             .pull-right
-              = demo.download_link
+              = link_to 'Demo Page', demo_path(demo.demo)
           .row.demo-map-duration
             = demo.map_name
             for
             = demo.duration
+            .pull-right
+              = demo.download_link
           .row.demo-time
             = demo.time_ago
 
