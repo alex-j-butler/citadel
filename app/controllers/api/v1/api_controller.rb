@@ -28,6 +28,7 @@ module API
           throw error if Rails.env.test?
 
           json = { message: 'Internal error' }
+          json[:error] = error if Rails.env.development?
           json[:traceback] = error.backtrace if Rails.env.development?
 
           render_error :internal_server_error, json

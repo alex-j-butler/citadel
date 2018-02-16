@@ -16,6 +16,7 @@ Rails.application.routes.draw do
         end
       end
       resources :teams, only: [:show]
+      resources :demos, only: [:show, :create]
     end
   end
 
