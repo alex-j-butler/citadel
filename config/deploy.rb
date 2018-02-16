@@ -5,7 +5,7 @@ set :application, 'citadel'
 
 # git settings
 set :repo_url, 'git@github.com:alex-j-butler/citadel.git'
-set :branch, :master
+set :branch, ENV['BRANCH'] || :master
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, '/opt/citadel'
