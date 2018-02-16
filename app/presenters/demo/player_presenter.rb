@@ -43,8 +43,7 @@ class Demo
       options ||= {class: 'class-icon'}
       options[:class] += ' inactive' unless clazz[:active]
 
-      # image_tag "class_icons/#{clazz[:player_class]}", options
-      image_tag 'class_icons/spy.png', options
+      image_tag "class_icons/#{clazz[:player_class]}.png", options
     end
   end
 end
