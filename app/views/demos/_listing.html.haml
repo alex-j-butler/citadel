@@ -1,0 +1,19 @@
+- demo_p = present(demo)
+
+.row.demo-summary
+  = demo_p.summary
+  .pull-right
+    = link_to 'Demo Page', demo_path(demo)
+.row.demo-map-duration
+  = demo.map_name
+  for
+  = demo_p.duration
+  .pull-right
+    = demo_p.download_link
+.row.demo-time
+  = demo_p.time_ago
+
+  .pull-right
+    - data = { toggle: :collapse, target: "##{demo_p.token}" }
+    %button.btn.btn-link.btn-xs{ type: :button, data: data }
+      %span.caret

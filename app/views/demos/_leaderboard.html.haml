@@ -1,3 +1,5 @@
+- demo_p = present(demo)
+
 .scores
   .col-md-6
     .score.blu
@@ -5,12 +7,12 @@
       %span.blu-score.pull-right= demo.blu_score
 
     .row.blu
-      - present_collection(demo.blu_players.uniq{ |hash| hash.steam_id }).each do |player|
+      - present_collection(demo_p.blu_players.uniq{ |hash| hash.steam_id }).each do |player|
         .player
           %span
             = player.link
           %span.pull-right
-            = player.classes(demo.demo).html_safe
+            = player.classes(demo).html_safe
 
   .col-md-6
     .score.red
@@ -18,9 +20,9 @@
       %span.red-name.pull-right Red
 
     .row.red
-      - present_collection(demo.red_players.uniq{ |hash| hash.steam_id }).each do |player|
+      - present_collection(demo_p.red_players.uniq{ |hash| hash.steam_id }).each do |player|
         .player
           %span
             = player.link
           %span.pull-right
-            = player.classes(demo.demo).html_safe
+            = player.classes(demo).html_safe

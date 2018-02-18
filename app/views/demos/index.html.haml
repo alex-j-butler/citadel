@@ -16,19 +16,12 @@
 
   - else
     %ul.list-group
-      - present_collection(@demos).each do |demo|
+      - @demos.each do |demo|
+        - demo_p = present(demo)
         %li.list-group-item
-          .row.demo-summary
-            = demo.summary
-            .pull-right
-              = link_to 'Demo Page', demo_path(demo.demo)
-          .row.demo-map-duration
-            = demo.map_name
-            for
-            = demo.duration
-            .pull-right
-              = demo.download_link
-          .row.demo-time
-            = demo.time_ago
+          = render 'demos/listing', demo: demo
+
+          .collapse.container-fluid{ id: demo_p.token }
+            = render 'demos/leaderboard', demo: demo
 
 = bootstrap_paginate @demos

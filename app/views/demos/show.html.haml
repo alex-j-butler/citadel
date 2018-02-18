@@ -3,9 +3,9 @@
 - demo_p = present(@demo)
 
 - content_for(:jumbo) do
-  .map-banner
+  .map-banner{ style: "background-image: url(#{image_path("map_images/#{@demo.map_name}.png")})" }
     .container
-      %h1 Badwater Basin
+      %h1= demo_p.map_name
       %h2= demo_p.server_name
       %h2= "Played for #{demo_p.duration}"
 
@@ -13,4 +13,4 @@
         %h2.download-link= demo_p.download_link title: 'Download Demo'
 
   .container
-    = render 'demos/leaderboard', demo: demo_p
+    = render 'demos/leaderboard', demo: @demo

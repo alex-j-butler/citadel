@@ -117,25 +117,12 @@
 .panel.panel-default
   .panel-heading Demos
   %ul.list-group
-    - present_collection(@demos).each do |demo|
+    - @demos.each do |demo|
+      - demo_p = present(demo)
       %li.list-group-item
-        .row.demo-summary
-          = demo.summary
-          .pull-right
-            = demo.download_link
-        .row.demo-map-duration
-          = demo.map_name
-          for
-          = demo.duration
-        .row.demo-time
-          = demo.time_ago
+        = render 'demos/listing', demo: demo
 
-          .pull-right
-            - data = { toggle: :collapse, target: "##{demo.token}" }
-            %button.btn.btn-link.btn-xs{ type: :button, data: data }
-              %span.caret
-
-        .collapse.container-fluid{ id: demo.token }
+        .collapse.container-fluid{ id: demo_p.token }
           = render 'demos/leaderboard', demo: demo
 
 - if user_can_edit_users?
