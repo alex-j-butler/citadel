@@ -7,15 +7,17 @@ class Demo
     end
 
     def link
-      if user
-        link_to player.steam_name, user_path(user)
+      if user_id
+        link_to player.steam_name, user_path(user_id)
       else
         link_to player.steam_name, steam_url, class: 'unregistered'
       end
     end
 
-    def user
-      User.where(steam_id: player.steam_id).first
+    def user_id
+      if Rails.cache.read("steam_ids/#{player.steam_id}")
+        Rails.cache.write(User.where(steam_id: player.steam_id).first.id, 2.hours)
+      end      
     end
 
     def steam_id
