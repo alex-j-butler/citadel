@@ -49,4 +49,12 @@ module ApplicationHelper
     words = text.split
     words[0..(length - 1)].join(' ') + (words.length > length ? end_string : '')
   end
+
+  def asset_exists?(path)
+    if Rails.configuration.assets.compile
+      Rails.application.precompiled_assets.include? path
+    else
+      Rails.application.assets_manifest.assets[path].present?
+    end
+  end
 end

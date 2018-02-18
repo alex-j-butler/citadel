@@ -3,7 +3,9 @@
 - demo_p = present(@demo)
 
 - content_for(:jumbo) do
-  .map-banner{ style: "background-image: url(#{image_path("map_images/#{@demo.map_name}.png")})" }
+  - image_asset = "map_images/unknown.png"
+  - image_asset = "map_images/#{@demo.map_name}.png" if asset_exists?("map_images/#{@demo.map_name}.png")
+  .map-banner{ style: "background-image: url(#{image_path(image_asset)})" }
     .container
       %h1= demo_p.map_name
       %h2= demo_p.server_name
