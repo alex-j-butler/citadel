@@ -15,9 +15,18 @@ class Demo
     end
 
     def user_id
-      if Rails.cache.read("steam_ids/#{player.steam_id}")
-        Rails.cache.write(User.where(steam_id: player.steam_id).first.id, 2.hours)
-      end      
+      id = Rails.cache.read("steam_ids/#{player.steam_id}")
+      if id
+        id
+      else
+        user = User.where(steam_id: player.steam_id).first
+        if user
+          Rails.cache.write("steam_ids/#{player.steam_id}", user.id, expires_in: 2.hours)
+          user.id
+        else
+          nil
+        end
+      end
     end
 
     def steam_id
