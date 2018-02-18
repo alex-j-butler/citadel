@@ -16,10 +16,10 @@ class Demo
 
     def user_id
       id = Rails.cache.read("steam_ids/#{player.steam_id}")
-      if id
-        id
-      elsif id == 0
+      if id == 0
         nil
+      elsif id
+        id
       else
         user = User.where(steam_id: player.steam_id).first
         if user
