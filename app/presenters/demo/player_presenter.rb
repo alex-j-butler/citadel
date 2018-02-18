@@ -18,12 +18,15 @@ class Demo
       id = Rails.cache.read("steam_ids/#{player.steam_id}")
       if id
         id
+      elsif id == 0
+        nil
       else
         user = User.where(steam_id: player.steam_id).first
         if user
-          Rails.cache.write("steam_ids/#{player.steam_id}", user.id, expires_in: 2.hours)
+          Rails.cache.write("steam_ids/#{player.steam_id}", user.id, expires_in: 24.hours)
           user.id
         else
+          Rails.cache.write("steam_ids/#{player.steam_id}", 0, expires_in: 2.hours)
           nil
         end
       end
