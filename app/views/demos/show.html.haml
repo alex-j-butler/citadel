@@ -2,17 +2,21 @@
 
 - demo_p = present(@demo)
 
-- content_for(:jumbo) do
-  - image_asset = "map_images/unknown.png"
-  - image_asset = "map_images/#{@demo.map_name}.png" if asset_exists?("map_images/#{@demo.map_name}.png")
-  .map-banner{ style: "background-image: url(#{image_path(image_asset)})" }
+- if @demo.processed
+  - content_for(:jumbo) do
+    - image_asset = "map_images/unknown.png"
+    - image_asset = "map_images/#{@demo.map_name}.png" if asset_exists?("map_images/#{@demo.map_name}.png")
+    .map-banner{ style: "background-image: url(#{image_path(image_asset)})" }
+      .container
+        %h1= demo_p.map_name
+        %h2= demo_p.server_name
+        %h2= "Played for #{demo_p.duration}"
+
+        %span.download-container
+          %h2.download-link= demo_p.download_link title: 'Download Demo'
+
     .container
-      %h1= demo_p.map_name
-      %h2= demo_p.server_name
-      %h2= "Played for #{demo_p.duration}"
-
-      %span.download-container
-        %h2.download-link= demo_p.download_link title: 'Download Demo'
-
-  .container
-    = render 'demos/leaderboard', demo: @demo
+      = render 'demos/leaderboard', demo: @demo
+- else
+  .alert.alert-info
+    This demo is currently being processed, check back in a minute.

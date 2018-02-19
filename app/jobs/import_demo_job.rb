@@ -29,5 +29,7 @@ class ImportDemoJob < ApplicationJob
         end
       end
     end
+
+    demo.update_attributes processed: true
   end
 end

@@ -13,7 +13,8 @@
 .row.demo-time
   = demo_p.time_ago
 
-  .pull-right
-    - data = { toggle: :collapse, target: "##{demo_p.token}" }
-    %button.btn.btn-link.btn-xs{ type: :button, data: data }
-      %span.caret
+  - if demo.processed
+    .pull-right
+      - data = { toggle: :collapse, target: "##{demo_p.token}" }
+      %button.btn.btn-link.btn-xs{ type: :button, data: data }
+        %span.caret
