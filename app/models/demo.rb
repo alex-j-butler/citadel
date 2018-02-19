@@ -1,6 +1,8 @@
 class Demo < ApplicationRecord
   has_many :players, class_name: 'Demo::Player'
 
+  validates :uploaded_by, presence: true
+
   mount_uploader :demo, DemoUploader
 
   scope :search, (lambda do |query|

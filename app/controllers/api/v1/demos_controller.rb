@@ -21,7 +21,7 @@ module API
       private
 
       def demo_params
-        params.require(:demo).permit(:demo, :created_at)
+        params.require(:demo).permit(:demo, :uploaded_by, :created_at)
       end
     end
   end
