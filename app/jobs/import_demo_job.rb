@@ -1,7 +1,10 @@
 class ImportDemoJob < ApplicationJob
   queue_as :default
 
-  def perform(demo)
+  def perform(demo_id)
+    demo = Demo.find(demo_id)
+    return nil if demo.nil?
+
     demo_import_exec = Rails.root.join('bin', 'demo-import').to_s
     demo_path = demo.demo.file.path
 
@@ -31,5 +34,7 @@ class ImportDemoJob < ApplicationJob
     end
 
     demo.update_attributes processed: true
+
+    return demo
   end
 end
