@@ -11,7 +11,7 @@ module API
         @demo = Demo.new(demo_params)
 
         if @demo.save
-          ImportDemoJob.perform_later @demo
+          ImportDemoJob.perform_later @demo.id
           render json: @demo, serializer: DemoSerializer, status: :created
         else
           render json: @demo.errors, status: :unprocessable_entity
