@@ -106,6 +106,10 @@ group :development do
   gem 'capistrano3-delayed-job', require: false
 end
 
+group :production do
+  gem 'sentry-raven'
+end
+
 # Added at 2018-01-10 13:44:34 +1000 by alex:
 gem 'pretender', '~> 0.3.1'
 
