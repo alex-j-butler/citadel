@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   before_action :require_users_permission, only: [:names, :handle_name_change]
   before_action :require_user_confirmation_token, only: :confirm_email
   before_action :require_user_confirmation_not_timed_out, only: :confirm_email
+  before_action :require_users_impersonate_permission, only: [:impersonate, :unimpersonate]
 
   def index
     @users = User.search(params[:q])
@@ -48,7 +49,7 @@ class UsersController < ApplicationController
 
   def show
     @comment        = User::Comment.new
-    @comments       = @user.comments.includes(:created_by)
+    @comments       = @user.comments.ordered.includes(:created_by)
     @aka            = @user.aka.limit(5).order(created_at: :desc)
     @titles         = @user.titles
     @teams          = @user.teams.order(created_at: :desc)
@@ -111,6 +112,19 @@ class UsersController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+  def impersonate
+    @user = User.find(params[:user_id])
+    impersonate_user(@user)
+
+    redirect_back(fallback_location: root_path)
+  end
+
+  def unimpersonate
+    stop_impersonating_user
+
+    redirect_back(fallback_location: root_path)
+  end
+
   private
 
   def steam_data
@@ -143,6 +157,10 @@ class UsersController < ApplicationController
 
   def require_users_permission
     redirect_to pages_home_path unless user_can_edit_users?
+  end
+
+  def require_users_impersonate_permission
+    redirect_to root_path unless user_can_impersonate_users?
   end
 
   def require_user_confirmation_token

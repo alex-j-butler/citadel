@@ -1,11 +1,10 @@
 # config valid only for current version of Capistrano
-lock '3.10.0'
+lock '3.10.1'
 
 set :application, 'citadel'
-set :rvm_ruby_string, 'ruby-2.3.3'
 
 # git settings
-set :repo_url, 'git@github.com:ozfortress/citadel.git'
+set :repo_url, 'git@github.com:alex-j-butler/citadel.git'
 set :branch, :master
 
 # Default deploy_to directory is /var/www/my_app_name

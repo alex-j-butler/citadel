@@ -19,6 +19,9 @@ Rails.application.routes.draw do
 
   get 'pages/home'
 
+  # Custom Qixalite pages
+  get 'rules', to: 'pages#rules'
+
   get 'admin', to: 'admin#index'
   get 'statistics',  to: 'admin#statistics', as: 'admin_statistics'
 
@@ -42,7 +45,7 @@ Rails.application.routes.draw do
       end
 
       resource :transfers, controller: 'leagues/rosters/transfers', only: [:create]
-      resource :comments, controller: 'leagues/rosters/comments', only: [:create]
+      resources :comments, controller: 'leagues/rosters/comments', only: [:create]
     end
 
     resources :matches, controller: 'leagues/matches', shallow: true do
@@ -69,6 +72,13 @@ Rails.application.routes.draw do
           patch 'defer'
         end
       end
+    end
+  end
+
+  resources :rosters, only: [] do
+    resources :comments, controller: 'leagues/rosters/comments', only: [:edit, :update, :destroy] do
+      get :edits, on: :member, as: 'edits_for'
+      patch :restore, on: :member
     end
   end
 
@@ -99,8 +109,14 @@ Rails.application.routes.draw do
   patch 'users/:user_id/name/:id', to: 'users#handle_name_change',  as: 'handle_user_name'
   resources :users, except: [:destroy] do
     post 'name',  on: :member, to: 'users#request_name_change'
+    post 'impersonate', to: 'users#impersonate'
+    post 'unimpersonate', to: 'users#unimpersonate'
 
-    resources :comments, controller: 'users/comments', only: [:create]
+    resources :comments, controller: 'users/comments', only: [:create, :edit, :update, :destroy] do
+      get :edits, on: :member, as: 'edits_for'
+      patch :restore, on: :member
+    end
+
     resources :bans, controller: 'users/bans', only: [:index, :create, :destroy]
     resource :logs, controller: 'users/logs', only: :show do
       get :alts, on: :collection

@@ -11,12 +11,10 @@ module ApplicationHelper
 
   def navbar_active?(name)
     case name
-    when :home
-      controller_name == 'pages' && action_name == 'home'
     when :admin
       controller.is_a? AdminController
     else
-      controller_path.start_with? name.to_s
+      controller_path.start_with?(name.to_s) || (controller_name == 'pages' && action_name == name.to_s)
     end
   end
 
@@ -40,5 +38,13 @@ module ApplicationHelper
 
   def present_collection(collection, klass = nil)
     collection.map { |object| present(object, klass) }
+  end
+
+  def git_revision
+    if File.exists?(File.join(Rails.root, "REVISION"))
+      File.open(File.join(Rails.root, "REVISION"), 'r') { |f| return f.gets.chomp }
+    else
+      `SHA1=$(git rev-parse HEAD 2> /dev/null); if [ $SHA1 ]; then echo $SHA1; else echo 'unknown'; fi`.chomp
+    end
   end
 end

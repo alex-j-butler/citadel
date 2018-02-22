@@ -21,7 +21,8 @@
 
 .panel.panel-default
   .panel-heading Admin
-  %li.list-group-item= link_to 'Permissions', permissions_path
+  - if current_user.can?(:edit, :permissions)
+    %li.list-group-item= link_to 'Permissions', permissions_path
   %li.list-group-item= link_to 'Statistics', admin_statistics_path
 
 
