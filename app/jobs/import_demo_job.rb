@@ -9,6 +9,8 @@ class ImportDemoJob < ApplicationJob
     demo_path = demo.demo.file.path
 
     demo_json = `#{demo_import_exec} #{demo_path} 2> /dev/null`
+    return nil if demo_json.length < 2
+
     imported_demo = JSON.parse(demo_json)
 
     demo.update_attributes map_name: imported_demo['map_name'],
