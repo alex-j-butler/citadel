@@ -2,6 +2,7 @@ require 'search'
 
 class League < ApplicationRecord
   include MarkdownRenderCaching
+  include MarkdownTextCaching
 
   belongs_to :format
 
@@ -25,6 +26,7 @@ class League < ApplicationRecord
   validates :name,        presence: true, length: { in: 1..64 }
   validates :description, presence: true
   caches_markdown_render_for :description, escaped: false
+  caches_markdown_text_for :description
 
   validates :category, length: { in: 0..64, allow_nil: false }
 
