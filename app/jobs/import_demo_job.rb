@@ -3,13 +3,13 @@ class ImportDemoJob < ApplicationJob
 
   def perform(demo_id)
     demo = Demo.find(demo_id)
-    return nil if demo.nil?
+    if demo.nil? return nil
 
     demo_import_exec = Rails.root.join('bin', 'demo-import').to_s
     demo_path = demo.demo.file.path
 
     demo_json = `#{demo_import_exec} #{demo_path} 2> /dev/null`
-    return nil if demo_json.length < 2
+    if demo_json.length < 2 return nil
 
     imported_demo = JSON.parse(demo_json)
 
