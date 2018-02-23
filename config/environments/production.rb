@@ -62,10 +62,10 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
 
   # Default from
-  config.action_mailer.default_options = { from: 'no-reply@demo.citadel.tv' }
+  config.action_mailer.default_options = { from: 'noreply@qixalite.com' }
 
   # Default to this host for urls in mail views
-  config.action_mailer.default_url_options = { host: 'demo.citadel.tv' }
+  config.action_mailer.default_url_options = { host: 'qixalite.com' }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
