@@ -25,7 +25,6 @@ module ExternalNameCache
   end
 
   def reset_external_attribute(id_attribute)
-    puts self.class.external_attributes[id_attribute]
     if self.class.external_attributes[id_attribute]
       attribute = self.class.external_attributes[id_attribute]
       retrieve_external_attribute attribute[:method], attribute[:options]
