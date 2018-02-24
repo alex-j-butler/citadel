@@ -39,3 +39,7 @@
         = button_to 'Unmark Completed', modify_league_path(@league, status: 'running'),
                     method: :patch, class: 'btn btn-warning'
 
+      = link_to users_permissions_path(action_: :edit, subject: :league, target: @league.id),
+              class: 'pull-right btn btn-default' do
+        Manage Permissions
+        %span.glyphicon.glyphicon-cog
