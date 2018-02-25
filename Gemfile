@@ -48,6 +48,8 @@ gem 'active_model_serializers', '~> 0.10.0'
 # Tournament systems
 gem 'tournament-system', '~> 1.0.0'
 
+gem 'tzinfo-data'
+
 group :test do
   # Use rspec for tests
   gem 'rspec-rails', '~> 3.5'
