@@ -6,7 +6,8 @@ $light-gray: #e9ecf2;
 $medium-gray: #7c7c7c;
 $dark-gray: #444444;
 $base-font-size: 14px;
-$custom-font: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$custom-font-h: 'Anton', Helvetica, Arial, sans-serif;
+$custom-font: 'Lato', Helvetica, Arial, sans-serif;
 
 //Global Styles
 
@@ -38,6 +39,7 @@ a, a:hover, a:focus {
 h1, h2, h3, h4, h5, h6 {
 	color: $dark-gray;
 	padding: 15px;
+	font-family: $custom-font-h;
 }
 
 h1 {
