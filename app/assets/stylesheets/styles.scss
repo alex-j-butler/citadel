@@ -903,6 +903,10 @@ a.label:hover, a.label:focus {
 	color: $dark-gray;
 }
 
+.jumbotron > p {
+	padding: 15px
+}
+
 //Tabs
 
 .panel .tabs {
