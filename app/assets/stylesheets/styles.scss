@@ -1360,7 +1360,7 @@ p.back-link {
 .user-details {
     padding-left: 45px;
     height: 34px;
-    line-height: 19px;
+    line-height: 15px;
     overflow: visible;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -1373,6 +1373,32 @@ p.back-link {
     text-decoration: none;
     padding: 0 10px 0 0;
 }
+
+.group-aka {
+  margin-bottom: 6px;
+  font-style: italic;
+  color: #8ba0b5;
+  font-size: small;
+}
+
+.steam-id-large, .steam-link-large a {
+  font-family: monospace;
+  text-align: right;
+  background-color: #695d5d;
+  color: white;
+  padding: 2px 5px;
+  border-radius: 4px;
+}
+
+.steam-link-large {
+  text-align: right;
+  margin-top: -21px;
+}
+
+.steam-link-large a .glyphicon:before {
+  margin-right: 5px;
+}
+
 
 .avatar {
 	border-radius: 50%;
