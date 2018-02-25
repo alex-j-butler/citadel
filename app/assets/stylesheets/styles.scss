@@ -1,6 +1,6 @@
 //Variables
-$primary-color: #30a5ff;
-$primary-color-hover: #50b3ff;
+$primary-color: #e39418;
+$primary-color-hover: #fca620;
 $lighter-gray: #f1f4f7;
 $light-gray: #e9ecf2;
 $medium-gray: #7c7c7c;
@@ -17,6 +17,14 @@ body {
 	color: $dark-gray;
 	font-family: $custom-font;
 }
+
+//Row margin hotfix
+
+row {
+	margin: 0;
+}
+
+//--
 
 p {
 	color: #777;
