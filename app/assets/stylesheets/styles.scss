@@ -1357,3 +1357,19 @@ p.back-link {
 	}
 }
 
+.user-details {
+    padding-left: 45px;
+    height: 34px;
+    line-height: 19px;
+    overflow: visible;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.steam-link a {
+    color: $primary-color;
+    font-family: monospace;
+    font-size: x-small;
+    text-decoration: none;
+    padding: 0 10px 0 0;
+}
