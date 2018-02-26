@@ -6,8 +6,6 @@
 
   = f.markdown_editor :notice, row: 3, label: 'Notice (Public)'
 
-= f.text_field :email, label: user_p.confirmation_label
-
 .clearfix
   = image_tag user.avatar.icon.url, class: 'pull-left thumbnail' if user.avatar?
 
