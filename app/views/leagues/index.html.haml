@@ -1,26 +1,28 @@
 - content_for(:title) { 'Tournaments' }
 
-%h1.tab-header Tournaments
+%h1.tab-header.outside Tournaments
 
-.col-sm-3.col-md-3.searchbox.pull-right
-  = render 'search'
-
-%hr
-
-- if user_can_edit_leagues?
-  = link_to new_league_path, class: 'btn btn-default pull-right' do
-    %span.glyphicon.glyphicon-plus
-    Create New Tournament
-
-.tab-content
-  - @games.each_with_index do |game, index|
-    - klass = 'tab-pane fade'
-    - if index.zero?
-      - klass += ' in active'
-
-    - leagues = @leagues[game]
-    %div{ id: game.name.parameterize, class: klass }
-      - if leagues.empty?
-        .panel-body No tournaments found...
-      - else
-        = render 'league_list', leagues: leagues, game: game
+.panel.panel-container
+  .row
+    .col-sm-3.col-md-3.searchbox.pull-right
+      = render 'search'
+    
+    %hr
+    
+    - if user_can_edit_leagues?
+      = link_to new_league_path, class: 'btn btn-default pull-right' do
+        %span.glyphicon.glyphicon-plus
+        Create New Tournament
+    
+    .tab-content
+      - @games.each_with_index do |game, index|
+        - klass = 'tab-pane fade'
+        - if index.zero?
+          - klass += ' in active'
+    
+        - leagues = @leagues[game]
+        %div{ id: game.name.parameterize, class: klass }
+          - if leagues.empty?
+            .panel-body No tournaments found...
+          - else
+            = render 'league_list', leagues: leagues, game: game

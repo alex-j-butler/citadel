@@ -1,182 +1,184 @@
 - content_for(:title) { @team.name }
 
-- if user_can_edit_team?
-  = link_to edit_team_path(@team), class: 'btn btn-default pull-right', type: 'button' do
-    Settings
-    %span.glyphicon.glyphicon-cog
+%h1.outside= @team.name
 
-- team_p = present(@team)
-
-.clearfix
-  = image_tag @team.avatar.icon.url, class: 'pull-left thumbnail' if @team.avatar?
-
-  %h1= @team.name
-
-.panel.panel-default
-  .panel-heading Info
-  .panel-body.markdown= team_p.description
-
-- if team_p.notice != ''
-  .panel.panel-warning
-    .panel-heading Notice
-    .panel-body.markdown= team_p.notice
-
-- unless @upcoming_matches.empty?
-  .panel.panel-default
-    .panel-heading Upcoming Matches
-    %ul.list-group
-      - present_collection(@upcoming_matches).each do |match|
-        %li.list-group-item= match.link
-
-- @active_rosters.each do |roster|
-  - roster_p = present(roster)
-  - matches = @active_roster_matches[roster]
-
-  .global-collapsible
-    .panel.panel-default
-      .panel-heading
-        = roster_p.title
-
-        - if user_can_manage_transfers?(roster)
-          = link_to edit_roster_path(roster), class: 'btn btn-default pull-right' do
-            Manage
-
-      - unless roster.approved?
-        .panel-body.alert-warning
-          - if user_can_edit_league?(roster.league)
-            = link_to 'Approve', review_roster_path(roster),
-                                 class: 'btn btn-success pull-right'
-            = button_to 'Decline', roster_path(roster),
-                method: :delete, class: 'btn btn-danger pull-right',
-                data: { confirm: "Are you sure you want to decline this team's sign up?" }
-
-          %span.glyphicon.glyphicon-warning-sign
-          Roster is awaiting approval
-
-      %ul.list-group
-        - roster.players.map(&:user_id).each do |id|
-          %li.list-group-item
-            = render 'users/listing', user: @users[id], team: @team
-
-      - if roster_p.notice != ''
-        .panel-warning
-          .panel-heading
-            Notice
-
-          .panel-body.markdown= roster_p.notice
-
-      - if matches.present?
-        - id = "#{dom_id(roster)}-matches"
-        .panel-heading
-          %a{ data: { toggle: 'collapse', parent: '.global-collapsible' }, href: "##{id}" }
-            Matches
-            %span.pull-right.glyphicon.glyphicon-chevron-down
-
-        .panel-collapse.collapse{ id: id }
-          = render 'leagues/matches/matches_table', matches: matches, roster: roster
-
-      - id = "#{dom_id(roster)}-transfers"
-      .panel-heading
-        %a{ data: { toggle: 'collapse', parent: '.global-collapsible' }, href: "##{id}" }
-          Transfer History
-          %span.pull-right.glyphicon.glyphicon-chevron-down
-
-      .panel-collapse.collapse{ id: id }
-        %ul.list-group
-          - roster.transfers.each do |transfer|
-            %li.list-group-item
-              = present(transfer).listing
-
-.global-collapsible
-  .panel.panel-default
-    .panel-heading
-      .panel-title Player Pool
-    - if @invite
-      %li.list-group-item.list-group-item-info
-        You have been invited to join this team
-
-        .button-group.pull-right
-          = button_to decline_team_invite_path(@team), method: :delete, class: 'btn btn-danger' do
-            Decline
-            %span.glyphicon.glyphicon-remove
-        .button-group.pull-right
-          = button_to accept_team_invite_path(@team), method: :post, class: 'btn btn-success' do
-            Accept
-            %span.glyphicon.glyphicon-ok
-
+.panel.panel-container
+  .row
     - if user_can_edit_team?
-      .panel-body
-        = link_to recruit_team_path(@team), class: 'btn btn-default' do
-          Invite
-          %span.glyphicon.glyphicon-plus
-    %ul.list-group
-      - @players.each do |player|
-        - player_p = present(player, Team::PlayerPresenter)
-        %li.list-group-item
-          - user = @users[player.user_id]
-          - player.user = user # Make sure we don't fetch the user again
-
-          - if user == current_user
-            .button-group.pull-right= player_p.leave_button
-
-          - elsif user_can_edit_team?
-            .button-group.pull-right= player_p.kick_button
-
-          = render 'users/listing', user: user, team: @team
-
-    - id = "#{dom_id(@team)}-transfers"
-    .panel-heading
-      %a{ data: { toggle: 'collapse', parent: '.global-collapsible' }, href: "##{id}" }
-        Transfer History
-        %span.pull-right.glyphicon.glyphicon-chevron-down
-
-    .panel-collapse.collapse{ id: id }
-      %ul.list-group
-        - @transfers.each do |transfer|
-          %li.list-group-item
-            = present(transfer).listing
-
-%hr
-
-- unless @past_rosters.empty?
-  .global-collapsible
+      = link_to edit_team_path(@team), class: 'btn btn-default pull-right', type: 'button' do
+        Settings
+        %span.glyphicon.glyphicon-cog
+    
+    - team_p = present(@team)
+    
+    .clearfix
+      = image_tag @team.avatar.icon.url, class: 'pull-left thumbnail' if @team.avatar?
+    
     .panel.panel-default
-      .panel-heading
-        .panel-title Past Rosters
-
-      - @past_rosters.each do |roster|
-        :ruby
-          roster_p = present(roster)
-          matches = @past_roster_matches[roster]
-
-          id = dom_id(roster)
-        .panel-heading
-          = roster_p.title
-          %a{ data: { toggle: 'collapse', parent: '.global-collapsible' }, href: "##{id}" }
-            %span.pull-right.glyphicon.glyphicon-chevron-down
-          - if user_can_edit_league?(roster.league)
-            = link_to edit_roster_path(roster), class: 'btn btn-default pull-right' do
-              Manage
-
-        .panel-collapse.collapse{ id: id }
+      .panel-heading Info
+      .panel-body.markdown= team_p.description
+    
+    - if team_p.notice != ''
+      .panel.panel-warning
+        .panel-heading Notice
+        .panel-body.markdown= team_p.notice
+    
+    - unless @upcoming_matches.empty?
+      .panel.panel-default
+        .panel-heading Upcoming Matches
+        %ul.list-group
+          - present_collection(@upcoming_matches).each do |match|
+            %li.list-group-item= match.link
+    
+    - @active_rosters.each do |roster|
+      - roster_p = present(roster)
+      - matches = @active_roster_matches[roster]
+    
+      .global-collapsible
+        .panel.panel-default
+          .panel-heading
+            = roster_p.title
+    
+            - if user_can_manage_transfers?(roster)
+              = link_to edit_roster_path(roster), class: 'btn btn-default pull-right' do
+                Manage
+    
+          - unless roster.approved?
+            .panel-body.alert-warning
+              - if user_can_edit_league?(roster.league)
+                = link_to 'Approve', review_roster_path(roster),
+                                     class: 'btn btn-success pull-right'
+                = button_to 'Decline', roster_path(roster),
+                    method: :delete, class: 'btn btn-danger pull-right',
+                    data: { confirm: "Are you sure you want to decline this team's sign up?" }
+    
+              %span.glyphicon.glyphicon-warning-sign
+              Roster is awaiting approval
+    
           %ul.list-group
-            - roster.players.map(&:user_id).each do |user_id|
+            - roster.players.map(&:user_id).each do |id|
               %li.list-group-item
-                = render 'users/listing', user: @users[user_id], team: @team
-
+                = render 'users/listing', user: @users[id], team: @team
+    
           - if roster_p.notice != ''
             .panel-warning
-              .panel-heading Notice
+              .panel-heading
+                Notice
+    
               .panel-body.markdown= roster_p.notice
-
-          .panel-default
+    
+          - if matches.present?
+            - id = "#{dom_id(roster)}-matches"
             .panel-heading
-              Matches:
-            = render 'leagues/matches/matches_table', matches: matches, roster: roster
-
-          .panel-default
-            .panel-heading Transfer History:
+              %a{ data: { toggle: 'collapse', parent: '.global-collapsible' }, href: "##{id}" }
+                Matches
+                %span.pull-right.glyphicon.glyphicon-chevron-down
+    
+            .panel-collapse.collapse{ id: id }
+              = render 'leagues/matches/matches_table', matches: matches, roster: roster
+    
+          - id = "#{dom_id(roster)}-transfers"
+          .panel-heading
+            %a{ data: { toggle: 'collapse', parent: '.global-collapsible' }, href: "##{id}" }
+              Transfer History
+              %span.pull-right.glyphicon.glyphicon-chevron-down
+    
+          .panel-collapse.collapse{ id: id }
             %ul.list-group
               - roster.transfers.each do |transfer|
                 %li.list-group-item
                   = present(transfer).listing
+    
+    .global-collapsible
+      .panel.panel-default
+        .panel-heading
+          .panel-title Player Pool
+        - if @invite
+          %li.list-group-item.list-group-item-info
+            You have been invited to join this team
+    
+            .button-group.pull-right
+              = button_to decline_team_invite_path(@team), method: :delete, class: 'btn btn-danger' do
+                Decline
+                %span.glyphicon.glyphicon-remove
+            .button-group.pull-right
+              = button_to accept_team_invite_path(@team), method: :post, class: 'btn btn-success' do
+                Accept
+                %span.glyphicon.glyphicon-ok
+    
+        - if user_can_edit_team?
+          .panel-body
+            = link_to recruit_team_path(@team), class: 'btn btn-default' do
+              Invite
+              %span.glyphicon.glyphicon-plus
+        %ul.list-group
+          - @players.each do |player|
+            - player_p = present(player, Team::PlayerPresenter)
+            %li.list-group-item
+              - user = @users[player.user_id]
+              - player.user = user # Make sure we don't fetch the user again
+    
+              - if user == current_user
+                .button-group.pull-right= player_p.leave_button
+    
+              - elsif user_can_edit_team?
+                .button-group.pull-right= player_p.kick_button
+    
+              = render 'users/listing', user: user, team: @team
+    
+        - id = "#{dom_id(@team)}-transfers"
+        .panel-heading
+          %a{ data: { toggle: 'collapse', parent: '.global-collapsible' }, href: "##{id}" }
+            Transfer History
+            %span.pull-right.glyphicon.glyphicon-chevron-down
+    
+        .panel-collapse.collapse{ id: id }
+          %ul.list-group
+            - @transfers.each do |transfer|
+              %li.list-group-item
+                = present(transfer).listing
+    
+    %hr
+    
+    - unless @past_rosters.empty?
+      .global-collapsible
+        .panel.panel-default
+          .panel-heading
+            .panel-title Past Rosters
+    
+          - @past_rosters.each do |roster|
+            :ruby
+              roster_p = present(roster)
+              matches = @past_roster_matches[roster]
+    
+              id = dom_id(roster)
+            .panel-heading
+              = roster_p.title
+              %a{ data: { toggle: 'collapse', parent: '.global-collapsible' }, href: "##{id}" }
+                %span.pull-right.glyphicon.glyphicon-chevron-down
+              - if user_can_edit_league?(roster.league)
+                = link_to edit_roster_path(roster), class: 'btn btn-default pull-right' do
+                  Manage
+    
+            .panel-collapse.collapse{ id: id }
+              %ul.list-group
+                - roster.players.map(&:user_id).each do |user_id|
+                  %li.list-group-item
+                    = render 'users/listing', user: @users[user_id], team: @team
+    
+              - if roster_p.notice != ''
+                .panel-warning
+                  .panel-heading Notice
+                  .panel-body.markdown= roster_p.notice
+    
+              .panel-default
+                .panel-heading
+                  Matches:
+                = render 'leagues/matches/matches_table', matches: matches, roster: roster
+    
+              .panel-default
+                .panel-heading Transfer History:
+                %ul.list-group
+                  - roster.transfers.each do |transfer|
+                    %li.list-group-item
+                      = present(transfer).listing

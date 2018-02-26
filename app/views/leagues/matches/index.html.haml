@@ -5,19 +5,21 @@
   = league_p.link
   Matches
 
-.panel.panel-default
-  .panel-heading Matches
-  .panel-body
-    - if user_can_edit_league?
-      .btn-group
-        = link_to generate_league_matches_path(@league), class: 'btn btn-default pull-right' do
-          %span.glyphicon.glyphicon-plus
-          Generate Round
-        = link_to new_league_match_path(@league), class: 'btn btn-default pull-right' do
-          %span.glyphicon.glyphicon-plus
-          Create Single Match
-
-
-    - @divisions.each do |div|
-      %h3= div.name
-      = render 'leagues/matches/matches_table', matches: @matches[div], roster: nil
+.panel.panel-container
+  .row
+    .panel.panel-default
+      .panel-heading Matches
+      .panel-body
+        - if user_can_edit_league?
+          .btn-group
+            = link_to generate_league_matches_path(@league), class: 'btn btn-default pull-right' do
+              %span.glyphicon.glyphicon-plus
+              Generate Round
+            = link_to new_league_match_path(@league), class: 'btn btn-default pull-right' do
+              %span.glyphicon.glyphicon-plus
+              Create Single Match
+    
+    
+        - @divisions.each do |div|
+          %h3= div.name
+          = render 'leagues/matches/matches_table', matches: @matches[div], roster: nil
