@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     resources :maps, except: [:destroy]
   end
 
-  resources :leagues, :path => :tournaments, do
+  resources :leagues, :path => :tournaments do
     patch 'modify', on: :member
 
     resources :transfers, controller: 'leagues/transfers', only: [:index, :destroy, :update]
