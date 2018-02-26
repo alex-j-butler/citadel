@@ -1422,6 +1422,10 @@ p.back-link {
   margin-right: 5px;
 }
 
+.steam-link > a > span {
+  font-size: inherit;
+}
+
 #steam-id-collapse {
   margin-right: 38px;
 }
@@ -1440,4 +1444,8 @@ p.back-link {
 .spaced-letters {
     margin: 12px 0 0 0;
     padding: 0;
+}
+
+.post-edit > div.pull-right {
+    font-size: 14px;
 }
