@@ -13,13 +13,13 @@
       = link_to edit_league_path(@league), class: 'btn btn-default pull-right', type: 'button' do
         Manage
         %span.glyphicon.glyphicon-cog
-    
-.panel.panel-container
-  .row    
+      
     .panel.panel-default
       .panel-heading Info
       .panel-body.markdown= present(@league).description
-    
+
+.panel.panel-container
+  .row	  
     .panel.panel-info
       = link_to 'All Matches', league_matches_path(@league),
                 class: 'btn btn-default pull-right'
@@ -90,7 +90,9 @@
               %hr
               = render 'leagues/divisions/bracket', division: div, rosters: rosters, matches: matches
     
-    - if user_can_edit_league?
+- if user_can_edit_league?
+  .panel.panel-container
+    .row
       .panel.panel-info
         .panel-heading Admin
         .panel-body
@@ -100,4 +102,4 @@
             = link_to 'Transfers', league_transfers_path(@league), class: klass
             = link_to 'Signups', league_rosters_path(@league), class: klass
             = link_to 'Matches', league_matches_path(@league), class: klass
-    
+      
