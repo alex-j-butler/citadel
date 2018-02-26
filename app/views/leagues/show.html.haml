@@ -14,7 +14,8 @@
         Manage
         %span.glyphicon.glyphicon-cog
     
-    
+.panel.panel-container
+  .row    
     .panel.panel-default
       .panel-heading Info
       .panel-body.markdown= present(@league).description
@@ -37,7 +38,9 @@
       - else
         .panel-heading
           There are no upcoming matches...
-    
+
+.panel.panel-container
+  .row    
     .panel.panel-default
       .panel-heading Teams
       - if user_signed_in?

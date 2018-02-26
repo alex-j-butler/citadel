@@ -79,7 +79,10 @@
           - present_collection(@matches).each do |match|
             %li.list-group-item
               = match.link
-    
+
+
+.panel.panel-container
+  .row			  
     .panel.panel-default
       .panel-heading Teams
       %ul.list-group
@@ -111,22 +114,24 @@
             - unless roster.league.hidden?
               %li.list-group-item= roster.user_listing
     
-    - if user_can_edit_users?
+- if user_can_edit_users?
+  .panel.panel-container
+    .row
       .panel.panel-info
         .panel-heading Admin Comments
-    
+      
         - @comments.each do |comment|
           - options = { user: @user, comment: comment, quote_id: 'wmd-input-user-comment' }
-    
+      
           - if comment.exists?
             = render 'users/comments/comment', options
           - else
             = render 'users/comments/deleted_comment', options
-    
+      
         .container-fluid
           %hr
           = bootstrap_form_for @comment, as: :comment, url: user_comments_path(@user) do |f|
             = render 'users/comments/form', f: f
-    
+      
             .row
               = f.submit 'Post', class: 'btn btn-default pull-right'
