@@ -2,7 +2,7 @@
 
 - user_p = present(@user)
 
-.btn-group
+.btn-group.pull-right
   - if user_can_edit_user?
     = link_to edit_user_path(@user), class: 'btn btn-default pull-right', type: 'button' do
       Settings
