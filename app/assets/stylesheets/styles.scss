@@ -1542,3 +1542,14 @@ p.back-link {
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
 }
+
+.btn-topspace {
+	margin-top: 10px;
+}
+
+//Outside-panel headers
+
+h1.outside, h2.outside, h3.outside, h4.outside, h5.outside, h6.outside,
+.h1.outside, .h2.outside, .h3.outside, .h4.outside, .h5.outside, .h6.outside {
+  color: #ffffff;
+}

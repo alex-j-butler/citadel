@@ -1,24 +1,26 @@
 - content_for(:title) { 'Teams' }
 
-%h1.tab-header Teams
+%h1.tab-header.outside Teams
 
-.col-sm-3.col-md-3.searchbox.pull-right
-  = render 'search'
-
-%hr
-
-.panel.panel-default
-  - if user_signed_in?
-    .panel-body
-      = link_to new_team_path, class: 'btn btn-default pull-right', type: 'button' do
-        Start Team
-        %span.glyphicon.glyphicon-plus
-
-  - if @teams.empty?
-    .panel-body No teams found...
-  - else
-    %ul.list-group
-      - present_collection(@teams).each do |teams|
-        %li.list-group-item= teams.link
-
-= bootstrap_paginate @teams
+.panel.panel-container
+  .row
+    .col-sm-3.col-md-3.searchbox.pull-right
+      = render 'search'
+    
+    %hr
+    
+    .panel.panel-default
+      - if user_signed_in?
+        .panel-body
+          = link_to new_team_path, class: 'btn btn-default pull-right btn-topspace', type: 'button' do
+            Start Team
+            %span.glyphicon.glyphicon-plus
+    
+      - if @teams.empty?
+        .panel-body No teams found...
+      - else
+        %ul.list-group
+          - present_collection(@teams).each do |teams|
+            %li.list-group-item= teams.link
+    
+    = bootstrap_paginate @teams
