@@ -452,7 +452,7 @@ a.label:hover, a.label:focus {
 }
 
 .panel-container {
-	padding-top: 20px;
+  padding: 20px;
 }
 
 .panel-heading .fa-toggle-up, .panel-heading .fa-toggle-down {
@@ -1390,11 +1390,19 @@ p.back-link {
 
 .steam-link-large {
   text-align: right;
-  margin-top: -21px;
+  margin-top: -37px;
+}
+
+.steam-link-large > span.dropdown {
+  float: none;
 }
 
 .steam-link-large a .glyphicon:before {
   margin-right: 5px;
+}
+
+#steam-id-collapse {
+  margin-right: 38px;
 }
 
 
@@ -1406,4 +1414,9 @@ p.back-link {
     margin: 3px 8px;
     max-height: 77px;
     border-radius: 50%;
+}
+
+.spaced-letters {
+    margin: 12px 0 0 0;
+    padding: 0;
 }
