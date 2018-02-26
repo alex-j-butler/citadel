@@ -1527,6 +1527,6 @@ p.back-link {
   border-radius: 10px;
 }
 
-.panel-body.btn-spacing > .btn {
+.btn-spacing > .btn, .btn-spacing > form > .btn {
 	margin: 5px;
 }
