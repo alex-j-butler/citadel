@@ -1448,3 +1448,15 @@ p.back-link {
 .post-edit > div.pull-right {
     font-size: 14px;
 }
+
+.matches-table {
+  overflow: auto;
+  border-left: none;
+  border-right: none;
+  margin-bottom: 0;
+}
+
+.matches-table td {
+  padding: 4px 8px !important;
+  vertical-align: middle;
+}
