@@ -142,7 +142,7 @@ Rails.application.routes.draw do
   end
 
   resource :forums, :path => :news, only: :show
-  namespace :forums, shallow: true do
+  namespace :forums, :path => :news, shallow: true do
     resources :topics, except: :index do
       concerns :subscribable
       patch :isolate, on: :member
