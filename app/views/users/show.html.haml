@@ -2,15 +2,16 @@
 
 - user_p = present(@user)
 
-- if user_can_edit_user?
-  = link_to edit_user_path(@user), class: 'btn btn-default pull-right', type: 'button' do
-    Settings
-    %span.glyphicon.glyphicon-cog
-
-- if user_signed_in? && current_user.can?(:impersonate, :users)
-  = link_to user_impersonate_path(@user), method: :post, class: 'btn btn-default pull-right', type: 'button' do
-    Impersonate
-    %span.glyphicon.glyphicon-user
+.btn-group
+  - if user_can_edit_user?
+    = link_to edit_user_path(@user), class: 'btn btn-default pull-right', type: 'button' do
+      Settings
+      %span.glyphicon.glyphicon-cog
+  
+  - if user_signed_in? && current_user.can?(:impersonate, :users)
+    = link_to user_impersonate_path(@user), method: :post, class: 'btn btn-default pull-right', type: 'button' do
+      Impersonate
+      %span.glyphicon.glyphicon-user
 
 .row
   .pull-left
