@@ -47,8 +47,6 @@ gem 'ahoy_matey'
 gem 'active_model_serializers', '~> 0.10.0'
 # Tournament systems
 gem 'tournament-system', '~> 1.0.0'
-# User impersonation
-gem "pretender", "~> 0.3.1"
 
 group :test do
   # Use rspec for tests
@@ -70,7 +68,7 @@ group :test do
   gem 'capybara'
 
   # Keep codebase clean
-  gem 'rubocop', '~> 0.47', require: false
+  gem 'rubocop', '~> 0.51', require: false
   gem 'haml_lint', require: false
   gem 'haml', '~> 4.0', require: false # haml_lint is broken for haml 5
   gem 'rails_best_practices', require: false
@@ -100,3 +98,7 @@ group :development do
   gem 'capistrano-rails', require: false
   gem 'capistrano-passenger', require: false
 end
+
+# User impersonation:
+gem 'pretender', '~> 0.3.1'
+gem 'allowable', '~> 1.1'
