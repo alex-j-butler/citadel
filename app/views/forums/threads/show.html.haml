@@ -1,5 +1,7 @@
 - content_for(:title) { "#{@thread.title} | Forums" }
 
+= render 'forums/head', object: @thread
+
 .panel.panel-container
   .row
     .btn-group.pull-right
@@ -18,7 +20,6 @@
             - else
               = render 'forums/subscribe_btn'
     
-    = render 'forums/head', object: @thread
     
     .panel.panel-default
       - @posts.each do |post|
