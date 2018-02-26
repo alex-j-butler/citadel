@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>match.tf - <%= yield :head %></title>
+	<title><%= content_for :title %> - match.tf</title>
 	<%= stylesheet_link_tag 'application' %>  
 	<%=javascript_include_tag 'application'%>  	
 	<!--Custom Font-->
@@ -36,7 +36,7 @@
 				<img src="<%= current_user.avatar.icon.url %>" class="img-responsive" alt="">
 			</div>
 			<div class="profile-usertitle">
-				<div class="profile-usertitle-name"><%= render 'user_dropdown' %></div>
+				<div class="profile-usertitle-name"><a href="<%= user_path(current_user)%>"><%= current_user.name %></a></div>
 			</div>
 			<div class="clear"></div>
 		</div>
@@ -45,6 +45,9 @@
 		<ul class="nav menu">
 		<%= render "navbar" %>
 		</ul>
+		<% if user_signed_in? %>
+			<%= render 'user_dropdown' %>
+		<% end %>	
 	</div><!--/.sidebar-->
 		
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">

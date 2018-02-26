@@ -1081,6 +1081,18 @@ a.label:hover, a.label:focus {
 	margin: 0px 0;
 }
 
+.sidebar ul.nav.bottom {
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+  }
+
+@media (max-width: 768px) {
+	.sidebar ul.nav.bottom {
+		position: relative;
+	}
+}
+
 //User Profile Sidebar
 
 .profile-sidebar {
@@ -1107,13 +1119,21 @@ a.label:hover, a.label:focus {
 .profile-usertitle {
 	float: left;
 	text-align: left;
-	margin-top: 10px;
+	margin: 20px 0 0 10px;
 }
 
 .profile-usertitle-name {
 	font-size: 20px;
 	margin-bottom: 0px;
 }
+.profile-usertitle-name > a {
+	color: inherit;
+}
+.profile-usertitle-name > a:hover {
+	text-decoration: none;
+}
+
+
 
 .profile-usertitle-status {
 	text-transform: uppercase;
