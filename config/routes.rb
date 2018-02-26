@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :leagues, :path => :tournaments, shallow: true, only: [:index, :show], do
+      resources :leagues, shallow: true, only: [:index, :show] do
         resources :matches, only: [:index, :show]
         resources :rosters, only: [:index, :show]
       end
@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     resources :maps, except: [:destroy]
   end
 
-  resources :leagues do
+  resources :leagues, :path => :tournaments, do
     patch 'modify', on: :member
 
     resources :transfers, controller: 'leagues/transfers', only: [:index, :destroy, :update]
