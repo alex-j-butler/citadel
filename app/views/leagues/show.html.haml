@@ -13,10 +13,15 @@
     = link_to edit_league_path(@league), class: 'btn btn-default pull-right margined', type: 'button' do
       Manage
       %span.glyphicon.glyphicon-cog
-    
-  .panel.panel-default
-    .panel-heading Info
-    .panel-body.markdown= present(@league).description
+	  
+  - if @league.display_heroimage?  
+    .panel.panel-default 
+      .panel-heading.hero-banner{:style => "background-image: url(/images/heroimage_default.png);"}
+      .panel-body.markdown= present(@league).description
+  - else
+    .panel.panel-default 
+      .panel-heading Info
+      .panel-body.markdown= present(@league).description
 
 .row	  
   .panel.panel-info
