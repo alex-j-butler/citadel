@@ -2,104 +2,101 @@
 
 %h1.outside= @league.name
 
-.panel.panel-container
-  .row
-    - if @league.hidden?
-      .alert.alert-warning
-        %span.glyphicon.glyphicon-lock
-        Private
-    
-    - if user_can_edit_league?
-      = link_to edit_league_path(@league), class: 'btn btn-default pull-right', type: 'button' do
-        Manage
-        %span.glyphicon.glyphicon-cog
-      
-    .panel.panel-default
-      .panel-heading Info
-      .panel-body.markdown= present(@league).description
 
-.panel.panel-container
-  .row	  
-    .panel.panel-info
-      = link_to 'All Matches', league_matches_path(@league),
-                class: 'btn btn-default pull-right'
+.row
+  - if @league.hidden?
+    .alert.alert-warning
+      %span.glyphicon.glyphicon-lock
+      Private
+  
+  - if user_can_edit_league?
+    = link_to edit_league_path(@league), class: 'btn btn-default pull-right', type: 'button' do
+      Manage
+      %span.glyphicon.glyphicon-cog
     
-      - matches = @personal_matches || @top_div_matches
-      - if !matches.empty?
-        .panel-heading
-          - if @personal_matches
-            Your Upcoming Matches
-          - else
-            Upcoming Matches for #{@divisions.first.name}
-    
-    
-        = render 'leagues/matches/matches_table', matches: matches, roster: nil
-    
-      - else
-        .panel-heading
-          There are no upcoming matches...
+  .panel.panel-default
+    .panel-heading Info
+    .panel-body.markdown= present(@league).description
 
-.panel.panel-container
-  .row    
-    .panel.panel-default
-      .panel-heading Teams
-      - if user_signed_in?
-        - if current_user.can?(:edit, :team) && @league.signuppable?
-          .panel-body
-            = link_to 'Sign up', new_league_roster_path(@league),
-                                 class: 'btn btn-success pull-right'
-    
-        - elsif @roster
-          .panel-body
-            = present(@roster).link 'View My Team', class: 'btn btn-default pull-right'
-    
-      - if @league.signuppable?
-        %ul.list-group
-          - present_collection(@rosters).each do |roster|
-            %li.list-group-item
-              = roster.link
-    
-      - else
-        .panel-body.table-responsive
-          / Specifically include brackets here, we don't need them on every page
-          - content_for :head do
-            = javascript_include_tag 'brackets'
-            = stylesheet_link_tag 'brackets', media: 'all'
-    
-          - @ordered_rosters.each do |div, rosters|
-            %h3= div.name
-            %table.table
-              %tr
-                %th #
-                %th Team
-                %th Points
-                - present_collection(@league.tiebreakers).each do |tiebreaker|
-                  %th= tiebreaker.name_with_tooltip
-    
-              - rosters.each_with_index do |roster, rank|
-                %tr
-                  %th{ scope: 'row' }= rank + 1
-                  %td= present(roster).listing
-                  %td= roster.points
-                  - @league.tiebreakers.each do |tiebreaker|
-                    %th= tiebreaker.value_for(roster)
-    
-            / Render brackets
-            - matches = @matches[div]
-            - if matches.present?
-              %hr
-              = render 'leagues/divisions/bracket', division: div, rosters: rosters, matches: matches
-    
-- if user_can_edit_league?
-  .panel.panel-container
-    .row
-      .panel.panel-info
-        .panel-heading Admin
+.row	  
+  .panel.panel-info
+    = link_to 'All Matches', league_matches_path(@league),
+              class: 'btn btn-default pull-right'
+  
+    - matches = @personal_matches || @top_div_matches
+    - if !matches.empty?
+      .panel-heading
+        - if @personal_matches
+          Your Upcoming Matches
+        - else
+          Upcoming Matches for #{@divisions.first.name}
+  
+  
+      = render 'leagues/matches/matches_table', matches: matches, roster: nil
+  
+    - else
+      .panel-heading
+        There are no upcoming matches...
+
+.row    
+  .panel.panel-default
+    .panel-heading Teams
+    - if user_signed_in?
+      - if current_user.can?(:edit, :team) && @league.signuppable?
         .panel-body
-          .btn-group
-            - klass = 'btn btn-default pull-right'
-            
-            = link_to 'Transfers', league_transfers_path(@league), class: klass
-            = link_to 'Signups', league_rosters_path(@league), class: klass
-            = link_to 'Matches', league_matches_path(@league), class: klass
-      
+          = link_to 'Sign up', new_league_roster_path(@league),
+                               class: 'btn btn-success pull-right'
+  
+      - elsif @roster
+        .panel-body
+          = present(@roster).link 'View My Team', class: 'btn btn-default pull-right'
+  
+    - if @league.signuppable?
+      %ul.list-group
+        - present_collection(@rosters).each do |roster|
+          %li.list-group-item
+            = roster.link
+  
+    - else
+      .panel-body.table-responsive
+        / Specifically include brackets here, we don't need them on every page
+        - content_for :head do
+          = javascript_include_tag 'brackets'
+          = stylesheet_link_tag 'brackets', media: 'all'
+  
+        - @ordered_rosters.each do |div, rosters|
+          %h3= div.name
+          %table.table
+            %tr
+              %th #
+              %th Team
+              %th Points
+              - present_collection(@league.tiebreakers).each do |tiebreaker|
+                %th= tiebreaker.name_with_tooltip
+  
+            - rosters.each_with_index do |roster, rank|
+              %tr
+                %th{ scope: 'row' }= rank + 1
+                %td= present(roster).listing
+                %td= roster.points
+                - @league.tiebreakers.each do |tiebreaker|
+                  %th= tiebreaker.value_for(roster)
+  
+          / Render brackets
+          - matches = @matches[div]
+          - if matches.present?
+            %hr
+            = render 'leagues/divisions/bracket', division: div, rosters: rosters, matches: matches
+  
+- if user_can_edit_league?
+.row
+  .panel.panel-info
+    .panel-heading Admin
+    .panel-body
+      .btn-group
+        - klass = 'btn btn-default pull-right'
+        
+        = link_to 'Transfers', league_transfers_path(@league), class: klass
+        = link_to 'Signups', league_rosters_path(@league), class: klass
+        = link_to 'Matches', league_matches_path(@league), class: klass
+  

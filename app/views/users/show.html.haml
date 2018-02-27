@@ -44,8 +44,6 @@
     
       .pull-right= render 'users/bans/list', user: @user
     
-    %hr
-    
     - if current_user? && !@team_invites.empty?
       - @team_invites.each do |invite|
         - team = invite.team
