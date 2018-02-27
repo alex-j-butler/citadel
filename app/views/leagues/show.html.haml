@@ -21,7 +21,7 @@
 .row	  
   .panel.panel-info
     = link_to 'All Matches', league_matches_path(@league),
-              class: 'btn btn-default pull-right'
+              class: 'btn btn-default pull-right margined'
   
     - matches = @personal_matches || @top_div_matches
     - if !matches.empty?
