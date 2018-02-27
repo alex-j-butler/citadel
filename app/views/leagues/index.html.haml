@@ -1,19 +1,17 @@
 - content_for(:title) { 'Tournaments' }
 
-%h1.tab-header.outside Tournaments
-
-.panel.panel-container
-  .row
-    .col-sm-3.col-md-3.searchbox.pull-right
-      = render 'search'
-    
-    %hr
-    
-    - if user_can_edit_leagues?
-      = link_to new_league_path, class: 'btn btn-default pull-right' do
-        %span.glyphicon.glyphicon-plus
-        Create New Tournament
-    
+.row
+  %h1.tab-header.outside Tournaments
+  .col-sm-3.col-md-3.searchbox.pull-right
+    = render 'search'
+  - if user_can_edit_leagues?
+    = link_to new_league_path, class: 'btn btn-default pull-right btn-lg' do
+      %span.glyphicon.glyphicon-plus
+      Create New Tournament
+  
+  
+.row
+  .panel.panel-container
     .tab-content
       - @games.each_with_index do |game, index|
         - klass = 'tab-pane fade'
