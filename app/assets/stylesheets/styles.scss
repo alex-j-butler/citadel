@@ -1567,3 +1567,10 @@ h1.outside, h2.outside, h3.outside, h4.outside, h5.outside, h6.outside, h1.outsi
 h1 > a:hover, h2 > a:hover, h3 > a:hover, h4 > a:hover, h5 > a:hover, h6 > a:hover, h1 > a:hover, h2 > a:hover, h3 > a:hover, h4 > a:hover, h5 > a:hover, h6 > a:hover {
   text-decoration: none;
 }
+
+//Unuglify large buttons
+
+.btn-lg, .btn-group-lg > .btn {
+    padding: 12px 18px;
+    font-size: 16px;
+}
