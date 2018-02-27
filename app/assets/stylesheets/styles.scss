@@ -1551,7 +1551,11 @@ p.back-link {
 	margin: 10px;
 }
 
-
+.tab-header {
+    display: inline-flex;
+    margin: 0;
+    padding: 0 0 15px 0;
+}
 
 //Outside-panel headers
 
