@@ -6,7 +6,6 @@
     .row  
       - @threads.each do |thread|
         - post = @news_posts[thread]
-        %hr
       
         = render 'forums/posts/news_post', post: post
       
