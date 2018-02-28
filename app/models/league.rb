@@ -25,7 +25,8 @@ class League < ApplicationRecord
   validates :name,        presence: true, length: { in: 1..64 }
   validates :description, presence: true
   caches_markdown_render_for :description, escaped: false
-
+  caches_markdown_render_for :rules, escaped: false
+  
   validates :category, length: { in: 0..64, allow_nil: false }
 
   validates :signuppable,                              inclusion: { in: [true, false] }

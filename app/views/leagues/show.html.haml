@@ -27,6 +27,12 @@
       .panel-heading Tournament Info
       .panel-body.markdown= present(@league).description
 
+.row
+  .global-collapsible
+    .panel.panel-default 
+      .panel-heading Rules
+      .panel-body.markdown= present(@league).rules
+    
 .row	  
   .panel.panel-info
     = link_to 'All Matches', league_matches_path(@league),
