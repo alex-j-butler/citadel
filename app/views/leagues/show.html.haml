@@ -11,7 +11,7 @@
 	  
   - if @league.display_heroimage?  
     .panel.panel-default 
-	- if user_can_edit_league?
+    - if user_can_edit_league?
       = link_to edit_league_path(@league), class: 'btn btn-default pull-right margined pos-abs', type: 'button' do
         Manage
         %span.glyphicon.glyphicon-cog
@@ -20,7 +20,7 @@
       .panel-body.markdown= present(@league).description
   - else
     .panel.panel-default 
-	- if user_can_edit_league?
+    - if user_can_edit_league?
       = link_to edit_league_path(@league), class: 'btn btn-default pull-right margined', type: 'button' do
         Manage
         %span.glyphicon.glyphicon-cog	
