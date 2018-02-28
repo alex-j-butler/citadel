@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180228070131) do
+ActiveRecord::Schema.define(version: 20180228073130) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -491,6 +491,7 @@ ActiveRecord::Schema.define(version: 20180228070131) do
     t.string   "heroimage_url",                            default: "/images/heroimage_default.png",                                      null: false
     t.boolean  "display_heroimage",                        default: false,                                                                null: false
     t.string   "rules",                                    default: "### Welcome to match.tf tournament! Please follow the rules below:", null: false
+    t.text     "rules_render_cache",                       default: "",                                                                   null: false
     t.index "query_name_cache gist_trgm_ops", name: "index_leagues_on_query_name_change", using: :gist
     t.index ["format_id"], name: "index_leagues_on_format_id", using: :btree
   end
