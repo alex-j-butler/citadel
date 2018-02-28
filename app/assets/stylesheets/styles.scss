@@ -1551,6 +1551,10 @@ p.back-link {
 	margin: 10px;
 }
 
+.pos-abs {
+	position: absolute;
+}
+
 .tab-header {
     display: inline-flex;
     margin: 0;
@@ -1580,5 +1584,6 @@ h1 > a:hover, h2 > a:hover, h3 > a:hover, h4 > a:hover, h5 > a:hover, h6 > a:hov
 }
 
 .hero-banner {
-	height: 300px;
+	padding: 0;
+	background: #2d2727 !important;
 }

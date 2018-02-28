@@ -10,17 +10,18 @@
       Private
   
   - if user_can_edit_league?
-    = link_to edit_league_path(@league), class: 'btn btn-default pull-right margined', type: 'button' do
+    = link_to edit_league_path(@league), class: 'btn btn-default pull-right margined pos-abs', type: 'button' do
       Manage
       %span.glyphicon.glyphicon-cog
 	  
   - if @league.display_heroimage?  
     .panel.panel-default 
-      .panel-heading.hero-banner{:style => "background-image: url(/images/heroimage_default.png);"}
+      .panel-heading.hero-banner
+        %img.img-responsive.center-block{:src => @league.heroimage_url}
       .panel-body.markdown= present(@league).description
   - else
     .panel.panel-default 
-      .panel-heading Info
+      .panel-heading Tournament Info
       .panel-body.markdown= present(@league).description
 
 .row	  
