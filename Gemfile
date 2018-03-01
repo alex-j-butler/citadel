@@ -101,7 +101,9 @@ group :development do
   gem 'capistrano-passenger', require: false
 end
 
+# Qixalite-specific gems
 gem 'sentry-raven'
+gem 'ddtrace'
 
 # Added at 2018-01-10 13:44:34 +1000 by alex:
 gem 'pretender', '~> 0.3.1'
