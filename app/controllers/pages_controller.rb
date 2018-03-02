@@ -1,5 +1,4 @@
 class PagesController < ApplicationController
-  layout "application"
   def home
     read_news_config
   end
