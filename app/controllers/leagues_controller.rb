@@ -21,9 +21,11 @@ class LeaguesController < ApplicationController
   end
 
   def new
+    @user = current_user
     @league = League.new
     @league.divisions.new
     @weekly_scheduler = @league.build_weekly_scheduler
+    @user.grant(:edit, @league)
   end
 
   def create
