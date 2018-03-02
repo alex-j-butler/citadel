@@ -29,11 +29,54 @@
 
             </div>
             <div id="question1" class="panel-collapse collapse">
-                <div class="panel-body">
-
-
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-                </div>
+            <div class="panel-body timeline-container">
+						<ul class="timeline">
+							<li>
+								<div class="timeline-badge"><em class="fa fa-steam"></em></div>
+								<div class="timeline-panel">
+									<div class="timeline-heading">
+										<h4 class="timeline-title">Log into the site</h4>
+									</div>
+									<div class="timeline-body">
+										<p>Use Steam to log in, no additional actions required.</p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="timeline-badge primary"><em class="fa fa-sign-in"></em></div>
+								<div class="timeline-panel">
+									<div class="timeline-heading">
+										<h4 class="timeline-title">Hop in our Discord server</h4>
+									</div>
+									<div class="timeline-body">
+										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="timeline-badge"><em class="fa fa-magic"></em></div>
+								<div class="timeline-panel">
+									<div class="timeline-heading">
+										<h4 class="timeline-title">Request</h4>
+									</div>
+									<div class="timeline-body">
+										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at sodales nisl. Donec malesuada orci ornare risus finibus feugiat.</p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="timeline-badge"><em class="fa fa-magic"></em></div>
+								<div class="timeline-panel">
+									<div class="timeline-heading">
+										<h4 class="timeline-title">Lorem ipsum dolor sit amet</h4>
+									</div>
+									<div class="timeline-body">
+										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
             </div>
         </div>
         <div class="panel panel-default ">
