@@ -21,7 +21,6 @@ class LeaguesController < ApplicationController
   end
 
   def new
-    @user = current_user
     @league = League.new
     @league.divisions.new
     @weekly_scheduler = @league.build_weekly_scheduler
@@ -31,6 +30,7 @@ class LeaguesController < ApplicationController
     @league = League.new(league_params)
 
     if @league.save
+      @user = current_user
       @user.grant(:edit, @league)
       redirect_to league_path(@league)
     else
