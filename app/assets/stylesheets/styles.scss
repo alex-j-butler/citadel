@@ -1632,7 +1632,11 @@ h1 > a:hover, h2 > a:hover, h3 > a:hover, h4 > a:hover, h5 > a:hover, h6 > a:hov
   animation-delay: 0s;
 }
 
-//List group custom colors
+//Custom league groups
+
+.list-group-item {
+  z-index: 1;
+}
 
 .league-underlay {
   content: "";
@@ -1643,6 +1647,59 @@ h1 > a:hover, h2 > a:hover, h3 > a:hover, h4 > a:hover, h5 > a:hover, h6 > a:hov
   right: 0;
   position: absolute;
   z-index: -1;  
+}
+
+.list-group-item-warning {
+    background-color: transparent;
+    background: linear-gradient(to right, #919191 , black);
+}
+.list-group-item-info {
+    background-color: transparent;
+    background: linear-gradient(to right, #e29418 , black);
+}
+.list-group-item-success {
+    background-color: transparent;
+    background: linear-gradient(to right, #702418 , black);
+}
+
+.list-group-item-warning:hover {
+    background-color: transparent;
+    background: linear-gradient(to right, #919191 , #4b4646);
+}
+.list-group-item-info:hover {
+    background-color: transparent;
+    background: linear-gradient(to right, #e29418 , #4b4646);
+}
+.list-group-item-success:hover {
+    background-color: transparent;
+    background: linear-gradient(to right, #702418 , #4b4646);
+}
+
+
+
+a.list-group-item-warning, button.list-group-item-warning {
+    color: #fff;
+}
+
+a.list-group-item-success, button.list-group-item-success {
+    color: #fff;
+}
+
+a.list-group-item-info, button.list-group-item-info {
+    color: #fff;
+}
+
+
+a.list-group-item-warning:hover, button.list-group-item-warning:hover {
+    color: #fff;
+}
+
+a.list-group-item-success:hover, button.list-group-item-success:hover {
+    color: #fff;
+}
+
+a.list-group-item-info:hover, button.list-group-item-info:hover {
+    color: #fff;
 }
 
 
