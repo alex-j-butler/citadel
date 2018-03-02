@@ -1,4 +1,5 @@
-- content_for(:title) do
-  Rules
+- content_for(:title) { 'Rules' }
 
-= raw File.read(Rails.root.join('public', 'pages', 'rules.html.haml'))
+-# rubocop:disable Rails/OutputSafety
+= raw File.read(Rails.root.join('public', 'pages/rules.html.txt'))
+-# rubocop:enable Rails/OutputSafety
