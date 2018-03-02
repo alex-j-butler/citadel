@@ -18,10 +18,15 @@
     %em.fa.fa-users  
     Users
 
-%li{ class: navbar_class(:rules) }
-  %a{:href => "/pages/rules"}
+%li{ class: navbar_class(:faq) }
+  %a{:href => "/faq"}
     %em.fa.fa-bars  
-    Rules
+    FAQ
+    
+%li{ class: navbar_class(:about) }
+  %a{:href => "/about"}
+    %em.fa.fa-bars  
+    About
 
 - if user_signed_in? && current_user.admin?
   %li{ class: navbar_class(:admin) }

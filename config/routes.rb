@@ -21,6 +21,9 @@ Rails.application.routes.draw do
 
   # Custom pages
   get 'rules', to: 'pages#rules'
+  get 'host', to: 'pages#host'
+  get 'faq', to: 'pages#faq'
+  get 'about', to: 'pages#about'
 
   get 'admin', to: 'admin#index'
   get 'statistics',  to: 'admin#statistics', as: 'admin_statistics'
