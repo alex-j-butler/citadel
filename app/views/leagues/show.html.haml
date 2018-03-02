@@ -30,8 +30,11 @@
 .row
   .global-collapsible
     .panel.panel-default 
-      .panel-heading Rules
-      .panel-body.markdown= present(@league).rules
+      .panel-heading 
+        %a{"data-parent" => ".global-collapsible", "data-toggle" => "collapse", :href => "#league_rules"}
+          Rules
+          %span.pull-right.glyphicon.glyphicon-chevron-down
+      #league_rules.panel-collapse.collapse.panel-body.markdown= present(@league).rules
     
 .row	  
   .panel.panel-info
