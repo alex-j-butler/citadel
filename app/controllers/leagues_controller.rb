@@ -5,8 +5,8 @@ class LeaguesController < ApplicationController
     @league = League.includes(:tiebreakers).find(params[:id])
   end
 
-  before_action :require_user_leagues_permission, only: [:new, :create, :destroy]
-  before_action :require_user_league_permission, only: [:edit, :update, :modify]
+  before_action :require_user_leagues_permission, only: [:destroy]
+  before_action :require_user_league_permission, only: [:edit, :update, :new, :create, :modify]
   before_action :require_league_not_hidden_or_permission, only: [:show]
   before_action :require_hidden, only: [:destroy]
 
@@ -112,6 +112,6 @@ class LeaguesController < ApplicationController
   end
 
   def require_league_not_hidden_or_permission
-    redirect_to leagues_path unless !@league.hidden? || user_can_edit_league?
+    redirect_to leagues_path unless !@league.hidden? || user_can_edit_league? || user_can_edit_leagues?
   end
 end
