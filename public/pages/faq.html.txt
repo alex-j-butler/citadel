@@ -43,13 +43,13 @@
 								</div>
 							</li>
 							<li>
-								<div class="timeline-badge primary"><em class="fa fa-sign-in"></em></div>
+								<div class="timeline-badge"><em class="fa fa-sign-in"></em></div>
 								<div class="timeline-panel">
 									<div class="timeline-heading">
-										<h4 class="timeline-title">Hop in our Discord server</h4>
+										<h4 class="timeline-title">Hop in our <a href="https://discord.match.tf" target="_blank">Discord server</a></h4>
 									</div>
 									<div class="timeline-body">
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+										<p>This is required for a better coordination process & customer support. You are free to use any kind of coordination hub for your tournament, but as a tournament host, you should join our server.</p>
 									</div>
 								</div>
 							</li>
@@ -57,26 +57,26 @@
 								<div class="timeline-badge"><em class="fa fa-magic"></em></div>
 								<div class="timeline-panel">
 									<div class="timeline-heading">
-										<h4 class="timeline-title">Request</h4>
+										<h4 class="timeline-title">Request tournament host permissions</h4>
 									</div>
 									<div class="timeline-body">
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at sodales nisl. Donec malesuada orci ornare risus finibus feugiat.</p>
+										<p>Fill in a simple form in <code>#request-center</code>. You can submit it via PM if you want your application and tournament to be private. This is only required once, you will be able to host as many tournaments as you want.</p>
 									</div>
 								</div>
 							</li>
 							<li>
-								<div class="timeline-badge"><em class="fa fa-magic"></em></div>
+								<div class="timeline-badge"><em class="fa-fire"></em></div>
 								<div class="timeline-panel">
 									<div class="timeline-heading">
-										<h4 class="timeline-title">Lorem ipsum dolor sit amet</h4>
+										<h4 class="timeline-title">Go for it!</h4>
 									</div>
 									<div class="timeline-body">
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+										<p>Once you are granted with the permissions, you will recieve a site notification with a link to your new tournament page and all the information on the hosting process.</p>
 									</div>
 								</div>
 							</li>
 						</ul>
-					</div>
+			</div>
             </div>
         </div>
         <div class="panel panel-default ">
@@ -87,11 +87,54 @@
 
             </div>
             <div id="question2" class="panel-collapse collapse">
-                <div class="panel-body">
-
-
-                    <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
-                </div>
+            <div class="panel-body timeline-container">
+						<ul class="timeline">
+							<li>
+								<div class="timeline-badge"><em class="fa fa-steam"></em></div>
+								<div class="timeline-panel">
+									<div class="timeline-heading">
+										<h4 class="timeline-title">Log into the site</h4>
+									</div>
+									<div class="timeline-body">
+										<p>Use Steam to log in, no additional actions required.</p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="timeline-badge"><em class="fa fa-sign-in"></em></div>
+								<div class="timeline-panel">
+									<div class="timeline-heading">
+										<h4 class="timeline-title">Create a team</h4>
+									</div>
+									<div class="timeline-body">
+										<p>Go to the "Teams" page, press the "Start team" button.</p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="timeline-badge"><em class="fa fa-magic"></em></div>
+								<div class="timeline-panel">
+									<div class="timeline-heading">
+										<h4 class="timeline-title">Request tournament host permissions</h4>
+									</div>
+									<div class="timeline-body">
+										<p>Fill in a simple form in <code>#request-center</code>. You can submit it via PM if you want your application and tournament to be private. This is only required once, you will be able to host as many tournaments as you want.</p>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="timeline-badge"><em class="fa-fire"></em></div>
+								<div class="timeline-panel">
+									<div class="timeline-heading">
+										<h4 class="timeline-title">Go for it!</h4>
+									</div>
+									<div class="timeline-body">
+										<p>Once you are granted with the permissions, you will recieve a site notification with a link to your new tournament page and all the information on the hosting process.</p>
+									</div>
+								</div>
+							</li>
+						</ul>
+			</div>
             </div>
         </div>
         <div class="panel panel-default ">

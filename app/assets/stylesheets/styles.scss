@@ -1653,6 +1653,12 @@ h1 > a:hover, h2 > a:hover, h3 > a:hover, h4 > a:hover, h5 > a:hover, h6 > a:hov
   z-index: -1;  
 }
 
+.well {
+	box-shadow: none;
+	background-color: #f9f9f9;
+	border: none;
+}
+
 .list-group-item-warning {
     background-color: transparent;
     background: linear-gradient(to right, #919191 , black);
