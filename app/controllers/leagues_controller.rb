@@ -5,7 +5,8 @@ class LeaguesController < ApplicationController
     @league = League.includes(:tiebreakers).find(params[:id])
   end
 
-  before_action :require_user_leagues_permission, only: [:new, :create, :destroy]
+  before_action :require_user_leagues_permission, only: [:destroy]
+  before_action :require_user_create_permission, only: [:new, :create]
   before_action :require_user_league_permission, only: [:edit, :update,:modify]
   before_action :require_league_not_hidden_or_permission, only: [:show]
   before_action :require_hidden, only: [:destroy]
@@ -14,7 +15,7 @@ class LeaguesController < ApplicationController
     @leagues = League.search(params[:q])
                      .order(status: :asc, created_at: :desc)
                      .includes(format: :game)
-    @leagues = @leagues.visible unless user_can_edit_leagues?
+    @leagues = @leagues.visible unless user_can_edit_leagues? || user_can_view_leagues? 
     @leagues = @leagues.group_by { |league| league.format.game }
 
     @games = @leagues.keys
@@ -107,6 +108,10 @@ class LeaguesController < ApplicationController
 
   def require_user_leagues_permission
     redirect_to leagues_path unless user_can_edit_leagues?
+  end
+  
+  def require_user_create_permission
+    redirect_to leagues_path unless user_can_create_leagues?
   end
 
   def require_user_league_permission
