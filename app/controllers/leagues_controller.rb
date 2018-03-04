@@ -111,7 +111,7 @@ class LeaguesController < ApplicationController
   end
   
   def require_user_create_permission
-    redirect_to leagues_path unless user_can_create_leagues?
+    redirect_to leagues_path unless user_can_edit_leagues? || user_can_create_leagues?
   end
 
   def require_user_league_permission
