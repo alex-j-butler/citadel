@@ -66,6 +66,8 @@ GEM
     allowable (1.1.0)
     ancestry (3.0.1)
       activerecord (>= 3.2.0)
+    animate-rails (1.0.10)
+      rails
     arel (7.1.4)
     ast (2.3.0)
     autoprefixer-rails (7.2.3)
@@ -405,6 +407,7 @@ DEPENDENCIES
   ahoy_matey
   allowable (~> 1.1)
   ancestry
+  animate-rails
   bootstrap-sass (~> 3.3.6)
   bootstrap3-datetimepicker-rails (~> 4.17.37)
   bootstrap_form

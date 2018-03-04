@@ -10,11 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180228073130) do
+ActiveRecord::Schema.define(version: 20180304132654) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pg_trgm"
+
+  create_table "action_user_create_leagues", force: :cascade do |t|
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_action_user_create_leagues_on_user_id", unique: true, using: :btree
+  end
 
   create_table "action_user_edit_games", force: :cascade do |t|
     t.integer "user_id"
@@ -147,6 +152,11 @@ ActiveRecord::Schema.define(version: 20180228073130) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.index ["user_id"], name: "index_action_user_use_users_bans_on_user_id", using: :btree
+  end
+
+  create_table "action_user_view_leagues", force: :cascade do |t|
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_action_user_view_leagues_on_user_id", unique: true, using: :btree
   end
 
   create_table "ahoy_events", force: :cascade do |t|
