@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   get 'about', to: 'pages#about'
 
   get 'admin', to: 'admin#index'
+  get 'admin/host', to: 'admin#host'
   get 'statistics',  to: 'admin#statistics', as: 'admin_statistics'
 
   namespace :meta do

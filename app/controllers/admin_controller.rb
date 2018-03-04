@@ -1,7 +1,24 @@
 class AdminController < ApplicationController
+  include UsersPermissions
   before_action :require_any_admin_permissions
+  before_action :user_can_edit_users, only: [:host, :host_grant]
 
   def index
+  end
+  
+  before_action only: [:host_grant] do
+    @user = User.all.find(params.require(:user_id))
+  end
+  
+  def host
+  end  
+  
+  def host_grant
+    @user.grant(:view, :leagues)
+    @user.grant(:create, :leagues)
+	@user.notifications.create(user_id: @user.id, message: "You have been granted the tournament host permissions! Click this notification to create your first tournament.", link: "/tournaments/new", created_at: Time.now, updated_at: Time.now)
+	flash[:notice] = 'Host permissions granted!'
+	redirect_to(admin_host_path)
   end
 
   def statistics
