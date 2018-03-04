@@ -6,6 +6,6 @@
   .row
     .panel.panel-default
       .panel-body
-        = bootstrap_form_tag url: admin_host_grant_path do |f|
+        = bootstrap_form_tag url: '/admin/host_grant' do |f|
           = f.text_field :user_id
           = f.submit 'Grant'
