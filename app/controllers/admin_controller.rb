@@ -1,7 +1,7 @@
 class AdminController < ApplicationController
   include UsersPermissions
   before_action :require_any_admin_permissions
-  before_action :user_can_edit_users, only: [:host, :host_grant]
+  before_action :require_users_permission, only: [:host, :host_grant]
 
   def index
   end
@@ -38,4 +38,9 @@ class AdminController < ApplicationController
   def require_any_admin_permissions
     redirect_to root_path unless user_signed_in? && current_user.admin?
   end
+
+  def require_users_permission
+    redirect_to admin_path unless user_can_edit_users?
+  end
+  
 end
