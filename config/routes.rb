@@ -27,6 +27,9 @@ Rails.application.routes.draw do
 
   get 'admin', to: 'admin#index'
   get 'admin/host', to: 'admin#host'
+  controller: 'admin' do
+    post 'host_grant', action: 'host_grant'
+  end
   get 'statistics',  to: 'admin#statistics', as: 'admin_statistics'
 
   namespace :meta do
