@@ -106,6 +106,8 @@ Rails.application.routes.draw do
   patch 'users/:user_id/name/:id', to: 'users#handle_name_change',  as: 'handle_user_name'
   resources :users, except: [:destroy] do
     post 'name',  on: :member, to: 'users#request_name_change'
+    post 'impersonate', to: 'users#impersonate'
+    post 'unimpersonate', to: 'users#unimpersonate'
 
     resources :comments, controller: 'users/comments', only: [:create, :edit, :update, :destroy] do
       get :edits, on: :member, as: 'edits_for'
