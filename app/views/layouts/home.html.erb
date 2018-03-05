@@ -14,6 +14,7 @@
 	<%= csrf_meta_tags %> 	
 	<%= stylesheet_link_tag 'application' %>  
 	<%=javascript_include_tag 'application'%>  	
+    <% public_league = League.where(status: 1) %>
 	<!--Custom Font-->
 	<link href="https://fonts.googleapis.com/css?family=Anton|Lato" rel="stylesheet">
 </head>
@@ -62,9 +63,9 @@
     <div class="panel panel-default">
     <div class="panel-heading hero-banner">
         <img class="img-responsive center-block" src="/images/heroimage_default.png">
-            <% if League.where(status: 1).last.exists? %>
+            <% if public_league.exists? %>
             <div class="text-featured">
-            <a href="/tournaments/<%= League.where(status: 1).last.id%>"><span>Latest tournament: </span><%= League.where(status: 1).last.name%></a>
+            <a href="/tournaments/<%= public_league.last.id%>"><span>Latest tournament: </span><%= public_league.last.name %></a>
             </div>
             <% end %>	
         </div>
