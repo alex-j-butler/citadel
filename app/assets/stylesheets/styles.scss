@@ -1620,7 +1620,7 @@ h1 > a:hover, h2 > a:hover, h3 > a:hover, h4 > a:hover, h5 > a:hover, h6 > a:hov
 .hero-banner {
 	padding: 0;
 	background: #2d2727 !important;
-    border-bottom: none;
+    border-bottom: none !important;
 }
 
 //Fast animations
@@ -1725,7 +1725,6 @@ a.list-group-item-info:hover, button.list-group-item-info:hover {
     background-color: #00000054;
     height: auto;
     display: block;
-    position: absolute;
     bottom: 0px;
     left: 0px;
     text-transform: uppercase;
