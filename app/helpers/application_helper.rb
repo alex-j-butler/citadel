@@ -20,6 +20,10 @@ module ApplicationHelper
     end
   end
 
+  def impersonating?
+    true_user.id != current_user.id
+  end
+
   def format_options
     Format.all.collect { |format| [format.name, format.id] }
   end
