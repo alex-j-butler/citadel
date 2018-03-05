@@ -62,9 +62,11 @@
     <div class="panel panel-default">
     <div class="panel-heading hero-banner">
         <img class="img-responsive center-block" src="/images/heroimage_default.png">
+            <% if League.where(status: 1).last.exists? %>
             <div class="text-featured">
             <a href="/tournaments/<%= League.where(status: 1).last.id%>"><span>Latest tournament: </span><%= League.where(status: 1).last.name%></a>
             </div>
+            <% end %>	
         </div>
     </div>
     </div>		
