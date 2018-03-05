@@ -62,7 +62,7 @@
     <div class="row">
     <div class="panel panel-default">
     <div class="panel-heading hero-banner">
-        <img class="img-responsive center-block" src="/images/heroimage_default.png">
+        <img class="img-responsive center-block" src="<%= asset_path 'homeimage.png' %>">
             <% if public_league.exists? %>
             <div class="text-featured animated fadeInRight">
             <a href="/tournaments/<%= public_league.last.id%>"><span>Latest tournament: </span><%= public_league.last.name %></a>
