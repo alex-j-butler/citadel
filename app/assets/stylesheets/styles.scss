@@ -1715,3 +1715,34 @@ a.list-group-item-info:hover, button.list-group-item-info:hover {
 .searchbox.pull-right {
     padding-right: 0;
 }
+
+.text-featured {
+    text-align: center;
+    letter-spacing: 3px;
+    padding: 5px 5px 5px 21px;
+    width: 100%;
+    background-color: #00000054;
+    height: auto;
+    display: block;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    text-transform: uppercase;
+    float: right;
+}
+
+.text-featured:hover {
+    background-color: #2c2c2ced;
+    -webkit-transition: background-color 700ms linear;
+    -ms-transition: background-color 700ms linear;
+    transition: background-color 700ms linear;    
+}
+
+.text-featured > a > span{
+    color: #fff;
+}
+
+.text-featured > a: hover{
+    text-decoration: none;
+}
+
