@@ -86,6 +86,9 @@ group :development do
 
   # Profilers
   gem 'bullet'
+  
+  # Thin for serving
+  gem 'thin'
 
   # Faster development
   gem 'spring', require: false
