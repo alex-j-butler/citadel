@@ -50,6 +50,9 @@ gem 'tournament-system', '~> 1.0.0'
 # Animate.css
 gem "animate-rails"
 
+# Thin for serving
+gem 'thin'
+
 group :test do
   # Use rspec for tests
   gem 'rspec-rails', '~> 3.5'
@@ -87,8 +90,6 @@ group :development do
   # Profilers
   gem 'bullet'
   
-  # Thin for serving
-  gem 'thin'
 
   # Faster development
   gem 'spring', require: false
