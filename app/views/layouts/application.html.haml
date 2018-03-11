@@ -1,4 +1,72 @@
 !!!
+!!!
+%html
+  %head
+    %meta{ content: 'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type' }
+    - viewport = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'
+    %meta{ name: 'viewport', content: viewport }
+
+    %meta{ property: 'og:site_name', content: Rails.configuration.site['site_name'] }
+    = content_for :meta_tags
+
+    %title= (content_for :title) || 'citadel'
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = content_for :head
+    = csrf_meta_tags
+  %body#page-top.fixed-nav.bg-dark
+    / add sticky-footer class for footer
+    / Navigation
+    %nav#mainNav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
+      %button.navbar-toggler.navbar-toggler-right{"aria-controls" => "navbarResponsive", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarResponsive", "data-toggle" => "collapse", :type => "button"}
+        %span.navbar-toggler-icon
+      #navbarResponsive.collapse.navbar-collapse
+        %ul#exampleAccordion.navbar-nav.navbar-sidenav
+          = render 'navbar'
+        %ul.navbar-nav.sidenav-toggler
+          %li.nav-item
+            %a#sidenavToggler.nav-link.text-center
+              %i.fa.fa-fw.fa-angle-left
+        /
+          <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+          <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+          <i class="fa fa-fw fa-sign-out"></i>Logout</a>
+          </li>
+          </ul>
+    .content-wrapper
+      .top-bar
+        %ul.navbar-nav
+          %li.nav-item
+            %a.nav-link{:href => "index.html"}
+              %i.fa.fa-angle-left{:href => "index.html"}
+        %ul.navbar-nav.right-float
+          %li.nav-item
+            %a#search_form_icon.nav-link
+              %i.fa.fa-search
+          %li#search_form_li.nav-item.animated.fadeInRight{:style => "display:none;"}
+            %input#puglist_filter.form-control{:placeholder => "Search", :type => "text"}/
+      .container-fluid
+        = render 'flashes'
+        = yield 
+    / Scroll to Top Button
+    %a.scroll-to-top.rounded{:href => "#page-top"}
+      %i.fa.fa-angle-up
+    / Logout Modal
+    #exampleModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :role => "dialog", :tabindex => "-1"}
+      .modal-dialog{:role => "document"}
+        .modal-content
+          .modal-header
+            %h5#exampleModalLabel.modal-title Ready to Leave?
+            %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+              %span{"aria-hidden" => "true"} ×
+          .modal-body Select "Logout" below if you are ready to end your current session.
+          .modal-footer
+            %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Cancel
+            %a.btn.btn-primary{:href => "login.html"} Logout
+
+    
+
 %html
   %head
     %meta{ content: 'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type' }

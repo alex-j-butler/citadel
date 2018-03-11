@@ -1,30 +1,24 @@
-%li{ class: navbar_class(:home) }
+%li{ class: navbar_class(:home), "data-placement" => "right", "data-toggle" => "tooltip", :title => "Home"}
   = link_to('Home', :pages_home)
-
-%li{ class: navbar_class(:users) }
+    %i.fa.fa-home
+    
+%li{ class: navbar_class(:users), "data-placement" => "right", "data-toggle" => "tooltip", :title => "Users"}
   = link_to('Users', :users)
-
-%li{ class: navbar_class(:teams) }
+    %i.fa.fa-users
+    
+%li{ class: navbar_class(:teams), "data-placement" => "right", "data-toggle" => "tooltip", :title => "Teams"}
   = link_to('Teams', :teams)
-
-%li{ class: navbar_class(:forums) }
+    %i.fa.fa-bars
+    
+%li{ class: navbar_class(:forums), "data-placement" => "right", "data-toggle" => "tooltip", :title => "Forums"}
   = link_to('Forums', :forums)
-
-%li{ class: navbar_class(:leagues) }
+    %i.fa.fa-bars
+  
+%li{ class: navbar_class(:leagues), "data-placement" => "right", "data-toggle" => "tooltip", :title => "Leagues"}
   = link_to('Leagues', :leagues)
-
-%li.dropdown
-  %a.dropdown-toggle{ role: :button, data: { toggle: :dropdown } }
-    Info
-    %span.caret
-
-  %ul.dropdown-menu
-    %li{ class: navbar_class(:rules) }
-      = link_to('Rules', :rules)
-
-    %li{ class: navbar_class(:server_booking) }
-      = link_to('Server Booking', :server_booking)
-
+    %i.fa.fa-trophy
+  
 - if user_signed_in? && current_user.admin?
   %li{ class: navbar_class(:admin) }
     = link_to('Admin', :admin)
+      %i.fa.fa-cogs
