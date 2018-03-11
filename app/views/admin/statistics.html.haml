@@ -2,9 +2,9 @@
 
 %h2 Statistics
 
-.panel.panel-default
-  .panel-heading Statistics
-  .panel-body
+.card.card-default
+  .card-heading Statistics
+  .card-body
     - times = [5.minutes, 10.minutes, 30.minutes, 2.hours]
     - times.each do |timeframe|
       - cls = timeframe == @timeframe ? 'active' : ''

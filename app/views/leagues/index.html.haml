@@ -29,6 +29,6 @@
     - leagues = @leagues[game]
     %div{ id: game.name.parameterize, class: klass }
       - if leagues.empty?
-        .panel-body No leagues found...
+        .card-body No leagues found...
       - else
         = render 'league_list', leagues: leagues, game: game

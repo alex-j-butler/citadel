@@ -4,17 +4,17 @@
 
 %hr
 
-.panel.panel-default
-  .panel-body
+.card.card-default
+  .card-body
     = bootstrap_form_for @comment, as: :comment, url: roster_comment_path(@roster, @comment) do |f|
       = render 'form', f: f
 
       = f.submit 'Update'
       = link_to 'Cancel', :back, class: 'btn btn-default'
 
-.panel.panel-danger
-  .panel-heading Danger Zone
-  .panel-body
+.card.card-danger
+  .card-heading Danger Zone
+  .card-body
     - if @comment.exists?
       = button_to @comment.paths.destroy, method: :delete, class: 'btn btn-danger',
                   data: { confirm: 'Are you sure you want to delete this Comment?' } do

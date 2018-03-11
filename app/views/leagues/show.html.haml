@@ -16,17 +16,17 @@
 
 %h1= @league.name
 
-.panel.panel-default
-  .panel-heading Info
-  .panel-body.markdown= present(@league).description
+.card.card-default
+  .card-heading Info
+  .card-body.markdown= present(@league).description
 
-.panel.panel-info
+.card.card-info
   = link_to 'All Matches', league_matches_path(@league),
             class: 'btn btn-default pull-right'
 
   - matches = @personal_matches || @top_div_matches
   - if !matches.empty?
-    .panel-heading
+    .card-heading
       - if @personal_matches
         Your Upcoming Matches
       - else
@@ -36,19 +36,19 @@
     = render 'leagues/matches/matches_table', matches: matches, roster: nil
 
   - else
-    .panel-heading
+    .card-heading
       There are no upcoming matches...
 
-.panel.panel-default
-  .panel-heading Teams
+.card.card-default
+  .card-heading Teams
   - if user_signed_in?
     - if current_user.can?(:edit, :team) && @league.signuppable?
-      .panel-body
+      .card-body
         = link_to 'Sign up', new_league_roster_path(@league),
                              class: 'btn btn-success pull-right'
 
     - elsif @roster
-      .panel-body
+      .card-body
         = present(@roster).link 'View My Team', class: 'btn btn-default pull-right'
 
   - if @league.signuppable?
@@ -58,7 +58,7 @@
           = roster.link
 
   - else
-    .panel-body.table-responsive
+    .card-body.table-responsive
       / Specifically include brackets here, we don't need them on every page
       - content_for :head do
         = javascript_include_tag 'brackets'
@@ -89,9 +89,9 @@
           = render 'leagues/divisions/bracket', division: div, rosters: rosters, matches: matches
 
 - if user_can_edit_league?
-  .panel.panel-info
-    .panel-heading Admin
-    .panel-body
+  .card.card-info
+    .card-heading Admin
+    .card-body
       - klass = 'btn btn-default pull-right'
 
       = link_to 'Transfers', league_transfers_path(@league), class: klass

@@ -7,15 +7,15 @@
 
 %hr
 
-.panel.panel-default
+.card.card-default
   - if user_signed_in?
-    .panel-body
+    .card-body
       = link_to new_team_path, class: 'btn btn-default pull-right', type: 'button' do
         Start Team
         %span.glyphicon.glyphicon-plus
 
   - if @teams.empty?
-    .panel-body No teams found...
+    .card-body No teams found...
   - else
     %ul.list-group
       - present_collection(@teams).each do |teams|

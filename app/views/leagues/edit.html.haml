@@ -18,9 +18,9 @@
 %hr
 
 - if user_can_edit_leagues?
-  .panel.panel-danger
-    .panel-heading Danger Zone
-    .panel-body
+  .card.card-danger
+    .card-heading Danger Zone
+    .card-body
       - if @league.hidden? && @league.rosters.empty?
         = button_to league_path(@league), method: :delete, class: 'btn btn-danger',
                     data: { confirm: 'Are you sure you want to delete this League?' } do

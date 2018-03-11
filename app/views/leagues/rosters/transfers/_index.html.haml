@@ -1,5 +1,5 @@
-.panel.panel-default
-  .panel-heading Players on Roster
+.card.card-default
+  .card-heading Players on Roster
   %ul.list-group
     - users_on_roster.each do |user|
       %li.list-group-item
@@ -15,8 +15,8 @@
         = render 'users/listing', user: user, team: roster.team
         = present(user).transfer_status(league)
 
-.panel.panel-default
-  .panel-heading Players off Roster
+.card.card-default
+  .card-heading Players off Roster
   %ul.list-group
     - users_off_roster.each do |user|
       %li.list-group-item

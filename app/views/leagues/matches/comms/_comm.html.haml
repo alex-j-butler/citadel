@@ -1,8 +1,8 @@
 - comm_p = present(comm)
 
-.panel{ class: comm_p.panel_class }
+.card{ class: comm_p.card_class }
   %div{ id: comm.paths.dom_id }
-  .panel-heading
+  .card-heading
     - if user_can_edit_comm?(comm)
       .pull-right
         = link_to comm.paths.edit, class: 'btn btn-link btn-sm' do

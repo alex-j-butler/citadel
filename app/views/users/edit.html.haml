@@ -6,9 +6,9 @@
 
 %hr
 
-.panel.panel-default
-  .panel-heading Name
-  .panel-body
+.card.card-default
+  .card-heading Name
+  .card-body
     = bootstrap_form_for @name_change, url: name_user_path(@user),
                          method: :post, as: :name_change, layout: :horizontal do |f|
       .col-xs-8.pull-left= f.text_field :name, hide_label: true
@@ -16,9 +16,9 @@
       .col-xs-4
         .pull-right= f.submit 'Request Name Change'
 
-.panel.panel-default
-  .panel-heading Information
-  .panel-body
+.card.card-default
+  .card-heading Information
+  .card-body
     = bootstrap_form_for @user, method: :patch do |f|
       = render 'user_form', f: f, user_p: user_p
 
@@ -26,9 +26,9 @@
       = link_to 'Cancel', user_path(@user), class: 'btn btn-default'
 
 - if user_can_edit_users?
-  .panel.panel-danger
-    .panel-heading Danger Zone
-    .panel-body
+  .card.card-danger
+    .card-heading Danger Zone
+    .card-body
       = link_to user_bans_path(@user), class: 'btn btn-default' do
         Manage Bans
         .glyphicon.glyphicon-ban-circle

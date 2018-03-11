@@ -5,14 +5,14 @@
 
 %h1= @game.name
 
-.panel.panel-default
-  .panel-heading Formats
+.card.card-default
+  .card-heading Formats
   %ul.list-group
     - present_collection(@game.formats).each do |format_p|
       = format_p.link class: 'list-group-item'
 
-.panel.panel-default
-  .panel-heading Maps
+.card.card-default
+  .card-heading Maps
   %ul.list-group
     - present_collection(@game.maps).each do |map_p|
       = map_p.link class: 'list-group-item'

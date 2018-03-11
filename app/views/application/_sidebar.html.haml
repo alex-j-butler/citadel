@@ -1,5 +1,5 @@
-.panel.panel-default
-  .panel-heading Social
+.card.card-default
+  .card-heading Social
   %ul.list-group
     %li.list-group-item
       = link_to 'http://steamcommunity.com/groups/qixalite', target: '_blank' do
@@ -14,8 +14,8 @@
         = image_tag 'twitter-logo.png'
         Follow us on Twitter
 
-.panel.panel-default
-  .panel-heading Recent Threads
+.card.card-default
+  .card-heading Recent Threads
   %ul.list-group
     - @recent_threads.each do |thread|
       %li.list-group-item

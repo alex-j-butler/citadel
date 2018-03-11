@@ -6,9 +6,9 @@
     %meta{ property: 'og:title', content: @thread.title }
     %meta{ property: 'og:description', content: truncate_words(post_p.content) }
 
-.panel.panel-default
+.card.card-default
   %div{ id: "post_#{post.id}" }
-  .panel-heading
+  .card-heading
     - if user_can_edit_post?(post)
       .pull-right
         = link_to post_p.edit_path, class: 'btn btn-link btn-sm' do

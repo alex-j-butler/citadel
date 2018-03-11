@@ -4,6 +4,6 @@
   Comment Edits on
   = link_to @user.name, user_path(@user)
 
-.panel.panel-default
+.card.card-default
   - @edits.each do |comment_edit|
     = render 'comment_edit', comment_edit: comment_edit

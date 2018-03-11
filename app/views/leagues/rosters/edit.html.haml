@@ -21,9 +21,9 @@
     %span.glyphicon.glyphicon-warning-sign
     Roster is awaiting approval
 
-.panel.panel-default
-  .panel-heading Info
-  .panel-body
+.card.card-default
+  .card-heading Info
+  .card-body
     = bootstrap_form_for @roster, as: :roster,
         url: roster_path(@roster) do |f|
 
@@ -49,9 +49,9 @@
          users_on_roster: @users_on_roster, users_off_roster: @users_off_roster
 
 - if user_can_disband_roster? || user_can_destroy_roster?
-  .panel.panel-danger
-    .panel-heading Danger Zone
-    .panel-body
+  .card.card-danger
+    .card-heading Danger Zone
+    .card-body
       - if @roster.disbanded? && user_can_edit_league?
         = button_to undisband_roster_path(@roster),
                     method: :put, class: 'btn btn-danger',
@@ -72,8 +72,8 @@
           Destroy
 
 - if user_can_edit_league?
-  .panel.panel-info
-    .panel-heading Admin Comments
+  .card.card-info
+    .card-heading Admin Comments
 
     - @comments.each do |comment|
       - options = { roster: @roster, comment: comment, quote_id: 'wmd-input-new-league-roster-comment' }

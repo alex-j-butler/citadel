@@ -1,7 +1,7 @@
-.panel.panel-default
-  .panel-heading Match Time
+.card.card-default
+  .card-heading Match Time
   - if user_can_suggest_times? && @match.confirmed_time.nil?
-    .panel-body
+    .card-body
       - @booked_times.each do |time|
         - if user_can_accept_times?(time, @match) && (time.pending? || time.rejected?)
           .row{ style: 'padding-bottom: 10px;' }
@@ -38,12 +38,12 @@
           = f.submit 'Suggest time', class: 'btn btn-default pull-right'
 
   - elsif !@match.confirmed_time.nil?
-    .panel-body
+    .card-body
       .row
         Match is scheduled to be played #{@match.confirmed_time.time.strftime("%A %d @ %I:%M%p")}
 
-.panel.panel-default
-  .panel-heading Match Comms
+.card.card-default
+  .card-heading Match Comms
 
   - comms.each do |comm|
     - if comm.exists?

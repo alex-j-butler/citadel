@@ -1,6 +1,6 @@
-.panel.panel-default
+.card.card-default
   - if user_can_create_thread? || !threads.empty?
-    .panel-heading
+    .card-heading
       - if user_can_create_thread?
         .pull-right
           = link_to new_forums_thread_path(topic: parent_topic), class: 'btn btn-default' do
@@ -15,7 +15,7 @@
           = thread.link
 
   - if user_can_manage_topic? || !topics.empty?
-    .panel-heading
+    .card-heading
       - if user_can_manage_topic?
         .pull-right
           = link_to new_forums_topic_path(parent: parent_topic), class: 'btn btn-default' do

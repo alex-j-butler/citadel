@@ -38,11 +38,11 @@ class League
         # rubocop:enable Rails/OutputSafety
       end
 
-      def panel_class
+      def card_class
         if comm.created_by.admin?
-          'panel-warning'
+          'card-warning'
         else
-          'panel-default'
+          'card-default'
         end
       end
     end

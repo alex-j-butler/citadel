@@ -1,11 +1,11 @@
 - comm_p = present(comm)
 
-.panel.panel-danger
+.card.card-danger
   - collapse_id = comm.paths.dom_id('collapse')
   %button.btn.btn-link.pull-right{ data: { toggle: :collapse, target: "##{collapse_id}" } }
     .glyphicon.glyphicon-menu-down
 
-  .panel-heading
+  .card-heading
 
     #{comm_p.deleted_at},
     = comm_p.deleted_by.link
