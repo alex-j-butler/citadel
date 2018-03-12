@@ -1,24 +1,31 @@
-%li{ class: navbar_class(:home), "data-placement" => "right", "data-toggle" => "tooltip", :title => "Home"}
-  = link_to('Home', :pages_home)
+%li.nav-item{ class: navbar_class(:home), "data-placement" => "right", "data-toggle" => "tooltip", :title => "Home"}
+  %a.nav-link{:href => "/" }
     %i.fa.fa-home
+    %span.nav-link-text Home
     
-%li{ class: navbar_class(:users), "data-placement" => "right", "data-toggle" => "tooltip", :title => "Users"}
-  = link_to('Users', :users)
+%li.nav-item{ class: navbar_class(:users), "data-placement" => "right", "data-toggle" => "tooltip", :title => "Users"}
+  %a.nav-link{:href => "/users" }
     %i.fa.fa-users
+    %span.nav-link-text Users
     
-%li{ class: navbar_class(:teams), "data-placement" => "right", "data-toggle" => "tooltip", :title => "Teams"}
-  = link_to('Teams', :teams)
+%li.nav-item{ class: navbar_class(:teams), "data-placement" => "right", "data-toggle" => "tooltip", :title => "Teams"}
+  %a.nav-link{:href => "/teams" }
     %i.fa.fa-bars
+    %span.nav-link-text Teams
     
-%li{ class: navbar_class(:forums), "data-placement" => "right", "data-toggle" => "tooltip", :title => "Forums"}
-  = link_to('Forums', :forums)
-    %i.fa.fa-bars
-  
-%li{ class: navbar_class(:leagues), "data-placement" => "right", "data-toggle" => "tooltip", :title => "Leagues"}
-  = link_to('Leagues', :leagues)
+%li.nav-item{ class: navbar_class(:leagues), "data-placement" => "right", "data-toggle" => "tooltip", :title => "Leagues"}
+  %a.nav-link{:href => "/leagues" }
     %i.fa.fa-trophy
+    %span.nav-link-text Leagues
+    
+%li.nav-item{ class: navbar_class(:forums), "data-placement" => "right", "data-toggle" => "tooltip", :title => "Forums"}
+  %a.nav-link{:href => "/forums" }
+    %i.fa.fa-bars
+    %span.nav-link-text Forums
+
   
 - if user_signed_in? && current_user.admin?
-  %li{ class: navbar_class(:admin) }
-    = link_to('Admin', :admin)
+  %li.nav-item{ class: navbar_class(:admin), "data-placement" => "right", "data-toggle" => "tooltip", :title => "Control panel"}
+    %a.nav-link{:href => "/admin" }
       %i.fa.fa-cogs
+      %span.nav-link-text Control panel
