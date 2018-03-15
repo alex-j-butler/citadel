@@ -17,11 +17,8 @@
           .pull-right= f.submit 'Request Name Change'
 
 .card.card-default
-  .card-heading Information
+  .card-heading Discord
   .card-body
-.panel.panel-default
-  .panel-heading Discord
-  .panel-body
     .media
       .media-left
         = image_tag 'discord-logo.png', class: 'media-object'
@@ -44,9 +41,9 @@
               = link_to user_discord_omniauth_authorize_path, class: 'btn btn-default' do
                 Link
 
-.panel.panel-default
-  .panel-heading Information
-  .panel-body
+.card.card-default
+  .card-heading Information
+  .card-body
     = bootstrap_form_for @user, method: :patch do |f|
       = render 'user_form', f: f, user_p: user_p
 
