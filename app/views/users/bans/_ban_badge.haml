@@ -1,0 +1,7 @@
+:ruby
+  ban_p = present(ban, User::BanPresenter)
+
+  data = { toggle: :tooltip, placement: :bottom,
+           html: 'true', 'original-title' => ban_p.title_text }
+
+%div{ class: "label #{(ban.active? ? 'label-danger' : 'label-info')}", data: data }= ban_p.name

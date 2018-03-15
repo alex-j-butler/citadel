@@ -1,13 +1,19 @@
 class UsersController < ApplicationController
   include UsersPermissions
 
-  before_action only: [:show, :edit, :update,
-                       :request_name_change] { @user = User.find(params[:id]) }
-  before_action only: [:confirm_email] { @user = User.find_by(confirmation_token: params[:token]) }
+  ALLOWABLE_TYPES = ['discord'].freeze
+
+  before_action only: [:show, :edit, :update, :request_name_change] do
+    @user = User.find(params[:id])
+  end
+
+  before_action only: [:confirm_email] do
+    @user = User.find_by(confirmation_token: params[:token])
+  end
 
   before_action :require_login, only: [:profile, :logout]
   before_action :require_user_permission, only: [:edit, :update, :request_name_change]
-  before_action :require_users_permission, only: [:names, :handle_name_change]
+  before_action :require_users_permission, only: [:names, :handle_name_change, :clear_vac, :unclear_vac]
   before_action :require_user_confirmation_token, only: :confirm_email
   before_action :require_user_confirmation_not_timed_out, only: :confirm_email
   before_action :require_users_impersonate_permission, only: [:impersonate, :unimpersonate]
@@ -125,6 +131,34 @@ class UsersController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+  def clear_vac
+    @user = User.find(params[:user_id])
+    @user.vac_status = :vac_cleared
+    @user.save
+
+    Users::NotificationService.call(@user, "Your outstanding VAC ban has been cleared as a non-TF2 ban.", user_path(@user))
+
+    redirect_back(fallback_location: root_path)
+  end
+
+  def unclear_vac
+    @user = User.find(params[:user_id])
+    @user.vac_status = :vac_banned
+    @user.save
+
+    redirect_back(fallback_location: root_path)
+  end
+
+  def unlink_account
+    @user = User.find(params[:user_id])
+    if @user.respond_to? "#{unlink_account_params[:account_type]}_id="
+      @user.send("#{unlink_account_params[:account_type]}_id=", nil)
+      @user.save
+    end
+
+    redirect_back(fallback_location: user_path(@user))
+  end
+
   private
 
   def steam_data
@@ -149,6 +183,10 @@ class UsersController < ApplicationController
 
   def name_change_params
     params.require(:name_change).permit(:name)
+  end
+
+  def unlink_account_params
+    params.permit(:account_type).allow(account_type: ALLOWABLE_TYPES)
   end
 
   def require_user_permission

@@ -15,7 +15,7 @@ describe API::V1::UsersController, type: :request do
 
       get "#{route}/#{user.id}", headers: { 'X-API-Key' => api_key.key }
 
-      json = JSON.parse(response.body)
+      json = response.parsed_body
       user_h = json['user']
       expect(user_h).to_not be_nil
       expect(user_h['name']).to eq(user.name)
@@ -36,7 +36,7 @@ describe API::V1::UsersController, type: :request do
     it 'succeeds for non-existent user' do
       get "#{route}/-1", headers: { 'X-API-Key' => api_key.key }
 
-      json = JSON.parse(response.body)
+      json = response.parsed_body
       expect(json['status']).to eq(404)
       expect(json['message']).to eq('Record not found')
       expect(response).to be_not_found
@@ -45,7 +45,7 @@ describe API::V1::UsersController, type: :request do
     it 'fails without authorization' do
       get "#{route}/#{user.id}"
 
-      json = JSON.parse(response.body)
+      json = response.parsed_body
       expect(json['status']).to eq(401)
       expect(json['message']).to eq('Unauthorized API key')
     end
@@ -57,7 +57,7 @@ describe API::V1::UsersController, type: :request do
     it 'succeeds for existing user' do
       get "#{route}/#{user.steam_id}", headers: { 'X-API-Key' => api_key.key }
 
-      json = JSON.parse(response.body)
+      json = response.parsed_body
       user_h = json['user']
       expect(user_h).to_not be_nil
       expect(user_h['name']).to eq(user.name)
@@ -69,10 +69,48 @@ describe API::V1::UsersController, type: :request do
     it 'succeeds for non-existent user' do
       get "#{route}/0", headers: { 'X-API-Key' => api_key.key }
 
-      json = JSON.parse(response.body)
+      json = response.parsed_body
       expect(json['status']).to eq(404)
       expect(json['message']).to eq('Record not found')
       expect(response).to be_not_found
+    end
+  end
+
+  describe 'GET #bans' do
+    let(:route) { '/api/v1/users' }
+    let(:bans_route) { '/bans' }
+
+    context 'when unauthenticated' do
+      it 'fails with unauthorized error' do
+        get "#{route}/#{user.id}#{bans_route}", params: { id: user.id }
+
+        expect(response).to have_http_status(:unauthorized)
+        expect(response.parsed_body['status']).to eq(401)
+        expect(response.parsed_body['message']).to eq('Unauthorized API key')
+      end
+    end
+
+    context 'when authenticated' do
+      context 'retrieving unbanned player' do
+        it 'succeeds with 0 bans' do
+          get "#{route}/#{user.id}#{bans_route}", params: { id: user.id }, headers: { 'X-API-Key': api_key.key }
+
+          expect(response).to have_http_status(:success)
+          expect(response.parsed_body['bans'].length).to eq(0)
+        end
+      end
+
+      context 'retrieving league banned player' do
+        it 'succeeds with 1 league ban' do
+          user.ban(:use, :leagues)
+
+          get "#{route}/#{user.id}#{bans_route}", params: { id: user.id }, headers: { 'X-API-Key': api_key.key }
+
+          expect(response).to have_http_status(:success)
+          expect(response.parsed_body['bans'].length).to eq(1)
+          expect(response.parsed_body['bans'].first['type']).to eq('leagues')
+        end
+      end
     end
   end
 end

@@ -13,12 +13,40 @@
                          method: :post, as: :name_change, layout: :horizontal do |f|
       .col-xs-8.pull-left= f.text_field :name, hide_label: true
 
-      .col-xs-4
-        .pull-right= f.submit 'Request Name Change'
+        .col-xs-4
+          .pull-right= f.submit 'Request Name Change'
 
 .card.card-default
   .card-heading Information
   .card-body
+.panel.panel-default
+  .panel-heading Discord
+  .panel-body
+    .media
+      .media-left
+        = image_tag 'discord-logo.png', class: 'media-object'
+
+      .media-body
+        %h4.media-heading
+        - if @user.discord_id
+          .pull-left
+            Your Qixalite account is linked to the Discord account
+            %b
+              = @user.discord_name
+          .pull-right
+            = link_to user_unlink_path(@user, account_type: :discord), method: :patch, class: 'btn btn-danger' do
+              Unlink
+        - else
+          .col-xs-8.pull-left
+            Link your Discord account to your Qixalite account.
+          .col-xs-4
+            .pull-right
+              = link_to user_discord_omniauth_authorize_path, class: 'btn btn-default' do
+                Link
+
+.panel.panel-default
+  .panel-heading Information
+  .panel-body
     = bootstrap_form_for @user, method: :patch do |f|
       = render 'user_form', f: f, user_p: user_p
 
@@ -36,3 +64,11 @@
       = link_to user_logs_path(@user), class: 'btn btn-default' do
         Logs
         .glyphicon.glyphicon-list
+
+      - if @user.vac_banned?
+        = link_to user_clear_vac_path(@user), method: :patch, class: 'btn btn-default' do
+          Clear VAC Ban
+
+      - if @user.vac_cleared?
+        = link_to user_unclear_vac_path(@user), method: :patch, class: 'btn btn-default' do
+          Unclear VAC Ban

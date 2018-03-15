@@ -16,6 +16,22 @@ module Users
       end
     end
 
+    def discord
+      auth = request.env['omniauth.auth']
+
+      if current_user
+        if current_user.update_attributes(discord_id: auth.uid)
+          flash[:notice] = 'Discord successfully linked'
+          redirect_to root_path
+        else
+          flash[:danger] = 'Failed to link Discord account'
+          redirect_to root_path
+        end
+      else
+        redirect_to root_path
+      end
+    end
+
     def failure
       redirect_back(fallback_location: root_path)
     end

@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
 gem 'rake', '~> 12.0'
-gem 'rails', '~> 5.0.0'
+gem 'rails', '~> 5.1'
 # Use postgres
-gem 'pg'
+gem 'pg', '~> 0.21' # Fix once rails gets fixed
 # Active Record extensions
 gem 'active_record_union', '~> 1.2.0'
 gem 'ancestry'
@@ -29,8 +29,9 @@ gem 'font-awesome-rails'
 gem 'cocoon'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-# Steam Login
+# Login
 gem 'omniauth-steam'
+gem 'omniauth-discord'
 # Authentication
 gem 'devise'
 # Use hamlit for ~fast templating
@@ -49,6 +50,7 @@ gem 'ahoy_matey'
 gem 'active_model_serializers', '~> 0.10.0'
 # Tournament systems
 gem 'tournament-system', '~> 1.0.0'
+gem 'discordrb', '~> 3.2'
 
 group :test do
   # Use rspec for tests
@@ -64,7 +66,7 @@ group :test do
   gem 'database_cleaner'
 
   # Easy database manipulation
-  gem 'factory_girl_rails', '~> 4.0'
+  gem 'factory_bot_rails', '~> 4'
 
   # Web feature testing
   gem 'capybara'
@@ -101,8 +103,16 @@ group :development do
   gem 'capistrano-passenger', require: false
 end
 
+# Qixalite-specific gems
+gem 'sentry-raven'
+gem 'ddtrace'
+
 # Added at 2018-01-10 13:44:34 +1000 by alex:
 gem 'pretender', '~> 0.3.1'
 
 # Added at 2018-01-12 18:27:05 +1000 by alex:
 gem 'allowable', '~> 1.1'
+
+# Added at 2018-02-07 15:53:54 +1000 by alex:
+gem "turbolinks", "~> 5.1"
+

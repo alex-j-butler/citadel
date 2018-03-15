@@ -15,6 +15,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def adminbar_enabled?
+    user_signed_in? && true_user.admin?
+  end
+
   after_action :track_action
 
   protected

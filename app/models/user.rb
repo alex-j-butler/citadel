@@ -6,8 +6,11 @@ class User < ApplicationRecord
   include Auth::Model
   include MarkdownRenderCaching
   include MarkdownTextCaching
+  include ExternalNameCache
 
   EMAIL_CONFIRMATION_TIMEOUT = 1.hour
+
+  caches_external_attribute :discord_id, :retrieve_discord_name, attribute_name: :discord_name
 
   has_many :titles, -> { order(created_at: :desc) }
   has_many :names, -> { order(created_at: :desc) }, class_name: 'NameChange'
@@ -30,7 +33,12 @@ class User < ApplicationRecord
 
   has_many :api_keys
 
-  devise :rememberable, :trackable, :omniauthable, omniauth_providers: [:steam]
+  # clean = no vac ban on record
+  # vac_banned = user is vac banned
+  # cleared = user is vac banned on another game
+  enum vac_status: [:vac_clean, :vac_banned, :vac_cleared]
+
+  devise :rememberable, :trackable, :omniauthable, omniauth_providers: [:steam, :discord]
 
   validates :name, presence: true, uniqueness: true, length: { in: 1..64 }
   validates :steam_id, presence: true, uniqueness: true,
@@ -181,5 +189,15 @@ class User < ApplicationRecord
     rosters.joins(:transfers)
            .where(rosters_sort => { id: ids, is_joining: true })
            .order(:name)
+  end
+
+  def retrieve_discord_name
+    if discord_id
+      profile = Discordrb::API::User.resolve Rails.application.secrets.discord_token, 
+        discord_id
+
+      profile_json = JSON.parse profile
+      "#{profile_json['username']}##{profile_json['discriminator']}"
+    end
   end
 end

@@ -30,6 +30,9 @@ Rails.application.routes.draw do
   get 'admin', to: 'admin#index'
   get 'statistics',  to: 'admin#statistics', as: 'admin_statistics'
 
+  post 'mkdown-preview', to: 'markdown#preview'
+  get 'admin_bar', to: 'admin_bar#results'
+
   namespace :meta do
     resources :games, except: [:destroy]
     resources :formats, except: [:destroy]
@@ -127,6 +130,9 @@ Rails.application.routes.draw do
     post 'name',  on: :member, to: 'users#request_name_change'
     post 'impersonate', to: 'users#impersonate'
     post 'unimpersonate', to: 'users#unimpersonate'
+    patch 'clear_vac', to: 'users#clear_vac'
+    patch 'unclear_vac', to: 'users#unclear_vac'
+    patch 'unlink', to: 'users#unlink_account'
 
     resources :comments, controller: 'users/comments', only: [:create, :edit, :update, :destroy] do
       get :edits, on: :member, as: 'edits_for'

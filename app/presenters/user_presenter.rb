@@ -108,4 +108,27 @@ class UserPresenter < BasePresenter
       BADGE_CLASSES.first
     end
   end
+
+  def vac_badge
+    content_tag(:div, 'VAC Banned', class: "label #{vac_badge_class}", data:
+      { toggle: :tooltip,
+        placement: :bottom,
+        html: 'true', 'original-title' => vac_badge_tooltip })
+  end
+
+  def vac_badge_class
+    if user.vac_banned?
+      'label-danger'
+    elsif user.vac_cleared?
+      'label-warning'
+    end
+  end
+
+  def vac_badge_tooltip
+    if user.vac_banned?
+      'Player has been convicted of a VAC ban'
+    elsif user.vac_cleared?
+      'Player has been convicted of a VAC ban on a non-TF2 game'
+    end
+  end
 end
