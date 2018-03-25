@@ -6,6 +6,8 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+
+
 module Ozfortress
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
@@ -31,5 +33,8 @@ module Ozfortress
 
     # Site config file
     config.site = config_for(:site)
+    
+    # Add fonts to assets pipeline
+    config.assets.paths << Rails.root.join("app", "assets", "fonts")
   end
 end

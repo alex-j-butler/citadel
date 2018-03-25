@@ -1,7 +1,23 @@
-%li.nav-item{ class: navbar_class(:home), "data-placement" => "right", "data-toggle" => "tooltip", :title => "Home"}
-  %a.nav-link{:href => "/" }
-    %i.fa.fa-home
-    %span.nav-link-text Home
+- if user_signed_in?
+  %li.nav-item.profile-item{"data-placement" => "right", "data-toggle" => "tooltip", :title => "Profile"}
+    %a.nav-link.profile-nav{:onclick => "profile_load()"}
+      .media
+        %img.d-flex.mr-3.rounded-circle.profile-avatar{:alt => "", :src => current_user.avatar}
+        %span.indicator.text-success.d-none.d-lg-block
+          %i.fa.fa-fw.fa-circle
+        .media-body.my-auto.profile-name
+          %strong = current_user.name
+          %span.badge.badge-info.notibadge 1
+  
+  %li.nav-item{ class: navbar_class(:home), "data-placement" => "right", "data-toggle" => "tooltip", :title => "Home"}
+    %a.nav-link{:href => "/" }
+      %i.fa.fa-home
+      %span.nav-link-text Home
+- else
+  %li.nav-item{ class: navbar_class(:home), "data-placement" => "right", "data-toggle" => "tooltip", :title => "Home"}
+    %a.nav-link.massive{:href => "/" }
+      %i.fa.fa-home
+      %span.nav-link-text Home
     
 %li.nav-item{ class: navbar_class(:users), "data-placement" => "right", "data-toggle" => "tooltip", :title => "Users"}
   %a.nav-link{:href => "/users" }
