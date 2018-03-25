@@ -1,10 +1,8 @@
 - content_for(:title) { 'Admin' }
 
-%h2 For all your admin needs
-
 - if current_user.can?(:edit, :leagues)
-  .card.card-default
-    .card-heading Leagues
+  %h2.outside Leagues
+  .card
     .card-body
       = link_to new_league_path, class: 'btn btn-default' do
         %span.glyphicon.glyphicon-plus
@@ -14,21 +12,22 @@
         = link_to league.name, league_path(league), class: 'list-group-item'
 
 - if current_user.can?(:edit, :users)
-  .card.card-default
-    .card-heading Community
+  %h2.outside Community
+  .card
     .card-body
       = link_to 'Name Changes', users_names_path
 
-.card.card-default
-  .card-heading Admin
+%h2.outside Admin
+.card.outside
+  .card-body 
   - if current_user.can?(:edit, :permissions)
     %li.list-group-item= link_to 'Permissions', permissions_path
   %li.list-group-item= link_to 'Statistics', admin_statistics_path
 
 
 - if current_user.can?(:edit, :games)
-  .card.card-default
-    .card-heading Meta Data
+  %h2.outside Meta Data
+  .card
     .card-body
       %ul.list-group
         = link_to 'Games', meta_games_path, class: 'list-group-item'

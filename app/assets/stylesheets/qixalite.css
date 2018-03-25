@@ -137,6 +137,11 @@ body.fixed-nav {
     }
 }
 
+.outside {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
 #mainNav .navbar-collapse {
   overflow: auto;
   max-height: 75vh;

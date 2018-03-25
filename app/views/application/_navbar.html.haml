@@ -6,7 +6,7 @@
         %span.indicator.text-success.d-none.d-lg-block
           %i.fa.fa-fw.fa-circle
         .media-body.my-auto.profile-name
-          %strong = current_user.name
+          = current_user.name
           %span.badge.badge-info.notibadge 1
   
   %li.nav-item{ class: navbar_class(:home), "data-placement" => "right", "data-toggle" => "tooltip", :title => "Home"}
