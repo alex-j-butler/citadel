@@ -6,8 +6,8 @@
 
 %hr
 
+%h2.outside Name
 .card.card-default
-  .card-heading Name
   .card-body
     = bootstrap_form_for @name_change, url: name_user_path(@user),
                          method: :post, as: :name_change, layout: :horizontal do |f|
@@ -41,8 +41,8 @@
               = link_to user_discord_omniauth_authorize_path, class: 'btn btn-default' do
                 Link
 
+%h2.outside Information
 .card.card-default
-  .card-heading Information
   .card-body
     = bootstrap_form_for @user, method: :patch do |f|
       = render 'user_form', f: f, user_p: user_p
@@ -51,8 +51,8 @@
       = link_to 'Cancel', user_path(@user), class: 'btn btn-default'
 
 - if user_can_edit_users?
-  .card.card-danger
-    .card-heading Danger Zone
+  %h2.outside Danger Zone
+  .card 
     .card-body
       = link_to user_bans_path(@user), class: 'btn btn-default' do
         Manage Bans

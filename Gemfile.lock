@@ -66,9 +66,9 @@ GEM
     allowable (1.1.0)
     ancestry (3.0.1)
       activerecord (>= 3.2.0)
-    arel (8.0.0)
-    ast (2.4.0)
-    autoprefixer-rails (7.2.5)
+    arel (7.1.4)
+    ast (2.3.0)
+    autoprefixer-rails (7.2.3)
       execjs
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -180,6 +180,9 @@ GEM
     geocoder (1.4.5)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    glyphicons-rails (0.1.2)
+      sass (~> 3.3)
+      sass-rails
     graph_matching (0.1.1)
       rgl (~> 0.5.0)
     haml (4.0.7)
@@ -474,6 +477,7 @@ DEPENDENCIES
   discordrb (~> 3.2)
   factory_bot_rails (~> 4)
   font-awesome-rails
+  glyphicons-rails
   haml (~> 4.0)
   haml_lint
   hamlit
@@ -484,8 +488,7 @@ DEPENDENCIES
   omniauth-discord
   omniauth-steam
   pagedown-bootstrap-rails
-  pg (~> 0.21)
-  popper_js (~> 1.12.9)
+  pg
   pretender (~> 0.3.1)
   rails (~> 5.1)
   rails_best_practices

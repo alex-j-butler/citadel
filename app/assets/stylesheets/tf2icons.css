@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'tf2-classicons';
-  src:  url('fonts/tf2-classicons.eot?bv99da');
-  src:  url('fonts/tf2-classicons.eot?bv99da#iefix') format('embedded-opentype'),
-    url('fonts/tf2-classicons.ttf?bv99da') format('truetype'),
-    url('fonts/tf2-classicons.woff?bv99da') format('woff'),
-    url('fonts/tf2-classicons.svg?bv99da#tf2-classicons') format('svg');
+  src:  font-url('tf2-classicons.eot');
+  src:  font-url('tf2-classicons.eot#iefix') format('embedded-opentype'),
+    font-url('tf2-classicons.ttf') format('truetype'),
+    font-url('tf2-classicons.woff') format('woff'),
+    font-url('tf2-classicons.svg#tf2-classicons') format('svg');
   font-weight: normal;
   font-style: normal;
 }

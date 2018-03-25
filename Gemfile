@@ -24,7 +24,9 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
 gem 'bootstrap_form'
 # Bootstrap markdown editor
 gem 'pagedown-bootstrap-rails'
-gem 'font-awesome-rails'
+# Font Awesome
+gem "font-awesome-rails"
+gem "glyphicons-rails"
 # Nested Forms
 gem 'cocoon'
 # Use jquery as the JavaScript library
@@ -115,4 +117,3 @@ gem 'allowable', '~> 1.1'
 
 # Added at 2018-02-07 15:53:54 +1000 by alex:
 gem "turbolinks", "~> 5.1"
-

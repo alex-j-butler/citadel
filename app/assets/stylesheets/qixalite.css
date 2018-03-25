@@ -130,6 +130,17 @@ body.fixed-nav {
 	color: #adb5bd;
 }
 
+@media (min-width: 992px) {
+    .nav-link.massive {
+        padding-top: 1.8em !important;
+        height: 77px;
+    }
+}
+
+.outside {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
 
 #mainNav .navbar-collapse {
   overflow: auto;
