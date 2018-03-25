@@ -164,6 +164,9 @@ GEM
     geocoder (1.4.5)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    glyphicons-rails (0.1.2)
+      sass (~> 3.3)
+      sass-rails
     graph_matching (0.1.1)
       rgl (~> 0.5.0)
     haml (4.0.7)
@@ -422,6 +425,7 @@ DEPENDENCIES
   devise
   factory_girl_rails (~> 4.0)
   font-awesome-rails
+  glyphicons-rails
   haml (~> 4.0)
   haml_lint
   hamlit

@@ -26,6 +26,7 @@ gem 'bootstrap_form'
 gem 'pagedown-bootstrap-rails'
 # Font Awesome
 gem "font-awesome-rails"
+gem "glyphicons-rails"
 # Nested Forms
 gem 'cocoon'
 # Use jquery as the JavaScript library
