@@ -66,9 +66,9 @@ GEM
     allowable (1.1.0)
     ancestry (3.0.1)
       activerecord (>= 3.2.0)
-    arel (7.1.4)
-    ast (2.3.0)
-    autoprefixer-rails (7.2.3)
+    arel (8.0.0)
+    ast (2.4.0)
+    autoprefixer-rails (7.2.5)
       execjs
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -488,7 +488,8 @@ DEPENDENCIES
   omniauth-discord
   omniauth-steam
   pagedown-bootstrap-rails
-  pg
+  pg (~> 0.21)
+  popper_js (~> 1.12.9)
   pretender (~> 0.3.1)
   rails (~> 5.1)
   rails_best_practices
